@@ -1,0 +1,19 @@
+body
+{
+
+	background-image: url("../IMAGE/HOME/grey-background.jpg");
+	max-height : 100%;
+	max-width : 100%;
+	background-repeat: no-repeat;
+	background-color: gray;
+	color : white;
+}
+#GV_TitleHamster
+{
+	color : white;
+	text-align : center;
+}
+.GV_btnPlay
+{
+	text-align : center;
+}
