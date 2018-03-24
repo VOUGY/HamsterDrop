@@ -1,7 +1,7 @@
 body
 {
 
-	background-image: url("../IMAGE/HOME/grey-background.jpg");
+	//background-image: url("../IMAGE/HOME/grey-background.jpg");
 	max-height : 100%;
 	max-width : 100%;
 	background-repeat: no-repeat;
@@ -16,4 +16,14 @@ body
 .GV_btnPlay
 {
 	text-align : center;
+	display: flex;
+	left: 50%;
+}
+.GV_Menu
+{
+	background-color: #1c7430;
+	height: 100%;
+	width: 50%;
+	position: relative;
+	
 }
