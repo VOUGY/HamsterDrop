@@ -13,17 +13,57 @@ body
 	color : white;
 	text-align : center;
 }
-.GV_btnPlay
+#GV_btnPlay:hover {
+
+
+	background-color : green;
+	border: green;
+	-webkit-transform: scale(1.1);
+	-moz-transform: scale(1.1);
+	-o-transform: scale(1.1);
+	transform: scale(1.1);
+	-webkit-transform-origin: top right;
+	-moz-transform-origin: top right;
+	-o-transform-origin: top right;
+	transform-origin: top right;
+}
+.lstNbrPlayer button{
+	width: 70%;
+	height: 5%;
+	margin-left: 40%;
+}
+#test
+{
+	margin-left: 50%;
+}
+.lstNbrPlayer button:hover {
+
+
+	background-color : green;
+	border: green;
+	-webkit-transform: scale(1.01);
+	-moz-transform: scale(1.01);
+	-o-transform: scale(1.01);
+	transform: scale(1.01);
+	-webkit-transform-origin: top right;
+	-moz-transform-origin: top right;
+	-o-transform-origin: top right;
+	transform-origin: top right;
+}
+
+#GV_btnPlay
 {
 	text-align : center;
-	display: flex;
-	left: 50%;
+	margin-left: 50%;
+
 }
 .GV_Menu
 {
+
 	background-color: #1c7430;
-	height: 100%;
-	width: 50%;
-	position: relative;
 	
+}
+.row
+{
+	margin-top: 10%;
 }
