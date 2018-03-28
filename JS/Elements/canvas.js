@@ -1,0 +1,1 @@
+//A ajouter ici tous ce qui concerne le canvas (taille, contexte, couleur, ...)
