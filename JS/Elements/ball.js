@@ -1,51 +1,85 @@
 //Tout ce qui concerne la ball, idealement sans les elements concernant le canvas
-var interval,
-    ballY = h, a = 0.1, v = 0, ballAbsorption = 0.8,
-    ballSize = 20, ballRadius = ballSize / 2, frameRate = 20;
+var interval;
+var lastCoord = [0.0,0.0];
+var coord = [100.0,h];
+var velocity = [6,0];
+var accel = [0.005, 0.1];
+var absorb = 0.7;
+var rebound = false;
+var roll = false;
+var ballSize = 20, ballRadius = ballSize / 2;
+var frameRate = 20;
 
 function bounce(){
-    if(ballY <= 0 && v > 0) {
-        console.log('bong');
-        v *= -1 * ballAbsorption; // bounding with less velocity
+    if(coord[1] - ballRadius == 0){
+        velocity[1] *= -1 * absorb;
 
-        if(v > -0.1 && v < 0.1) {
-            clearInterval(interval);
-            interval = null;
-            console.log('stop');
+        if(Math.abs(velocity[1]) < accel[1]){
+            roll = true;
         }
+    }
+    if(coord[0] + ballRadius == w || coord[0] - ballRadius == 0){
+        velocity[0] *= -1 * absorb;
     }
 }
 
 function collision(){
-    if(ballY <= line.startY){
-        console.log('bing');
-        v *= -1 * ballAbsorption; // bounding with less velocity
+    if(ballX >= line.startX && ballX <= line.endX){
+        if(ballY <= line.contactY){
+            console.log('bing');
+            vY *= -1 * ballAbsorption; // bounding with less velocitycity
 
-        if(v > -0.1 && v < 0.1) {
-            clearInterval(interval);
-            interval = null;
-            console.log('stop');
+            if(vY > -0.01 && vY < 0.01) {
+                clearInterval(interval);
+                interval = null;
+                console.log('stop');
+            }
         }
     }
 }
 
 function drawBall() {
+
     bounce();
 
     // Move the ball
-    v += a; // accelerating
-    ballY -= v; // falling (if v < 0)
+    velocity[0] -= Math.sign(velocity[0])*accel[0]; // deccelerating X axis
+    velocity[1] += accel[1]; // accelerating Y axis
+    lastCoord[0] = coord[0];
+    lastCoord[1] = coord[1];
+
+    //Anticipate wall rebound
+    if(coord[0] - ballRadius + (velocity[0] - accel[0]) < 0)
+        coord[0] = ballRadius;
+    else if(coord[0] + ballRadius + (velocity[0] - accel[0]) > w)
+        coord[0] = w - ballRadius;
+    else
+        coord[0] += velocity[0];
+
+    //Anticipate floor rebound
+    if(roll == false){
+        if(coord[1] - ballRadius - velocity[1] - accel[1] < 0)
+            coord[1] = ballRadius;
+        else
+            coord[1] -= velocity[1]; // falling (if v < 0)
+    }
+
+    if(roll == true && Math.abs(velocity[0]) < 0.02 || Math.abs(velocity[0]) < 0.02 && (velocity[1] < 0 && velocity[1] > -0.2)){
+        clearInterval(interval);
+        interval = null;
+        console.log('stop');
+    }
 
     // drawing ball
-    ctx.clearRect(0, 0, h, w);
-    integrateObject();
+    ctx.clearRect(0, 0, w, h);
+    // integrateObject();
 
     // console.log(line.startY);
-    collision();
+    // collision();
 
     ctx.fillStyle = "red";
     ctx.beginPath();
-    ctx.arc(w/2, h - ballY - ballRadius, ballRadius, 0, Math.PI*2, false);
+    ctx.arc(coord[0], h - coord[1], ballRadius, 0, Math.PI*2, false);
     ctx.fill();
 }
 
@@ -57,11 +91,15 @@ window.onload = function() {
     interval = setInterval(drawBall, frameRate);
 
     canvas.addEventListener('click', function(){
-        ballY = h;
-        v = 0;
-        console.clear();
-        if(!interval) {
-            interval = setInterval(drawBall, frameRate);
-        }
+        clearInterval(interval);
+        interval = null;
+        console.log('stop');
+
+        // coord[1] = h;
+        // velocity[1] = 0;
+        // console.clear();
+        // if(!interval) {
+        // interval = setInterval(drawBall, frameRate);
+        // }
     });
 }
