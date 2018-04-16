@@ -2,7 +2,7 @@
 var interval;
 var lastCoord = [0.0,0.0];
 var coord = [100.0,h];
-var velocity = [6,0];
+var velocity = [12,0];
 var accel = [0.005, 0.1];
 var absorb = 0.7;
 var rebound = false;
@@ -11,22 +11,18 @@ var ballSize = 20, ballRadius = ballSize / 2;
 var frameRate = 20;
 
 function bounce(){
-    if(coord[1] - ballRadius == 0){
+    if(coord[1] - ballRadius === 0){
         velocity[1] *= -1 * absorb;
-
-        if(Math.abs(velocity[1]) < accel[1]){
+        if(Math.abs(velocity[1]) < accel[1])
             roll = true;
-        }
     }
-    if(coord[0] + ballRadius == w || coord[0] - ballRadius == 0){
+    if(coord[0] + ballRadius === w || coord[0] - ballRadius === 0)
         velocity[0] *= -1 * absorb;
-    }
 }
 
 function collision(){
-    if(ballX >= line.startX && ballX <= line.endX){
+    if(coord[0] >= line.startX && ballX <= line.endX){
         if(ballY <= line.contactY){
-            console.log('bing');
             vY *= -1 * ballAbsorption; // bounding with less velocitycity
 
             if(vY > -0.01 && vY < 0.01) {
@@ -57,14 +53,14 @@ function drawBall() {
         coord[0] += velocity[0];
 
     //Anticipate floor rebound
-    if(roll == false){
+    if(roll === false){
         if(coord[1] - ballRadius - velocity[1] - accel[1] < 0)
             coord[1] = ballRadius;
         else
             coord[1] -= velocity[1]; // falling (if v < 0)
     }
 
-    if(roll == true && Math.abs(velocity[0]) < 0.02 || Math.abs(velocity[0]) < 0.02 && (velocity[1] < 0 && velocity[1] > -0.2)){
+    if(roll === true && Math.abs(velocity[0]) < 0.02){
         clearInterval(interval);
         interval = null;
         console.log('stop');
@@ -72,10 +68,10 @@ function drawBall() {
 
     // drawing ball
     ctx.clearRect(0, 0, w, h);
-    // integrateObject();
+    integrateObject();
+    drawLines(listCalcLines);
 
-    // console.log(line.startY);
-    // collision();
+    collision();
 
     ctx.fillStyle = "red";
     ctx.beginPath();
@@ -87,6 +83,7 @@ function drawBall() {
 
 window.onload = function() {
     defineGameBox();
+    calcLines();
 
     interval = setInterval(drawBall, frameRate);
 
@@ -94,12 +91,5 @@ window.onload = function() {
         clearInterval(interval);
         interval = null;
         console.log('stop');
-
-        // coord[1] = h;
-        // velocity[1] = 0;
-        // console.clear();
-        // if(!interval) {
-        // interval = setInterval(drawBall, frameRate);
-        // }
     });
 }
