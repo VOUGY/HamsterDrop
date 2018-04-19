@@ -20,6 +20,7 @@ function defineGameBox(){
     canvas.style.border = "1px solid #000";
     canvas.style.left = l.toString();
     canvas.style.top = t.toString();
+
 }
 
 function integrateObject(){

@@ -1,21 +1,41 @@
 //Ce qui concerne les elements dynamiques qui seront integres au canvas, balle non comprise
-var listLines = [[100,100,150,0],[200,100,200,23]];
+// var startX, startY, length, tilt, endX, endY;
+var listLines = [[100,100,150,0],[400,300,200,Math.PI]];
+var listCalcLines = Array(listLines.length);
 
-function drawLines(listObj) {
-    for(var obj in listObj){
-        new drawLine(obj[0],obj[1],obj[2],obj[3]);
+function drawLines() {
+    var listCalcLinesLength = listCalcLines.length;
+    for(var i=0;i<listCalcLinesLength;i++)
+        new drawLine(listCalcLines[i][0],listCalcLines[i][1],listCalcLines[i][2],listCalcLines[i][3]);
+}
+
+function calcLines(){
+    var listLinesLength = listLines.length;
+    var startX, startY, length, tilt, endX, endY;
+
+    for(var i=0;i<listLinesLength;i++){
+        console.log(listLines[0][1]);
+
+        startX = listLines[i][0];
+        startY = listLines[i][1];
+        length = listLines[i][2];
+        tilt = listLines[i][3];
+        endX = startX+Math.cos(tilt)*length;
+
+        endY = startY+Math.sin(tilt)*length;
+
+        listCalcLines[i] = [startX, startY, endX, endY];
     }
 }
 
-function drawLine(startX, startY, length, tilt){
-    this.startX = startX;
-    this.startY = startY;
-    this.length = length;
-    this.tilt = tilt;
-
+function drawLine(x1, y1, x2, y2){
     ctx.strokeStyle = "blue";
     ctx.beginPath();
-    ctx.moveTo(startX,startY);
-    ctx.lineTo(startX+Math.cos(tilt)*length, startY+Math.sin(tilt)*length);
+    ctx.moveTo(x1,y1);
+    ctx.lineTo(x2, y2);
     ctx.stroke();
+}
+
+function getYfromX(x){
+
 }
