@@ -1,17 +1,18 @@
 //Tout ce qui concerne la ball, idealement sans les elements concernant le canvas
 var interval;
-var lastCoord = [0.0,0.0];
-var coord = [100.0,h];
-var velocity = [12,0];
+var lastCoord = [0,0];
+var coord = [100,h];
+var velocity = [3,3];
 var accel = [0.005, 0.1];
 var absorb = 0.7;
+var contactY = 0;
 var rebound = false;
 var roll = false;
 var ballSize = 20, ballRadius = ballSize / 2;
 var frameRate = 20;
 
 function bounce(){
-    if(coord[1] - ballRadius === 0){
+    if(coord[1] - ballRadius === contactY){
         velocity[1] *= -1 * absorb;
         if(Math.abs(velocity[1]) < accel[1])
             roll = true;
@@ -21,22 +22,32 @@ function bounce(){
 }
 
 function collision(){
-    if(coord[0] >= line.startX && ballX <= line.endX){
-        if(ballY <= line.contactY){
-            vY *= -1 * ballAbsorption; // bounding with less velocitycity
+    var contactYList;
 
-            if(vY > -0.01 && vY < 0.01) {
-                clearInterval(interval);
-                interval = null;
-                console.log('stop');
+    for(var j=0; j<listLines.length; j++){
+        if(coord[0] >= listCalcLines[j][0] && coord[0] <= listCalcLines[j][2]){
+            startX = listLines[j][0];
+            startY = listLines[j][1];
+            var lengthX = coord[0] - startX;
+            tilt = listLines[j][3];
+            contactY = 0;
+            var potentialContactY = h - (startY + Math.sin(tilt)*lengthX);
+            // console.log("potential contact "+potentialContactY+" et coordY "+coord[1]);
+
+            if(velocity[1] > 0 && coord[1] - ballRadius - velocity[1] - accel[1] < potentialContactY
+            // || velocity[1] < 0 && coord[1] + ballRadius + velocity[1] - accel[1] < potentialContactY
+            ){
+                contactY = potentialContactY;
             }
         }
     }
 }
 
 function drawBall() {
+    defineGameBox();
 
     bounce();
+    collision();
 
     // Move the ball
     velocity[0] -= Math.sign(velocity[0])*accel[0]; // deccelerating X axis
@@ -54,8 +65,10 @@ function drawBall() {
 
     //Anticipate floor rebound
     if(roll === false){
-        if(coord[1] - ballRadius - velocity[1] - accel[1] < 0)
-            coord[1] = ballRadius;
+        if(coord[1] - ballRadius - velocity[1] - accel[1] < contactY)
+            coord[1] = contactY + ballRadius;
+        // else if(velocity[1] < 0 && coord[1] + ballRadius + velocity[1] -accel[1] > contactY)
+        // 		coord[1] = contactY - ballRadius;
         else
             coord[1] -= velocity[1]; // falling (if v < 0)
     }
@@ -69,20 +82,15 @@ function drawBall() {
     // drawing ball
     ctx.clearRect(0, 0, w, h);
     integrateObject();
-    drawLines(listCalcLines);
 
-    collision();
-
+    // collision();
     ctx.fillStyle = "red";
     ctx.beginPath();
     ctx.arc(coord[0], h - coord[1], ballRadius, 0, Math.PI*2, false);
     ctx.fill();
 }
 
-
-
 window.onload = function() {
-    defineGameBox();
     calcLines();
 
     interval = setInterval(drawBall, frameRate);

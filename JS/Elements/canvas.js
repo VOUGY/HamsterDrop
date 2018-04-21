@@ -1,13 +1,10 @@
 //Ce qui concerne le canvas (taille, contexte, couleur, ...)
 
 var h = 400, w = 600,
-    canvas, ctx, interval,
+    canvas = document.getElementById('c'), ctx = canvas.getContext('2d'), interval,
     line;
 
 function defineGameBox(){
-    canvas = document.getElementById('c');
-    ctx = canvas.getContext('2d');
-
     canvas.height = h;
     canvas.width = w;
 
@@ -20,11 +17,10 @@ function defineGameBox(){
     canvas.style.border = "1px solid #000";
     canvas.style.left = l.toString();
     canvas.style.top = t.toString();
-
 }
 
 function integrateObject(){
-    line = new drawLine(200,200,150,Math.PI/6);
+    drawLines(listCalcLines);
 }
 
 
