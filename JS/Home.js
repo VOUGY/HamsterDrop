@@ -5,6 +5,7 @@ function AcceptPlay()
 
   document.getElementById("GV_btnPlay").setAttribute("style", "background-color:green");
  //  document.getElementById("GV_btnPlay").setAttribute("style", "display:none")
+
     var elem = document.getElementById("GV_btnPlay");
     var pos = 50;
     var id = setInterval(frame, 10);
@@ -17,7 +18,10 @@ function AcceptPlay()
             elem.style.marginLeft = pos + '%';
           //  alert(elem.style.marginLeft)
         }
+        elem = document.getElementById("DIV_btnPlay")
+        elem.parentNode.removeChild(elem);
     }
+
 
 }
 function NbrPlayer(nbrPlayer, e)
