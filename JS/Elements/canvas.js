@@ -5,6 +5,7 @@ var h = 400, w = 600,
     line;
 
 function defineGameBox(){
+    console.log(h);
     canvas.height = h;
     canvas.width = w;
 
