@@ -1,0 +1,40 @@
+body {
+    background-color: #1c7430;
+}
+#btnPlayInit
+{
+    text-align: center;
+    cursor: pointer;
+    margin: 15px;
+    position: absolute;
+    width: 350px;
+    height: 80px;
+
+
+    border-radius: 10px;
+    background-color: #005cbf;
+    border: none;
+    color: #FFFFFF;
+    font-size: 28px;
+    padding: 20px;
+    transition: all 0.5s;
+
+
+    /* Firefox */
+    top: -moz-calc(50% - 80px);
+    /* WebKit */
+    top: -webkit-calc(50% - 80px);
+    /* Opera */
+    top: -o-calc(50% - 80px);
+    /* Standard */
+    top: calc(50% - 80px);
+
+    /* Firefox */
+    left: -moz-calc(50% - 175px);
+    /* WebKit */
+    left: -webkit-calc(50% - 175px);
+    /* Opera */
+    left: -o-calc(50% - 175px);
+    /* Standard */
+    left: calc(50% - 175px);
+}
