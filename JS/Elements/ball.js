@@ -23,6 +23,7 @@ function bounce(){
 
 function collision(){
     var contactYList;
+    var potentialContactY;
 
     for(var j=0; j<listLines.length; j++){
         if(coord[0] >= listCalcLines[j][0] && coord[0] <= listCalcLines[j][2]){
@@ -31,11 +32,11 @@ function collision(){
             var lengthX = coord[0] - startX;
             tilt = listLines[j][3];
             contactY = 0;
-            var potentialContactY = h - (startY + Math.sin(tilt)*lengthX);
+            potentialContactY = h - (startY + Math.sin(tilt)*lengthX);
             // console.log("potential contact "+potentialContactY+" et coordY "+coord[1]);
 
-            if(velocity[1] > 0 && coord[1] > potentialContactY && coord[1] - ballRadius - velocity[1] - accel[1] < potentialContactY
-            || velocity[1] < 0 && coord[1] < potentialContactY && coord[1] + ballRadius + velocity[1] - accel[1] > potentialContactY
+            if(velocity[1] > 0 && coord[1] > potentialContactY && coord[1] + velocity[1] + accel[1] < potentialContactY ||
+                velocity[1] < 0 && coord[1] < potentialContactY && coord[1] + ballRadius + velocity[1] - accel[1] > potentialContactY
             ){
                 contactY = potentialContactY;
             }
@@ -45,10 +46,10 @@ function collision(){
 
 function drawBall() {
     defineGameBox();
-
     bounce();
     collision();
 
+    console.log(coord[1]);
     // Move the ball
     velocity[0] -= Math.sign(velocity[0])*accel[0]; // deccelerating X axis
     velocity[1] += accel[1]; // accelerating Y axis
@@ -83,7 +84,6 @@ function drawBall() {
     ctx.clearRect(0, 0, w, h);
     integrateObject();
 
-    // collision();
     ctx.fillStyle = "red";
     ctx.beginPath();
     ctx.arc(coord[0], h - coord[1], ballRadius, 0, Math.PI*2, false);
@@ -92,7 +92,6 @@ function drawBall() {
 
 window.onload = function() {
     calcLines();
-
     interval = setInterval(drawBall, frameRate);
 
     canvas.addEventListener('click', function(){
