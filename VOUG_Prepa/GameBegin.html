@@ -18,8 +18,8 @@
 </div>
 <div id="dBoxInfoPlayer">
     <h1 id="titlePlayer"> Name of Player 1 :</h1>
-
-    <button id="next" class="btnBegin btnChoiceNbrPlayer" onclick="AddPlayer('test','2')"> next </button>
+    <input type="text" id="iptNamePlayer" placeholder="Player" value=""> </input>
+    <button id="next" class="btnBegin" onclick=""> next </button>
 </div>
 <div>
 
@@ -51,15 +51,25 @@
                 //////////////////////////////////////
                 // Create Object PLAY
                 Play($(this).attr("value"));
+
+                $("#titlePlayer").text("Name of Player " + iCurrentPlayer + " / " + localStorage.getItem("nbrPlayer"))
                 /////////////////////////////////////
             });
 
             $("#next").click(function () {
-                alert(iCurrentPlayer);
-
+                AddPlayer('test','2');
+                $("#titlePlayer").text("Name of Player " + iCurrentPlayer + " / " + localStorage.getItem("nbrPlayer"))
+                if(iCurrentPlayer >  localStorage.getItem("nbrPlayer"))
+                {
+                    $("#dBoxInfoPlayer *").each(function() {
+                        $(this).animate({ "left": "-=1000px" }, "fast").fadeOut("low", function () {
+                            // $("#dBoxInfoPlayer").css("visibility", "visible");
+                        });
+                    });
+                }
             });
-
         });
+
 
     </script>
 </body>

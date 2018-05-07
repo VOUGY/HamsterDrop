@@ -1,7 +1,7 @@
-var iNbrPlayer;
-var aPlayers
-var iCurrentPlayer = 0;
 
+var aPlayers = [];
+var iCurrentPlayer = 0;
+AddPlayer();
 // Object of one player of a game
 function Player(name,idhamster) {
     this.name = name;
@@ -13,12 +13,11 @@ function AddPlayer(name,idhamster)
 
     iCurrentPlayer++;
 
-    aPlayers.push(Player(name,idhamster));
+   // aPlayers.push(Player(name,idhamster));
 
 }
 function getCurrentPlayer()
 {
-    alert("Current Player " + iCurrentPlayer )
     return iCurrentPlayer;
 }
 // linked object of each player
@@ -32,8 +31,7 @@ function Score(){
 }
 
 function Play (nbrPlayer) {
-    iNbrPlayer = nbrPlayer;
-
-  //  alert(iNbrPlayer);
+   //alert(nbrPlayer);
+    localStorage.setItem("nbrPlayer", nbrPlayer);
 
 }
