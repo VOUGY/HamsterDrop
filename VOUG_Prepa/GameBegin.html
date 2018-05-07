@@ -5,15 +5,24 @@
     <title>Game Begin</title>
     <link rel="stylesheet" type="text/css" href="GameBeginCSS.css">
     <script src="../JS/jquery-3.3.1.js"></script>
+    <script src="../JS/PlayerScore.js"></script>
 </head>
 <body>
     <button id="btnPlayInit" class="btnBegin"> Etes-vous prêt à jouer ?</button>
 
 <div id="dBoxNbrPlayer">
-    <h1 id="title"> </h1>
+    <h1 id="title"> How many players want to play ? </h1>
     <button id="btnPlay2" class="btnBegin btnChoiceNbrPlayer" value="2" onclick=""> 2 players</button>
     <button id="btnPlay4" class="btnBegin btnChoiceNbrPlayer" value="4" onclick=""> 4 players</button>
     <button id="btnPlay8" class="btnBegin btnChoiceNbrPlayer" value="8" onclick=""> 8 players</button>
+</div>
+<div id="dBoxInfoPlayer">
+    <h1 id="titlePlayer"> Name of Player 1 :</h1>
+
+    <button id="next" class="btnBegin btnChoiceNbrPlayer" onclick="AddPlayer('test','2')"> next </button>
+</div>
+<div>
+
 </div>
     <script>
         $(document).ready(function () {
@@ -32,16 +41,23 @@
 
 
             $(".btnChoiceNbrPlayer").click(function () {
-               alert($(this).attr("value"));
+              // alert());
+
                 $("#dBoxNbrPlayer button").each(function() {
-                    $(this).animate({ "left": "-=2000px" }, "fast");
+                    $(this).animate({ "left": "-=1000px" }, "fast").fadeOut("low", function () {
+                        $("#dBoxInfoPlayer").css("visibility", "visible");
+                    });
                 });
                 //////////////////////////////////////
-                // Create Objet PLAY
-
+                // Create Object PLAY
+                Play($(this).attr("value"));
                 /////////////////////////////////////
             });
 
+            $("#next").click(function () {
+                alert(iCurrentPlayer);
+
+            });
 
         });
 

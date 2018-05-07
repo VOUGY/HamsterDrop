@@ -81,3 +81,7 @@ body {
     /* Standard */
     left: calc(50% - 250px);
 }
+#dBoxInfoPlayer
+{
+    visibility: hidden;
+}
