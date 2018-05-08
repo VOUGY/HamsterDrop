@@ -1,5 +1,5 @@
 
-var aPlayers = [];
+var aPlayers;
 var iCurrentPlayer = 0;
 AddPlayer();
 // Object of one player of a game
@@ -11,9 +11,11 @@ function Player(name,idhamster) {
 function AddPlayer(name,idhamster)
 {
 
+    var pPlayer = Player(name,idhamster);
+    aPlayers[iCurrentPlayer] = pPlayer;
     iCurrentPlayer++;
 
-   // aPlayers.push(Player(name,idhamster));
+
 
 }
 function getCurrentPlayer()

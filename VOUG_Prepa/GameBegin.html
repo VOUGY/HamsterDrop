@@ -18,10 +18,47 @@
 </div>
 <div id="dBoxInfoPlayer">
     <h1 id="titlePlayer"> Name of Player 1 :</h1>
-    <input type="text" id="iptNamePlayer" placeholder="Player" value=""> </input>
+
+    <input type="text" id="iptNamePlayer" placeholder="Player"> Tewst </input>
     <button id="next" class="btnBegin" onclick=""> next </button>
 </div>
 <div>
+    <div id="map"></div>
+    <script>
+        function initMap() {
+
+
+           var pos = {lat: navigator.geolocation.watchPosition(showPositionLat), lng: navigator.geolocation.watchPosition(showPositionLon)};
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 9,
+                center: pos
+            });
+            var marker = new google.maps.Marker({
+                position: pos,
+                map: map
+            });
+
+        }
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.watchPosition(showPosition);
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";}
+        }
+        function showPositionLat(position) {
+
+            return position.coords.latitude;
+        }
+        function showPositionLon(position) {
+
+            return position.coords.longitude;
+        }
+
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQszGSVfhIEWFBskyzBM6CHY2JL48Zlgg &callback=initMap">
+    </script>
+
 
 </div>
     <script>
@@ -57,13 +94,16 @@
             });
 
             $("#next").click(function () {
-                AddPlayer('test','2');
+               // alert($("#iptNamePlayer").text())
+                // AddPlayer('test','2');
                 $("#titlePlayer").text("Name of Player " + iCurrentPlayer + " / " + localStorage.getItem("nbrPlayer"))
+
                 if(iCurrentPlayer >  localStorage.getItem("nbrPlayer"))
                 {
                     $("#dBoxInfoPlayer *").each(function() {
                         $(this).animate({ "left": "-=1000px" }, "fast").fadeOut("low", function () {
                             // $("#dBoxInfoPlayer").css("visibility", "visible");
+                           // alert(aPlayers);
                         });
                     });
                 }
