@@ -4,9 +4,113 @@
     <meta charset="UTF-8">
     <title>Game Begin</title>
     <link rel="stylesheet" type="text/css" href="GameBeginCSS.css">
+    <script src="../JS/jquery-3.3.1.js"></script>
+    <script src="../JS/PlayerScore.js"></script>
 </head>
 <body>
-    <button id="btnPlayInit" onclick="playInit()"> Etes-vous prêt à jouer ?</button>
+    <button id="btnPlayInit" class="btnBegin"> Etes-vous prêt à jouer ?</button>
 
+<div id="dBoxNbrPlayer">
+    <h1 id="title"> How many players want to play ? </h1>
+    <button id="btnPlay2" class="btnBegin btnChoiceNbrPlayer" value="2" onclick=""> 2 players</button>
+    <button id="btnPlay4" class="btnBegin btnChoiceNbrPlayer" value="4" onclick=""> 4 players</button>
+    <button id="btnPlay8" class="btnBegin btnChoiceNbrPlayer" value="8" onclick=""> 8 players</button>
+</div>
+<div id="dBoxInfoPlayer">
+    <h1 id="titlePlayer"> Name of Player 1 :</h1>
+
+    <input type="text" id="iptNamePlayer" placeholder="Player"> Tewst </input>
+    <button id="next" class="btnBegin" onclick=""> next </button>
+</div>
+<div>
+    <div id="map"></div>
+    <script>
+        function initMap() {
+
+
+           var pos = {lat: navigator.geolocation.watchPosition(showPositionLat), lng: navigator.geolocation.watchPosition(showPositionLon)};
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 9,
+                center: pos
+            });
+            var marker = new google.maps.Marker({
+                position: pos,
+                map: map
+            });
+
+        }
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.watchPosition(showPosition);
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";}
+        }
+        function showPositionLat(position) {
+
+            return position.coords.latitude;
+        }
+        function showPositionLon(position) {
+
+            return position.coords.longitude;
+        }
+
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQszGSVfhIEWFBskyzBM6CHY2JL48Zlgg &callback=initMap">
+    </script>
+
+
+</div>
+    <script>
+        $(document).ready(function () {
+
+
+            $("#btnPlayInit").click(function () {
+                //alert("click");
+                 $(this).animate({ "left": "-=1000px" }, "fast").fadeOut( "low", function () {
+
+                     $("#dBoxNbrPlayer").css("visibility", "visible");
+                     $("#dBoxNbrPlayer").fadeIn("low");
+                     //      $("#btnPlay2").css("background-color","red");
+                     //       document.getElementById("btnPlay2").style.visibility = "visible";
+                 });
+            });
+
+
+            $(".btnChoiceNbrPlayer").click(function () {
+              // alert());
+
+                $("#dBoxNbrPlayer button").each(function() {
+                    $(this).animate({ "left": "-=1000px" }, "fast").fadeOut("low", function () {
+                        $("#dBoxInfoPlayer").css("visibility", "visible");
+                    });
+                });
+                //////////////////////////////////////
+                // Create Object PLAY
+                Play($(this).attr("value"));
+
+                $("#titlePlayer").text("Name of Player " + iCurrentPlayer + " / " + localStorage.getItem("nbrPlayer"))
+                /////////////////////////////////////
+            });
+
+            $("#next").click(function () {
+               // alert($("#iptNamePlayer").text())
+                // AddPlayer('test','2');
+                $("#titlePlayer").text("Name of Player " + iCurrentPlayer + " / " + localStorage.getItem("nbrPlayer"))
+
+                if(iCurrentPlayer >  localStorage.getItem("nbrPlayer"))
+                {
+                    $("#dBoxInfoPlayer *").each(function() {
+                        $(this).animate({ "left": "-=1000px" }, "fast").fadeOut("low", function () {
+                            // $("#dBoxInfoPlayer").css("visibility", "visible");
+                           // alert(aPlayers);
+                        });
+                    });
+                }
+            });
+        });
+
+
+    </script>
 </body>
 </html>
