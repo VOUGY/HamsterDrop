@@ -1,9 +1,10 @@
 //Ce qui concerne les elements dynamiques qui seront integres au canvas, balle non comprise
 var startX, startY, length, tilt, endX, endY;
 var listLines = [
-    [100,150,150,1],
-    [500,300,200,Math.PI],
-    [200,200,150,Math.PI/3]
+    // [100,150,150,1],
+    [460,500,200,0],
+    [460,400,200,0],
+    // [200,200,150,-0.5]
 ];
 var listCalcLines = Array(listLines.length);
 
@@ -13,7 +14,7 @@ function drawLines() {
         startY = listCalcLines[i][1];
         endX = listCalcLines[i][2];
         endY = listCalcLines[i][3];
-        new drawLine();
+        drawLine();
     }
 }
 
