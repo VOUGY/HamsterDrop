@@ -153,4 +153,15 @@ button:hover {
     position: absolute;
     top : 70%;
     left: 0px;
+    visibility: hidden;
+}
+
+#div1, #div2, #div3,#div4,#div5 {
+    float: left;
+    width: 60px;
+    height: 60px;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid black;
+    background-color: white;
 }

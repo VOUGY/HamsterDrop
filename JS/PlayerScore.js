@@ -33,7 +33,7 @@ function Score(){
 }
 
 function Play (nbrPlayer) {
-   //alert(nbrPlayer);
+    alert(nbrPlayer);
     localStorage.setItem("nbrPlayer", nbrPlayer);
 
 }
