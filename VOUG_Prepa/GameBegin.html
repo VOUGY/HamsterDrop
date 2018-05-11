@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="GameBeginCSS.css">
     <script src="../JS/jquery-3.3.1.js"></script>
     <script src="../JS/PlayerScore.js"></script>
+    <script src="GameBeginJS.js"></script>
 </head>
 <body>
     <button id="btnPlayInit" class="btnBegin"> Etes-vous prêt à jouer ?</button>
@@ -19,8 +20,19 @@
 <div id="dBoxInfoPlayer">
     <h1 id="titlePlayer"> Name of Player 1 :</h1>
 
-    <input type="text" id="iptNamePlayer" placeholder="Player"> Tewst </input>
+    <input type="text" id="iptNamePlayer" placeholder="Player 1">  </input>
+
     <button id="next" class="btnBegin" onclick=""> next </button>
+
+    <div id="hasmter1" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <img src="../IMAGE/hamster.jpg" draggable="true" ondragstart="drag(event)" id="drag1" width="60" height="60">
+    </div>
+
+    <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <div id="div3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <div id="div4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <div id="div5" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <div id="div6" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 </div>
 <div>
     <div id="map"></div>
@@ -79,22 +91,25 @@
 
             $(".btnChoiceNbrPlayer").click(function () {
               // alert());
+                //////////////////////////////////////
+                // Create Object PLAY
+                Play($(this).attr("value"));
+
 
                 $("#dBoxNbrPlayer button").each(function() {
                     $(this).animate({ "left": "-=1000px" }, "fast").fadeOut("low", function () {
                         $("#dBoxInfoPlayer").css("visibility", "visible");
+                        $("#map").css("visibility", "visible");
                     });
                 });
-                //////////////////////////////////////
-                // Create Object PLAY
-                Play($(this).attr("value"));
+
 
                 $("#titlePlayer").text("Name of Player " + iCurrentPlayer + " / " + localStorage.getItem("nbrPlayer"))
                 /////////////////////////////////////
             });
 
             $("#next").click(function () {
-               // alert($("#iptNamePlayer").text())
+                alert($("#iptNamePlayer").text())
                 // AddPlayer('test','2');
                 $("#titlePlayer").text("Name of Player " + iCurrentPlayer + " / " + localStorage.getItem("nbrPlayer"))
 
