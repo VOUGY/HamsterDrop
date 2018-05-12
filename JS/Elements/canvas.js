@@ -20,6 +20,7 @@ function defineGameBox(){
 
 function integrateObject(){
     drawLines(listCalcLines);
+    drawRects(listCalcRect);
 }
 
 
