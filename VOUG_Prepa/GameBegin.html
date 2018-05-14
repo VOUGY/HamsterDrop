@@ -24,17 +24,23 @@
 
     <button id="next" class="btnBegin" onclick=""> next </button>
 
-    <div id="hasmter1" ondrop="drop(event)" ondragover="allowDrop(event)">
-        <img src="../IMAGE/hamster.jpg" draggable="true" ondragstart="drag(event)" id="drag1" width="60" height="60">
-    </div>
 
-    <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-    <div id="div3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-    <div id="div4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-    <div id="div5" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-    <div id="div6" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+     <div id="dBoxHamster">
+        <div class="hamsterChoice" id="ham1" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <img src="../IMAGE/ham1.jpg" draggable="true" ondragstart="drag(event)" id="drag1" width="60" height="60">
+        </div>
+        <div class="hamsterChoice" id="ham2" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <img src="../IMAGE/ham2.jpg" draggable="true" ondragstart="drag(event)" id="drag1" width="60" height="60">
+        </div>
+        <div class="hamsterChoice" id="ham3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="hamsterChoice" id="ham4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="hamsterChoice" id="ham5" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="hamsterChoice" id="ham6" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="hamsterChoice" id="ham7" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="hamsterChoice" id="ham8" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    </div>
 </div>
-<div>
+    <div>
     <div id="map"></div>
     <script>
         function initMap() {

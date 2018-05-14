@@ -145,6 +145,10 @@ button:hover {
     /* Standard */
     left: calc(50% - 250px);
 }
+#dBoxHamster
+{
+    margin-left: 24%;
+}
 #map
 {
     width: 100%;
@@ -156,7 +160,7 @@ button:hover {
     visibility: hidden;
 }
 
-#div1, #div2, #div3,#div4,#div5 {
+.hamsterChoice {
     float: left;
     width: 60px;
     height: 60px;
