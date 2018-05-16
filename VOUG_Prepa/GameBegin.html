@@ -11,6 +11,27 @@
 <body>
     <button id="btnPlayInit" class="btnBegin"> Etes-vous prêt à jouer ?</button>
 
+
+
+
+    <!--   <input class="iptNamePlayer" type="text" placeholder="Player 1">  </input>
+          <div class="hamsterChoosing" id="player1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+   <!--  <input class="iptNamePlayer" type="text" placeholder="Player 1">  </input>
+          <div class="hamsterChoosing" id="player3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+     <input class="iptNamePlayer" type="text" placeholder="Player 1">  </input>
+          <div class="hamsterChoosing" id="player4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+     <input class="iptNamePlayer" type="text" placeholder="Player 1">  </input>
+           <div class="hamsterChoosing" id="player5" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+     <input class="iptNamePlayer" type="text" placeholder="Player 1">  </input>
+           <div class="hamsterChoosing" id="player6" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+     <input class="iptNamePlayer" type="text" placeholder="Player 1">  </input>
+          <div class="hamsterChoosing" id="player7" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+     <input class="iptNamePlayer" type="text" placeholder="Player 1">  </input>
+          <div class="hamsterChoosing" id="player8" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+     <input class="iptNamePlayer" type="text" placeholder="Player 1">  </input>-->
+
+
+
 <div id="dBoxNbrPlayer">
     <h1 id="title"> How many players want to play ? </h1>
     <button id="btnPlay2" class="btnBegin btnChoiceNbrPlayer" value="2" onclick=""> 2 players</button>
@@ -18,19 +39,75 @@
     <button id="btnPlay8" class="btnBegin btnChoiceNbrPlayer" value="8" onclick=""> 8 players</button>
 </div>
 <div id="dBoxInfoPlayer">
-    <h1 id="titlePlayer"> Name of Player 1 :</h1>
 
-    <input type="text" id="iptNamePlayer" placeholder="Player 1">  </input>
-
-    <button id="next" class="btnBegin" onclick=""> next </button>
+    <div id="dBoxPlayer">
+     <table style="margin-right: 25%; margin-left: 25%">
+        <tr>
+            <td>
+                <input class="iptNamePlayer" type="text" placeholder="Player 1">  </input>
+            </td>
+            <td>
+                <div class="hamsterChoosing" id="player1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            </td>
+            <td style="padding-left: 5%">
+                <input class="iptNamePlayer" type="text" placeholder="Player 2">  </input>
+            </td>
+            <td>
+                <div class="hamsterChoosing" id="player2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input class="iptNamePlayer" type="text" placeholder="Player 3">  </input>
+            </td>
+            <td>
+                <div class="hamsterChoosing" id="player3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            </td>
+            <td style="padding-left: 5%">
+                <input class="iptNamePlayer" type="text" placeholder="Player 4">  </input>
+            </td>
+            <td>
+                <div class="hamsterChoosing" id="player4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input class="iptNamePlayer" type="text" placeholder="Player 5">  </input>
+            </td>
+            <td>
+                <div class="hamsterChoosing" id="player5" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            </td>
+            <td style="padding-left: 5%">
+                <input class="iptNamePlayer" type="text" placeholder="Player 6">  </input>
+            </td>
+            <td>
+                <div class="hamsterChoosing" id="player6" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input class="iptNamePlayer" type="text" placeholder="Player 7">  </input>
+            </td>
+            <td>
+                <div class="hamsterChoosing" id="player7" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            </td>
+            <td style="padding-left: 5%">
+                <input class="iptNamePlayer" type="text" placeholder="Player 8">  </input>
+            </td>
+            <td>
+                <div class="hamsterChoosing" id="player8" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            </td>
+        </tr>
+    </table>
+    </div>
 
 
      <div id="dBoxHamster">
         <div class="hamsterChoice" id="ham1" ondrop="drop(event)" ondragover="allowDrop(event)">
-            <img src="../IMAGE/ham1.jpg" draggable="true" ondragstart="drag(event)" id="drag1" width="60" height="60">
+            <img src="../IMAGE/ham1.jpg" draggable="true" ondragstart="drag(event)" id="drag1" width="75" height="75">
         </div>
         <div class="hamsterChoice" id="ham2" ondrop="drop(event)" ondragover="allowDrop(event)">
-            <img src="../IMAGE/ham2.jpg" draggable="true" ondragstart="drag(event)" id="drag2" width="60" height="60">
+            <img src="../IMAGE/ham2.jpg" draggable="true" ondragstart="drag(event)" id="drag2" width="75" height="75">
         </div>
         <div class="hamsterChoice" id="ham3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
         <div class="hamsterChoice" id="ham4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
