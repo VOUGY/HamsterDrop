@@ -2,6 +2,7 @@ body {
     background-color: #1c7430;
     max-height: 600px ;
     height: 600px;
+
 }
 
 button:hover {
@@ -75,18 +76,27 @@ button:hover {
     top: calc(80% - 80px);
 
 }
-#next
+#btnValidatePlayer
 {
     /* Firefox */
-    left: -moz-calc(60% - 175px);
+    right: -moz-calc(100% - 400px);
     /* WebKit */
-    left: -webkit-calc(60% - 175px);
+    right: -webkit-calc(100% - 400px);
 
     /* Standard */
-    left: calc(60% - 175px);
+    left: calc(100% - 400px);
+
+    /* Firefox */
+    top: -moz-calc(100% - 160px);
+    /* WebKit */
+    top: -webkit-calc(100% - 160px);
+
+    /* Standard */
+    top: calc(100% - 160px);
 }
 .iptNamePlayer
 {
+
     width: 350px;
     height: 75px;
     font-size: 50px;
@@ -126,9 +136,15 @@ button:hover {
 }
 #dBoxHamster
 {
-    margin-left: 25%;
+    margin-top: 5%;
+    margin-left: 50px;
     margin-right: 25%;
 }
+dBoxPlayer
+{
+    height: 600px;
+}
+
 #map
 {
     width: 100%;
@@ -159,4 +175,8 @@ button:hover {
     background-color: white;
     border-radius: 50px 50px;
 
+}
+tr
+{
+    margin-top: 20px;
 }

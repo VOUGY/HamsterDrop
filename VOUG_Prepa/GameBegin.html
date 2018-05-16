@@ -9,27 +9,8 @@
     <script src="GameBeginJS.js"></script>
 </head>
 <body>
+<div>
     <button id="btnPlayInit" class="btnBegin"> Etes-vous prêt à jouer ?</button>
-
-
-
-
-    <!--   <input class="iptNamePlayer" type="text" placeholder="Player 1">  </input>
-          <div class="hamsterChoosing" id="player1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-   <!--  <input class="iptNamePlayer" type="text" placeholder="Player 1">  </input>
-          <div class="hamsterChoosing" id="player3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-     <input class="iptNamePlayer" type="text" placeholder="Player 1">  </input>
-          <div class="hamsterChoosing" id="player4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-     <input class="iptNamePlayer" type="text" placeholder="Player 1">  </input>
-           <div class="hamsterChoosing" id="player5" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-     <input class="iptNamePlayer" type="text" placeholder="Player 1">  </input>
-           <div class="hamsterChoosing" id="player6" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-     <input class="iptNamePlayer" type="text" placeholder="Player 1">  </input>
-          <div class="hamsterChoosing" id="player7" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-     <input class="iptNamePlayer" type="text" placeholder="Player 1">  </input>
-          <div class="hamsterChoosing" id="player8" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-     <input class="iptNamePlayer" type="text" placeholder="Player 1">  </input>-->
-
 
 
 <div id="dBoxNbrPlayer">
@@ -38,21 +19,22 @@
     <button id="btnPlay4" class="btnBegin btnChoiceNbrPlayer" value="4" onclick=""> 4 players</button>
     <button id="btnPlay8" class="btnBegin btnChoiceNbrPlayer" value="8" onclick=""> 8 players</button>
 </div>
+
 <div id="dBoxInfoPlayer">
 
     <div id="dBoxPlayer">
-     <table style="margin-right: 25%; margin-left: 25%">
+     <table style="margin-right: 10%; margin-left: 10%">
         <tr>
-            <td>
+            <td class="playerName" style="width: 400px">
                 <input class="iptNamePlayer" type="text" placeholder="Player 1">  </input>
             </td>
-            <td>
+            <td style="width: 150px">
                 <div class="hamsterChoosing" id="player1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
             </td>
-            <td style="padding-left: 5%">
+            <td style="width: 400px">
                 <input class="iptNamePlayer" type="text" placeholder="Player 2">  </input>
             </td>
-            <td>
+            <td style="width: 150px">
                 <div class="hamsterChoosing" id="player2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
             </td>
         </tr>
@@ -63,7 +45,7 @@
             <td>
                 <div class="hamsterChoosing" id="player3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
             </td>
-            <td style="padding-left: 5%">
+            <td>
                 <input class="iptNamePlayer" type="text" placeholder="Player 4">  </input>
             </td>
             <td>
@@ -77,7 +59,7 @@
             <td>
                 <div class="hamsterChoosing" id="player5" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
             </td>
-            <td style="padding-left: 5%">
+            <td>
                 <input class="iptNamePlayer" type="text" placeholder="Player 6">  </input>
             </td>
             <td>
@@ -91,7 +73,7 @@
             <td>
                 <div class="hamsterChoosing" id="player7" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
             </td>
-            <td style="padding-left: 5%">
+            <td>
                 <input class="iptNamePlayer" type="text" placeholder="Player 8">  </input>
             </td>
             <td>
@@ -99,26 +81,89 @@
             </td>
         </tr>
     </table>
+
+        <div id="dBoxHamster">
+            <div class="hamsterChoice" id="ham1" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <img src="../IMAGE/ham1.jpg" draggable="true" ondragstart="drag(event)" id="drag1" width="75" height="75">
+            </div>
+            <div class="hamsterChoice" id="ham2" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <img src="../IMAGE/ham2.jpg" draggable="true" ondragstart="drag(event)" id="drag2" width="75" height="75">
+            </div>
+            <div class="hamsterChoice" id="ham3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div class="hamsterChoice" id="ham4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div class="hamsterChoice" id="ham5" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div class="hamsterChoice" id="ham6" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div class="hamsterChoice" id="ham7" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div class="hamsterChoice" id="ham8" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </div>
+
+        <button id="btnValidatePlayer" class="btnBegin btnChoiceNbrPlayer" value="" onclick=""> Let's GO</button>
+
     </div>
 
 
-     <div id="dBoxHamster">
-        <div class="hamsterChoice" id="ham1" ondrop="drop(event)" ondragover="allowDrop(event)">
-            <img src="../IMAGE/ham1.jpg" draggable="true" ondragstart="drag(event)" id="drag1" width="75" height="75">
-        </div>
-        <div class="hamsterChoice" id="ham2" ondrop="drop(event)" ondragover="allowDrop(event)">
-            <img src="../IMAGE/ham2.jpg" draggable="true" ondragstart="drag(event)" id="drag2" width="75" height="75">
-        </div>
-        <div class="hamsterChoice" id="ham3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-        <div class="hamsterChoice" id="ham4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-        <div class="hamsterChoice" id="ham5" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-        <div class="hamsterChoice" id="ham6" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-        <div class="hamsterChoice" id="ham7" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-        <div class="hamsterChoice" id="ham8" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-    </div>
-</div>
-    <div>
+
+
     <div id="map"></div>
+
+
+
+</div>
+    <script>
+        $(document).ready(function () {
+
+
+            $("#btnPlayInit").click(function () {
+                //alert("click");
+                 $(this).animate({ "left": "-=1000px" }, "fast").fadeOut( "low", function () {
+
+                     $("#dBoxNbrPlayer").css("visibility", "visible");
+                     $("#dBoxNbrPlayer").fadeIn("low");
+                     //      $("#btnPlay2").css("background-color","red");
+                     //       document.getElementById("btnPlay2").style.visibility = "visible";
+                 });
+            });
+
+
+            $(".btnChoiceNbrPlayer").click(function () {
+              // alert());
+                //////////////////////////////////////
+                // Create Object PLAY
+                Play($(this).attr("value"));
+
+
+                $("#dBoxNbrPlayer button").each(function() {
+                    $(this).animate({ "left": "-=1000px" }, "fast").fadeOut("low", function () {
+                        $("#dBoxInfoPlayer").css("visibility", "visible");
+
+                    });
+                });
+
+
+                $("#titlePlayer").text("Name of Player " + iCurrentPlayer + " / " + localStorage.getItem("nbrPlayer"))
+                /////////////////////////////////////
+            });
+
+            $("#next").click(function () {
+              //  alert($("#iptNamePlayer").text())
+                // AddPlayer('test','2');
+                $("#titlePlayer").text("Name of Player " + iCurrentPlayer + " / " + localStorage.getItem("nbrPlayer"))
+
+                if(iCurrentPlayer >  localStorage.getItem("nbrPlayer"))
+                {
+                    $("#dBoxInfoPlayer *").each(function() {
+                        $(this).animate({ "left": "-=1000px" }, "fast").fadeOut("low", function () {
+                            // $("#dBoxInfoPlayer").css("visibility", "visible");
+                           // alert(aPlayers);
+                        });
+                    });
+                }
+            });
+        });
+
+
+    </script>
+
     <script>
         function initMap() {
             var map = new google.maps.Map(document.getElementById('map'), {
@@ -157,63 +202,6 @@
     </script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQszGSVfhIEWFBskyzBM6CHY2JL48Zlgg &callback=initMap">
-    </script>
-
-
-</div>
-    <script>
-        $(document).ready(function () {
-
-
-            $("#btnPlayInit").click(function () {
-                //alert("click");
-                 $(this).animate({ "left": "-=1000px" }, "fast").fadeOut( "low", function () {
-
-                     $("#dBoxNbrPlayer").css("visibility", "visible");
-                     $("#dBoxNbrPlayer").fadeIn("low");
-                     //      $("#btnPlay2").css("background-color","red");
-                     //       document.getElementById("btnPlay2").style.visibility = "visible";
-                 });
-            });
-
-
-            $(".btnChoiceNbrPlayer").click(function () {
-              // alert());
-                //////////////////////////////////////
-                // Create Object PLAY
-                Play($(this).attr("value"));
-
-
-                $("#dBoxNbrPlayer button").each(function() {
-                    $(this).animate({ "left": "-=1000px" }, "fast").fadeOut("low", function () {
-                        $("#dBoxInfoPlayer").css("visibility", "visible");
-                        $("#map").css("visibility", "visible");
-                    });
-                });
-
-
-                $("#titlePlayer").text("Name of Player " + iCurrentPlayer + " / " + localStorage.getItem("nbrPlayer"))
-                /////////////////////////////////////
-            });
-
-            $("#next").click(function () {
-                alert($("#iptNamePlayer").text())
-                // AddPlayer('test','2');
-                $("#titlePlayer").text("Name of Player " + iCurrentPlayer + " / " + localStorage.getItem("nbrPlayer"))
-
-                if(iCurrentPlayer >  localStorage.getItem("nbrPlayer"))
-                {
-                    $("#dBoxInfoPlayer *").each(function() {
-                        $(this).animate({ "left": "-=1000px" }, "fast").fadeOut("low", function () {
-                            // $("#dBoxInfoPlayer").css("visibility", "visible");
-                           // alert(aPlayers);
-                        });
-                    });
-                }
-            });
-        });
-
-
     </script>
 </body>
 </html>
