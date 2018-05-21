@@ -130,7 +130,7 @@
                 //////////////////////////////////////
                 // Create Object PLAY
                 Play($(this).attr("value"));
-
+                alert($(this).attr("value"));
 
                 $("#dBoxNbrPlayer button").each(function() {
                     $(this).animate({ "left": "-=1000px" }, "fast").fadeOut("low", function () {
@@ -144,9 +144,9 @@
                 /////////////////////////////////////
             });
 
-            $("#next").click(function () {
+            $("#btnValidatePlayer").click(function () {
               //  alert($("#iptNamePlayer").text())
-                // AddPlayer('test','2');
+                 AddPlayer('test','2');
                 $("#titlePlayer").text("Name of Player " + iCurrentPlayer + " / " + localStorage.getItem("nbrPlayer"))
 
                 if(iCurrentPlayer >  localStorage.getItem("nbrPlayer"))
