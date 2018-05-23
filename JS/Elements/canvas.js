@@ -19,8 +19,9 @@ function defineGameBox(){
 }
 
 function integrateObject(){
-    drawLines(listCalcLines);
-    drawRects(listCalcRect);
+    // drawLines(listCalcLines);
+    drawLines_rev(line);
+    // drawRects(listCalcRect);
 }
 
 

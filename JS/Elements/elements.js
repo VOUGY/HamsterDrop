@@ -1,15 +1,23 @@
 //Ce qui concerne les elements dynamiques qui seront integres au canvas, balle non comprise
 // var startX, startY, length, tilt, endX, endY;
-var listLines = [ //startX, startY, length, tilt
-    // [100,150,150,1],
-    [400,420,200,-0.5],
-    // [460,400,200,0],
-    // [200,200,150,-0.5]
-];
+var listLines = [ //0:startX, 1:startY, 2:length, 3:tilt, 4:color
+    // [100,80,150,Math.PI/3,1],
+    // [400,420,200,-0.5,2],
+    // [460,400,200,0,3],
+    // [250,250,200,.3,6]
+]
+var colors = {
+    1:"red",
+    2:"blue",
+    3:"orange",
+    4:"yellow",
+    5:"pink",
+    6:"black"
+}
 var listRect = [ // startX, startY, length, width, tilt
     [300, 300, 250, 100, Math.PI/4]
-];
-var listCalcLines = Array(listLines.length);
+]
+var listCalcLines = Array(listLines.length+3);
 var listCalcRect = Array(listRect.length);
 
 function drawLines() {
@@ -24,6 +32,10 @@ function drawRects() {
 
 function calcLines(){
     var l = listLines.length;
+    listCalcLines[0] = [0, h, w, h, 1]; //add line for bottom
+    listCalcLines[1] = [0, 0, 0, h, 1]; //add line for left wall
+    listCalcLines[2] = [w, 0, w, h, 1]; //add line for right wall
+
 
     for(var i=0;i<l;i++){
         var startX = listLines[i][0];
@@ -35,16 +47,35 @@ function calcLines(){
 
         //from left to right line or from top to down
         if(endX > startX)
-            listCalcLines[i] = [startX, startY, endX, endY, 1]; //last one is the status of the ball position,
-                                                                //passed or not the half plan delimited by the line
+            listCalcLines[i+3] = [startX, startY, endX, endY, 1]; //last one is the status of the ball position,
+                                                                  //passed or not the half plan delimited by the line
         else if(endX < startX)
-            listCalcLines[i] = [endX, endY, startX, startY, 1];
+            listCalcLines[i+3] = [endX, endY, startX, startY, 1];
         else {
             if (startX > endX)
-                listCalcLines[i] = [startX, startY, endX, endY, 1];
+                listCalcLines[i+3] = [startX, startY, endX, endY, 1];
             else
-                listCalcLines[i] = [endX, endY, startX, startY, 1];
+                listCalcLines[i+3] = [endX, endY, startX, startY, 1];
         }
+    }
+
+}
+
+function calcLines_rev(){
+    // var calcStX, calcStY, calcEndX, calcEnY;
+    var i;
+
+    if(Math.abs(line[3]) < Math.PI/2 || line[3] === Math.PI/2){
+        listCalcLines[i][0] = line[0];
+        listCalcLines[i][1] = line[1];
+        listCalcLines[i][2] = line[0] + Math.cos(line[3]) * line[2];
+        listCalcLines[i][3] = line[1] + Math.sin(line[3]) * line[2];
+    }
+    else if(Math.abs(line[3]) > Math.PI/2 || Line[3] === -Math.PI/2){
+        listCalcLines[i][0] = line[0] + Math.cos(line[3]) * line[2];
+        listCalcLines[i][1] = line[1] + Math.sin(line[3]) * line[2];
+        listCalcLines[i][2] = line[0];
+        listCalcLines[i][3] = line[1];
     }
 }
 
@@ -65,6 +96,7 @@ function calcRect() {
     }
 }
 
+
 function drawLine(line){
     ctx.strokeStyle = "blue";
     ctx.beginPath();
@@ -84,4 +116,19 @@ function drawRect(rect) {
     ctx.fillStyle = pat;
     ctx.fill();
     ctx.restore();
+}
+
+function drawLines_rev(){
+    for(var i=0;i<listLines.length;i++){
+        var line = listLines[i];
+        ctx.save();
+        ctx.translate(line[0], line[1]);
+        ctx.rotate(line[3]);
+        ctx.strokeStyle = colors[line[4]];
+        ctx.beginPath();
+        ctx.moveTo(0,0);
+        ctx.lineTo(line[2],0);
+        ctx.stroke();
+        ctx.restore();
+    }
 }
