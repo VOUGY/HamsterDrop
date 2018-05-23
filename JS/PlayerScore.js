@@ -1,12 +1,12 @@
 
 var aPlayers;
 var iCurrentPlayer = 0;
-AddPlayer();
+
 // Object of one player of a game
 function Player(name,idhamster) {
-    this.name = name;
-    this.idhamster = idhamster;
-    this.Score = new Score()
+    name = name;
+    idhamster = idhamster;
+   // this.Score = new Score()
 }
 function AddPlayer(name,idhamster)
 {
@@ -33,7 +33,7 @@ function Score(){
 }
 
 function Play (nbrPlayer) {
-    alert(nbrPlayer);
+   // alert(nbrPlayer);
     localStorage.setItem("nbrPlayer", nbrPlayer);
-
+    console.log("nbrPlayer : " + nbrPlayer )
 }

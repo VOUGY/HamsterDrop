@@ -9,7 +9,9 @@
     <script src="GameBeginJS.js"></script>
 </head>
 <body>
+<div>
     <button id="btnPlayInit" class="btnBegin"> Etes-vous prêt à jouer ?</button>
+
 
 <div id="dBoxNbrPlayer">
     <h1 id="title"> How many players want to play ? </h1>
@@ -17,59 +19,93 @@
     <button id="btnPlay4" class="btnBegin btnChoiceNbrPlayer" value="4" onclick=""> 4 players</button>
     <button id="btnPlay8" class="btnBegin btnChoiceNbrPlayer" value="8" onclick=""> 8 players</button>
 </div>
+
 <div id="dBoxInfoPlayer">
-    <h1 id="titlePlayer"> Name of Player 1 :</h1>
 
-    <input type="text" id="iptNamePlayer" placeholder="Player 1">  </input>
+    <div id="dBoxPlayer">
+     <table style="margin-right: 10%; margin-left: 10%">
+        <tr>
+            <td class="playerName" style="width: 400px">
+                <input class="iptNamePlayer" type="text" placeholder="Player 1">  </input>
+            </td>
+            <td style="width: 150px">
+                <div class="hamsterChoosing" id="player1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            </td>
+            <td style="width: 400px">
+                <input class="iptNamePlayer" type="text" placeholder="Player 2">  </input>
+            </td>
+            <td style="width: 150px">
+                <div class="hamsterChoosing" id="player2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input class="iptNamePlayer" type="text" placeholder="Player 3">  </input>
+            </td>
+            <td>
+                <div class="hamsterChoosing" id="player3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            </td>
+            <td>
+                <input class="iptNamePlayer" type="text" placeholder="Player 4">  </input>
+            </td>
+            <td>
+                <div class="hamsterChoosing" id="player4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input class="iptNamePlayer" type="text" placeholder="Player 5">  </input>
+            </td>
+            <td>
+                <div class="hamsterChoosing" id="player5" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            </td>
+            <td>
+                <input class="iptNamePlayer" type="text" placeholder="Player 6">  </input>
+            </td>
+            <td>
+                <div class="hamsterChoosing" id="player6" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input class="iptNamePlayer" type="text" placeholder="Player 7">  </input>
+            </td>
+            <td>
+                <div class="hamsterChoosing" id="player7" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            </td>
+            <td>
+                <input class="iptNamePlayer" type="text" placeholder="Player 8">  </input>
+            </td>
+            <td>
+                <div class="hamsterChoosing" id="player8" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            </td>
+        </tr>
+    </table>
 
-    <button id="next" class="btnBegin" onclick=""> next </button>
+        <div id="dBoxHamster">
+            <div class="hamsterChoice" id="ham1" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <img src="../IMAGE/ham1.jpg" draggable="true" ondragstart="drag(event)" id="drag1" width="75" height="75">
+            </div>
+            <div class="hamsterChoice" id="ham2" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <img src="../IMAGE/ham2.jpg" draggable="true" ondragstart="drag(event)" id="drag2" width="75" height="75">
+            </div>
+            <div class="hamsterChoice" id="ham3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div class="hamsterChoice" id="ham4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div class="hamsterChoice" id="ham5" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div class="hamsterChoice" id="ham6" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div class="hamsterChoice" id="ham7" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div class="hamsterChoice" id="ham8" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </div>
 
-    <div id="hasmter1" ondrop="drop(event)" ondragover="allowDrop(event)">
-        <img src="../IMAGE/hamster.jpg" draggable="true" ondragstart="drag(event)" id="drag1" width="60" height="60">
+        <button id="btnValidatePlayer" class="btnBegin btnChoiceNbrPlayer" value="" onclick=""> Let's GO</button>
+
     </div>
 
-    <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-    <div id="div3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-    <div id="div4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-    <div id="div5" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-    <div id="div6" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-</div>
-<div>
+
+
+
     <div id="map"></div>
-    <script>
-        function initMap() {
 
-
-           var pos = {lat: navigator.geolocation.watchPosition(showPositionLat), lng: navigator.geolocation.watchPosition(showPositionLon)};
-            var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 9,
-                center: pos
-            });
-            var marker = new google.maps.Marker({
-                position: pos,
-                map: map
-            });
-
-        }
-        function getLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.watchPosition(showPosition);
-            } else {
-                x.innerHTML = "Geolocation is not supported by this browser.";}
-        }
-        function showPositionLat(position) {
-
-            return position.coords.latitude;
-        }
-        function showPositionLon(position) {
-
-            return position.coords.longitude;
-        }
-
-    </script>
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQszGSVfhIEWFBskyzBM6CHY2JL48Zlgg &callback=initMap">
-    </script>
 
 
 </div>
@@ -94,12 +130,12 @@
                 //////////////////////////////////////
                 // Create Object PLAY
                 Play($(this).attr("value"));
-
+                alert($(this).attr("value"));
 
                 $("#dBoxNbrPlayer button").each(function() {
                     $(this).animate({ "left": "-=1000px" }, "fast").fadeOut("low", function () {
                         $("#dBoxInfoPlayer").css("visibility", "visible");
-                        $("#map").css("visibility", "visible");
+
                     });
                 });
 
@@ -108,9 +144,9 @@
                 /////////////////////////////////////
             });
 
-            $("#next").click(function () {
-                alert($("#iptNamePlayer").text())
-                // AddPlayer('test','2');
+            $("#btnValidatePlayer").click(function () {
+              //  alert($("#iptNamePlayer").text())
+                 AddPlayer('test','2');
                 $("#titlePlayer").text("Name of Player " + iCurrentPlayer + " / " + localStorage.getItem("nbrPlayer"))
 
                 if(iCurrentPlayer >  localStorage.getItem("nbrPlayer"))
@@ -126,6 +162,46 @@
         });
 
 
+    </script>
+
+    <script>
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: {lat: -34.397, lng: 150.644},
+                zoom: 10
+            });
+            var infoWindow = new google.maps.InfoWindow({map: map});
+
+            // Try HTML5 geolocation.
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+
+                    infoWindow.setPosition(pos);
+                    infoWindow.setContent('La partie se joue ici.');
+                    map.setCenter(pos);
+                }, function() {
+                    handleLocationError(true, infoWindow, map.getCenter());
+                });
+            } else {
+                // Browser doesn't support Geolocation
+                handleLocationError(false, infoWindow, map.getCenter());
+            }
+        }
+
+        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+            infoWindow.setPosition(pos);
+            infoWindow.setContent(browserHasGeolocation ?
+                'Error: The Geolocation service failed.' :
+                'Error: Your browser doesn\'t support geolocation.');
+        }
+
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQszGSVfhIEWFBskyzBM6CHY2JL48Zlgg &callback=initMap">
     </script>
 </body>
 </html>
