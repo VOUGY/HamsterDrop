@@ -5,7 +5,9 @@
     <title>Game Begin</title>
     <link rel="stylesheet" type="text/css" href="GameBeginCSS.css">
     <script src="../JS/jquery-3.3.1.js"></script>
-    <script src="../JS/PlayerScore.js"></script>
+<!--    <script src="../JS/PlayerScore.js"></script>
+    <script src="../JS/Player.js"></script> -->
+    <script src="../JS/Play.js"></script>
     <script src="GameBeginJS.js"></script>
 </head>
 <body>
@@ -23,7 +25,7 @@
 <div id="dBoxInfoPlayer">
 
     <div id="dBoxPlayer">
-     <table style="margin-right: 10%; margin-left: 10%">
+    <!-- <table style="margin-right: 10%; margin-left: 10%">
         <tr>
             <td class="playerName" style="width: 400px">
                 <input class="iptNamePlayer" type="text" placeholder="Player 1">  </input>
@@ -80,7 +82,9 @@
                 <div class="hamsterChoosing" id="player8" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
             </td>
         </tr>
-    </table>
+    </table> -->
+        <input class="iptNamePlayer" id="sNamePlayer" type="text" placeholder="Player" >  </input>
+        <div class="hamsterChoosing" id="hPlayer" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 
         <div id="dBoxHamster">
             <div class="hamsterChoice" id="ham1" ondrop="drop(event)" ondragover="allowDrop(event)">
@@ -97,7 +101,7 @@
             <div class="hamsterChoice" id="ham8" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
         </div>
 
-        <button id="btnValidatePlayer" class="btnBegin btnChoiceNbrPlayer" value="" onclick=""> Let's GO</button>
+        <button id="btnValidatePlayer" class="btnBegin" value="" onclick=""> Let's GO</button>
 
     </div>
 
@@ -111,7 +115,7 @@
 </div>
     <script>
         $(document).ready(function () {
-
+            let Game;
 
             $("#btnPlayInit").click(function () {
                 //alert("click");
@@ -129,8 +133,8 @@
               // alert());
                 //////////////////////////////////////
                 // Create Object PLAY
-                Play($(this).attr("value"));
-                alert($(this).attr("value"));
+                Game =  new Play($(this).attr("value"));
+
 
                 $("#dBoxNbrPlayer button").each(function() {
                     $(this).animate({ "left": "-=1000px" }, "fast").fadeOut("low", function () {
@@ -140,13 +144,17 @@
                 });
 
 
-                $("#titlePlayer").text("Name of Player " + iCurrentPlayer + " / " + localStorage.getItem("nbrPlayer"))
+                $("#titlePlayer").text("Name of Player " + this.iCurrentPlayer + " / " + localStorage.getItem("nbrPlayer"))
                 /////////////////////////////////////
             });
 
             $("#btnValidatePlayer").click(function () {
               //  alert($("#iptNamePlayer").text())
-                 AddPlayer('test','2');
+                var someimage = document.getElementById('hPlayer');
+                var myimg = someimage.getElementsByTagName('img')[0];
+                var mysrc = myimg.src;
+
+                Game.AddPlayer(document.getElementById("sNamePlayer").value,mysrc);
                 $("#titlePlayer").text("Name of Player " + iCurrentPlayer + " / " + localStorage.getItem("nbrPlayer"))
 
                 if(iCurrentPlayer >  localStorage.getItem("nbrPlayer"))
