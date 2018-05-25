@@ -1,23 +1,47 @@
 class Play
 {
-    constructor(iTotalPlayer)
+    constructor()
     {
-        this.iTotalPlayer = iTotalPlayer;
+        this.iTotalPlayer =0;
         this.iCurrentUser = 0;
         this.aPlayers = [];
-        console.log("La partie est créé avec " + iTotalPlayer + " joueurs" );
+        this.location = "";
+
     }
-    AddPlayer(name, idHamster)
+    addPlayer(name, idHamster)
     {
         console.log("Création d'un nouveau joueur")
 
             var playertemp = new Player(name, idHamster);
             this.aPlayers[this.iCurrentUser] = playertemp;
 
-            console.log("Le joueur " + this.iCurrentUser + "/" + this.iTotalPlayer + "vient d'etre ajouter");
+            console.log("Le joueur " + (this.iCurrentUser + 1) + "/" + (this.iTotalPlayer) + "vient d'etre ajouter");
             console.log(this.aPlayers[this.iCurrentUser].name + "  " + idHamster)
 
             this.iCurrentUser++;
+
+    }
+    setiTotalPlayer(totalPlayer)
+    {
+        this.iTotalPlayer = totalPlayer;
+        console.log("La partie est créé avec " + (this.getiTotalPlayer()) + " joueurs" );
+    }
+    getiCurrentUser()
+    {
+        return this.iCurrentUser + 1;
+    }
+    getiTotalPlayer()
+    {
+        return this.iTotalPlayer;
+    }
+    setLocation(location)
+    {
+        this.location = location;
+        console.log("Play in" + location);
+    }
+    getaPlayers()
+    {
+        return this.getaPlayers();
     }
 
 }
