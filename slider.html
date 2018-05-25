@@ -16,18 +16,29 @@
         transition: opacity .2s;
     }
 
-    .slider::-webkit-slider-thumb {
+    #hamsterOne::-webkit-slider-thumb {
 
         -webkit-appearance: none;
         border: none;
         height: 50px;
         width: 50px;
         border-radius: 50%;
-        background:url(IMAGE/GameWindow/happy.png) center no-repeat;
+        background:url(IMAGE/ham1.jpg) center no-repeat;
         margin-top: -24px;
 
     }
 
+    #hamsterTwo::-webkit-slider-thumb {
+
+        -webkit-appearance: none;
+        border: none;
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        background:url(IMAGE/ham2.jpg) center no-repeat;
+        margin-top: -24px;
+
+    }
     .slider::-moz-range-thumb {
 
         width: 25px;
@@ -35,26 +46,49 @@
         background: #4CAF50;
         cursor: pointer;
     }
+
 </style>
 </head>
 <body>
 
-<h1>Custom Range Slider</h1>
+<h1>Hamster 1</h1>
 
 <div class="slidecontainer">
     <p>Custom range slider:</p>
-    <input type="range" min="1" max="50" value="1" class="slider" id="myRange">
+    <input type="range" min="1" max="24000" value="1" class="slider" id="hamsterOne">
+    <input type="range" min="1" max="24000" value="1" class="slider" id="hamsterTwo">
 </div>
 
 <button onclick="setInterval()">Click me</button>
 
+<p>Default range slider:</p>
+<input type="range" min="1" max="1200" value="1">
+
 <script>
+
+    document.getElementById("hamsterOne").disabled = true;
+    document.getElementById("hamsterTwo").disabled = true;
+    document.getElementById("hamsterOne").value = 1;
+    document.getElementById("hamsterTwo").value = 1;
+
     var i = 0;
-    document.getElementById("myRange").disabled = true;
-    setInterval(function(){
-        document.querySelector('input[type=range]').value = i++;
-    }, 100);
+        setInterval(function () {
+            do {
+                document.getElementById("hamsterOne").value = i++;
+            }while(i>12000);
+
+        }, 5);
+
+    var y = 0;
+    setInterval(function () {
+        do {
+            document.getElementById("hamsterOne").value = y++;
+        }while(y>24000);
+
+    }, 5);
+
 </script>
+
 
 </body>
 </html>
