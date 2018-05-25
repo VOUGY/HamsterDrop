@@ -2,8 +2,8 @@
 var interval;
 var onPause = false;
 var lastCoord = [0,0];
-var coord = [580,0];
-var v = [-3,0]; //velocity
+var coord = [280,0];
+var v = [4,0]; //velocity
 var a = [0.002, 0.1]; //acceleration
 var absorb = [0.9,0.9]; //rebound absorption
 var potentialContact = [0,h];
@@ -70,29 +70,40 @@ function collision_rev(){
                 var mBall = (nextCoord[1] - coord[1]) / (nextCoord[0] - coord[0]);
                 var pBall = coord[1] - mBall * coord[0];
 
-                x = (pBall - p) / (m - mBall); // calculate intersection between line and ball trajectory
-                                               // https://lexique.netmath.ca/point-dintersection/
-                y = pBall + mBall * x;
-                console.log(x+" "+y);
-
+                if(startX === endX){
+                    x = startX;
+                    y = pBall + mBall * x;
+                }
+                else{
+                    x = (pBall - p) / (m - mBall); // calculate intersection between line and ball trajectory
+                    // https://lexique.netmath.ca/point-dintersection/
+                    y = pBall + mBall * x;
+                }
             }
             else {
                 x = coord[0];
                 y = p + m*x;
             }
-            if(x > startX && x < endX || y < startY && y > endY) {
+            if(x > startX && x < endX || y > startY && y < endY) {
                 coord[0] = x;
-                coord[1] = p + m * coord[0];
+                coord[1] = y;
+                var mAngle;
+                var mBallAngle;
+                var velocity;
+
                 //considering velocity before and after rebound is equals
                 if(v[0] !== 0) {
-                    var velocity = Math.sign(v[0]) * Math.sqrt(v[0] * v[0] + v[1] * v[1]);
-                    var mBallAngle = Math.atan(mBall);
-                    var mAngle = Math.atan(m);
+                    velocity = Math.sign(v[0]) * Math.sqrt(v[0] * v[0] + v[1] * v[1]);
+                    mBallAngle = Math.atan(mBall);
+                    if(startX === endX)
+                        mAngle = Math.PI / 2;
+                    else
+                        mAngle = Math.atan(m);
                 }
                 else {
-                    var velocity = Math.sqrt(v[0] * v[0] + v[1] * v[1]);
-                    var mBallAngle = Math.PI/2;
-                    var mAngle = 0;
+                    velocity = Math.sqrt(v[0] * v[0] + v[1] * v[1]);
+                    mBallAngle = Math.PI/2;
+                    mAngle = 0;
                 }
 
                 var angleAfterRebound =  mBallAngle - 2*mAngle;
@@ -100,8 +111,8 @@ function collision_rev(){
                 v[0] = Math.round(Math.cos(-angleAfterRebound) * velocity * absorb[0]*100)/100;
                 v[1] = Math.round(Math.sin(-angleAfterRebound) * velocity * absorb[1]*100)/100;
             }
-            // else
-            //     status *= -1;
+            else
+                status *= -1;
         }
     }
 }
@@ -120,30 +131,30 @@ function collision_rev(){
 //             v[1] *= -absorb[1];
 //     }
 // }
-
-function bounce_rev() { //work only with wall and floor
-    if (coord[0] + ballRadius + v[0] > w) { //rebound on right side
-        coord[0] = w - ballRadius;
-        v[0] *= -absorb[0];
-    }
-    else if (coord[0] - ballRadius + v[0] < 0) { //rebound on left side
-        coord[0] = ballRadius;
-        v[0] *= -absorb[0];
-    }
-    else
-        coord[0] += v[0];
-
-    if (roll === false && Math.abs(v[1]) >= a[1]) {
-        if (coord[1] + ballRadius + v[1] > h) {
-            coord[1] = h - ballRadius;
-            v[1] *= -absorb[1];
-        }
-        else
-            coord[1] += v[1];
-    }
-    if(coord[1] === h - ballRadius && Math.abs(v[1]) < a[1])
-        roll = true;
-}
+//
+// function bounce_rev() { //work only with wall and floor
+//     if (coord[0] + ballRadius + v[0] > w) { //rebound on right side
+//         coord[0] = w - ballRadius;
+//         v[0] *= -absorb[0];
+//     }
+//     else if (coord[0] - ballRadius + v[0] < 0) { //rebound on left side
+//         coord[0] = ballRadius;
+//         v[0] *= -absorb[0];
+//     }
+//     else
+//         coord[0] += v[0];
+//
+//     if (roll === false && Math.abs(v[1]) >= a[1]) {
+//         if (coord[1] + ballRadius + v[1] > h) {
+//             coord[1] = h - ballRadius;
+//             v[1] *= -absorb[1];
+//         }
+//         else
+//             coord[1] += v[1];
+//     }
+//     if(coord[1] === h - ballRadius && Math.abs(v[1]) < a[1])
+//         roll = true;
+// }
 
 
 function drawBall() {
@@ -212,4 +223,4 @@ window.onload = function() {
         interval = null;
         console.log('stop');
     });
-}
+};
