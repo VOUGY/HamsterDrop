@@ -1,11 +1,11 @@
 //Ce qui concerne les elements dynamiques qui seront integres au canvas, balle non comprise
 // var startX, startY, length, tilt, endX, endY;
 var listLines = [ //0:startX, 1:startY, 2:length, 3:tilt, 4:color
-    // [100,80,150,Math.PI/3,1],
-    // [400,420,200,-0.5,2],
-    // [460,400,200,0,3],
-    // [250,250,200,.3,6]
-]
+    [100,80,150,Math.PI/3,1],
+    [500,320,200,-1,2],
+    [460,400,200,0,3],
+    [350,200,200,1,6]
+];
 var colors = {
     1:"red",
     2:"blue",
@@ -13,22 +13,22 @@ var colors = {
     4:"yellow",
     5:"pink",
     6:"black"
-}
+};
 var listRect = [ // startX, startY, length, width, tilt
     [300, 300, 250, 100, Math.PI/4]
-]
+];
 var listCalcLines = Array(listLines.length+3);
 var listCalcRect = Array(listRect.length);
 
 function drawLines() {
     for(var i=0;i<listCalcLines.length;i++)
         drawLine(listCalcLines[i]);
-}
+};
 
 function drawRects() {
     for(var i=0;i<listRect.length;i++)
         drawRect(listRect[i]);
-}
+};
 
 function calcLines(){
     var l = listLines.length;
