@@ -55,16 +55,56 @@ class Player {
     {
         this.name = name;
         this.idhamster = idhamster;
+        this.score = [];
+        this.active = true;
+
         console.log("A new player " + this.name)
     }
 
-    score() {
-        this.value = 0;
-        this.time = 0;
-        this.add = function (addvalue, addtime) {
-            this.value += addvalue;
-            this.time += addtime;
-        }
+    addscore(level,value, time) {
+        this.score[level].value = 0;
+        this.score[level].time = 0;
+    }
+    score()
+    {
+        return this.score.time;
     }
 }
 
+class Tournament
+{
+    constructor(aPlayers)
+    {
+        this.aPlayers = aPlayers;
+        this.winquarterfinal = [];
+        this.winsemifinal = [];
+        this.winfinal [];
+    }
+    fillQuarterFinal(orderPlayers)
+    {
+        this.fillQuarterFinal
+    }
+    winTournament()
+    {
+        
+    }
+
+}
+class Match
+{
+    constructor(player1,player2)
+    {
+        this.player1 = Player (player1);
+        this.player2 = Player (player2);
+    }
+    win()
+    {
+            if(this.player1.score() > this.player2.score())
+            {
+                return this.player1;
+            } else
+            {
+                return this.player2;
+            }
+    }
+}
