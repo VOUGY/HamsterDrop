@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <style>
-    .slidecontainer {
+    .timeline {
         width: 100%;
     }
 
-    .slider {
+    .timelineBar {
         -webkit-appearance: none;
         width: 100%;
-        height: 25px;
+        height: 10px;
         background: #d3d3d3;
         outline: none;
-        opacity: 0.7;
+        /*opacity: 0.7; */
         -webkit-transition: .2s;
         transition: opacity .2s;
     }
@@ -20,11 +20,12 @@
 
         -webkit-appearance: none;
         border: none;
-        height: 50px;
-        width: 50px;
+        height: 14px;
+        width: 14px;
         border-radius: 50%;
         background:url(IMAGE/ham1.jpg) center no-repeat;
-        margin-top: -24px;
+        margin-top:10px;
+        margin-bottom:10px;
 
     }
 
@@ -32,61 +33,56 @@
 
         -webkit-appearance: none;
         border: none;
-        height: 50px;
-        width: 50px;
+        height: 14px;
+        width: 14px;
         border-radius: 50%;
         background:url(IMAGE/ham2.jpg) center no-repeat;
-        margin-top: -24px;
+        margin-top:10px;
+        margin-bottom:10px;
 
     }
-    .slider::-moz-range-thumb {
+    .timelineBar::-moz-range-thumb {
 
         width: 25px;
         height: 25px;
         background: #4CAF50;
-        cursor: pointer;
     }
 
 </style>
 </head>
 <body>
 
-<h1>Hamster 1</h1>
-
-<div class="slidecontainer">
-    <p>Custom range slider:</p>
-    <input type="range" min="1" max="24000" value="1" class="slider" id="hamsterOne">
-    <input type="range" min="1" max="24000" value="1" class="slider" id="hamsterTwo">
+<div class="timeline">
+    <input type="range" min="1" max="24000" value="1" class="timelineBar" id="hamsterOne">
+    <input type="range" min="1" max="24000" value="1" class="timelineBar" id="hamsterTwo">
 </div>
 
-<button onclick="setInterval()">Click me</button>
-
-<p>Default range slider:</p>
-<input type="range" min="1" max="1200" value="1">
-
+<p id="resultField"></p>
+<button onclick="hamsterTimeline(1500)">Start Timeline</button>
 <script>
 
-    document.getElementById("hamsterOne").disabled = true;
-    document.getElementById("hamsterTwo").disabled = true;
-    document.getElementById("hamsterOne").value = 1;
-    document.getElementById("hamsterTwo").value = 1;
+        function hamsterTimeline(playerOneScore)
+        {
+            var i = 1;
+            document.getElementById("hamsterOne").disabled = true;
+            document.getElementById("hamsterTwo").disabled = true;
+            document.getElementById("hamsterOne").value = i;
+            document.getElementById("hamsterTwo").value = i;
 
-    var i = 0;
-        setInterval(function () {
-            do {
-                document.getElementById("hamsterOne").value = i++;
-            }while(i>12000);
+            setInterval(function (){
+                do {
+                    if(i < playerOneScore)
+                        document.getElementById("hamsterOne").value = i;
+                    else
+                    {
+                        document.getElementById("resultField").innerHTML = "PLAYER ONE FINISHED !";
+                        document.getElementById("hamsterOne").style.background = "#92f442";
+                    }
 
-        }, 5);
-
-    var y = 0;
-    setInterval(function () {
-        do {
-            document.getElementById("hamsterOne").value = y++;
-        }while(y>24000);
-
-    }, 5);
-
+                    document.getElementById("hamsterTwo").value = i++;
+                }while(i>24000);
+            }, 5);
+        }
 </script>
 
 
