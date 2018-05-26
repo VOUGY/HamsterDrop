@@ -3,14 +3,64 @@
     <link rel="stylesheet" type="text/css" href="CSS/own.css">
 </head>
 <body>
-    <div id="container">
-        <div id="title" style="padding:40px">
-            <h1 style="text-align: center;">Hamster Drop</h1>
-        </div>
+    <div id="grid-container">
+        <div class="header" id="header">Barre de Nicolas</div>
+        <div class="left" id="left">???</div>
+
+        <div class="main">
+            <!--Ne pas modifier le canvas-->
             <canvas id="c" style="width:800px;height:600px;">
                 Not working
             </canvas>
+            <!--Fin du canvas-->
+        </div>
+
+        <div class="right" id="right">Nom des joueurs</div>
+        <div class="footer" id="footer">???</div>
     </div>
+
+
+
+
+    <!-- MONTAINE: en écriture, je le mettrai au propre dans un .css après -->
+    <style>
+        .header {
+            grid-area: header;
+            background-color: lightgrey;
+            height:
+        }
+
+        .left {
+            grid-area: left;
+            background-color: yellow;
+            height: 600px;
+        }
+
+        .main {
+            grid-area: main;
+            width: 800px;
+        }
+
+        .right {
+            grid-area: right;
+            background-color: orangered;
+        }
+
+        .footer {
+            grid-area: footer;
+            background-color: deepskyblue;
+        }
+
+
+        #grid-container {
+            display: grid;
+            grid-template-areas:
+                    'header header header'
+                    'left main right'
+                    'footer footer footer';
+        }
+    </style>
+
 
     <script src="JS/Elements/canvas.js"></script>
     <script src="JS/Elements/elements.js"></script>
