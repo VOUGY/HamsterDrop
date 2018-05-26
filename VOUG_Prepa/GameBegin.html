@@ -107,7 +107,11 @@
         </div>
     </div>
 
-    <div id="map"></div>
+    <div id="localisation">
+        <a href="../GameWindow.html"> Change page</a>
+        <div id="map"></div>
+
+    </div>
 
 
 
@@ -151,17 +155,21 @@
                 var someimage = document.getElementById('hPlayer');
                 var myimg = someimage.getElementsByTagName('img')[0];
                 var mysrc = myimg.src;
-                Game.addPlayer(document.getElementById("sNamePlayer").value,mysrc);
+                var namePicture = mysrc.split("/");
+                Game.addPlayer(document.getElementById("sNamePlayer").value,namePicture[namePicture.length-1]);
 
 
                 if(Game.getiCurrentUser() >  Game.getiTotalPlayer())
                 {
                     $("#dBoxInfoPlayer *").each(function() {
                         $(this).animate({ "left": "-=1000px" }, "fast").fadeOut("low", function () {
-                             $("#map").css("visibility", "visible");
+                             $("#localisation").css("visibility", "visible");
                            // alert(aPlayers);
+                            localStorage.setItem("Game", JSON.stringify(Game));
+                            console.log(Game);
 
-                            Game.getaPlayers()
+
+
                         });
                     });
                 } else
@@ -237,6 +245,7 @@
                 'Error: The Geolocation service failed.' :
                 'Error: Your browser doesn\'t support geolocation.');
         }
+
 
     </script>
     <script async defer

@@ -43,6 +43,10 @@ class Play
     {
         return this.getaPlayers();
     }
+    setaPlayers(aplayers)
+    {
+        this.aPlayers = aplayers;
+    }
 
 }
 class Player {

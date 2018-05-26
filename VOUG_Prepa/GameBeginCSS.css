@@ -140,11 +140,15 @@ button:hover {
     margin-left: 50px;
     margin-right: 25%;
 }
-dBoxPlayer
+#dBoxPlayer
 {
     height: 600px;
 }
+#localisation
+{
+    visibility: hidden;
 
+}
 #map
 {
     width: 100%;
@@ -153,7 +157,7 @@ dBoxPlayer
     position: absolute;
     top : 60%;
     left: 0px;
-    visibility: hidden;
+
 }
 
 .hamsterChoice {
