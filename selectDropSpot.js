@@ -32,7 +32,6 @@ function selectDropSpot(e) {
 	x = e.clientX-400;
 
 }
-
 function ballDrop() {
 
 	canvas.onmousemove = null; //cancel listener that selects drop spot
@@ -58,9 +57,9 @@ function ballDrop() {
 
 }
 
-canvas.addEventListener('click', function(){  //on click, let the ball fall down
+canvas.addEventListener('click', function(e){  //on click, let the ball fall down
 
-	setInterval(ballDrop,5);
-	clearInterval(selectDrop);
-	
+    setInterval(ballDrop,5);
+    clearInterval(selectDrop);
+
 }, false);
