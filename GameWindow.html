@@ -67,17 +67,19 @@
     <script src="JS/Elements/ball.js"></script>
     <script src="JS/Play.js"></script>
     <script>
+
         // Retrieve the object from storage
-        var retrievedObject = localStorage.getItem('Game');
-        var oldGame = JSON.parse(retrievedObject);
-        var Game = new Play();
-        Game.setiTotalPlayer(oldGame.iTotalPlayer);
-        Game.setaPlayers(oldGame.aPlayers);
-        console.log('retrievedObject: ', JSON.parse(retrievedObject));
-        Game.aPlayers.forEach(function(element)
-        {
-           console.log(element.name)
-        });
+        if(localStorage.getItem('Game') != null){
+            var retrievedObject = localStorage.getItem('Game');
+            var oldGame = JSON.parse(retrievedObject);
+            var Game = new Play();
+            Game.reload(oldGame);
+        }
+        else{
+            alert("Vous devez configurer la partie avant de pouvoir y jouer !")
+            document.location.replace("VOUG_Prepa/GameBegin.html")
+        }
+
 
     </script>
 </body>

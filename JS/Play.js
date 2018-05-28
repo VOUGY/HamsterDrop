@@ -8,6 +8,17 @@ class Play
         this.location = "";
 
     }
+    reload(json)
+    {
+        this.iTotalPlayer=json.iTotalPlayer;
+        this.aPlayers = json.aPlayers;
+        this.location = json.location;
+    }
+    closeGame()
+    {
+        localStorage.removeItem("Game");
+    }
+
     addPlayer(name, idHamster)
     {
         console.log("Création d'un nouveau joueur")

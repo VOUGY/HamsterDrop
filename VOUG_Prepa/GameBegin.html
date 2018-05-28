@@ -165,6 +165,7 @@
                         $(this).animate({ "left": "-=1000px" }, "fast").fadeOut("low", function () {
                              $("#localisation").css("visibility", "visible");
                            // alert(aPlayers);
+                            localStorage.removeItem("Game");
                             localStorage.setItem("Game", JSON.stringify(Game));
                             console.log(Game);
 
