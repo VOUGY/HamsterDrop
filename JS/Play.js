@@ -50,11 +50,6 @@ class Play
 
 }
 class Player {
-    /*var name;
-    var idhamster;
-    var value;
-    var time;*/
-
     constructor(id,name,idhamster)
     {
         this.playerId = id;

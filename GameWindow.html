@@ -65,4 +65,19 @@
     <script src="JS/Elements/canvas.js"></script>
     <script src="JS/Elements/elements.js"></script>
     <script src="JS/Elements/ball.js"></script>
+    <script src="JS/Play.js"></script>
+    <script>
+        // Retrieve the object from storage
+        var retrievedObject = localStorage.getItem('Game');
+        var oldGame = JSON.parse(retrievedObject);
+        var Game = new Play();
+        Game.setiTotalPlayer(oldGame.iTotalPlayer);
+        Game.setaPlayers(oldGame.aPlayers);
+        console.log('retrievedObject: ', JSON.parse(retrievedObject));
+        Game.aPlayers.forEach(function(element)
+        {
+           console.log(element.name)
+        });
+
+    </script>
 </body>
