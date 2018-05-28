@@ -8,6 +8,17 @@ class Play
         this.location = "";
 
     }
+    reload(json)
+    {
+        this.iTotalPlayer=json.iTotalPlayer;
+        this.aPlayers = json.aPlayers;
+        this.location = json.location;
+    }
+    closeGame()
+    {
+        localStorage.removeItem("Game");
+    }
+
     addPlayer(name, idHamster)
     {
         console.log("Création d'un nouveau joueur")
@@ -43,14 +54,13 @@ class Play
     {
         return this.getaPlayers();
     }
+    setaPlayers(aplayers)
+    {
+        this.aPlayers = aplayers;
+    }
 
 }
 class Player {
-    /*var name;
-    var idhamster;
-    var value;
-    var time;*/
-
     constructor(id,name,idhamster)
     {
         this.playerId = id;

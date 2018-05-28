@@ -68,7 +68,7 @@ body
 	margin-top: 10%;
 }
 /*GAME WINDOW*/
-#container {
+#grid-container {
 	width: 100vw;
 	height: 100vh;
 	background: rgb(0, 0, 0) url('../IMAGE/GameWindow/pinkFur.gif') repeat;

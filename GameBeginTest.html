@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Game Begin</title>
-    <link rel="stylesheet" type="text/css" href="GameBeginCSS.css">
-    <script src="../JS/jquery-3.3.1.js"></script>
+    <link rel="stylesheet" type="text/css" href="VOUG_Prepa/GameBeginCSS.css">
+    <script src="JS/jquery-3.3.1.js"></script>
 <!--    <script src="../JS/PlayerScore.js"></script>
     <script src="../JS/Player.js"></script> -->
-    <script src="../JS/Play.js"></script>
-    <script src="GameBeginJS.js"></script>
+    <script src="JS/Play.js"></script>
+    <script src="VOUG_Prepa/GameBeginJS.js"></script>
 </head>
 <body>
 <div>
@@ -25,64 +25,6 @@
     <div id="dBoxInfoPlayer">
 
         <div id="dBoxPlayer">
-        <!-- <table style="margin-right: 10%; margin-left: 10%">
-            <tr>
-                <td class="playerName" style="width: 400px">
-                    <input class="iptNamePlayer" type="text" placeholder="Player 1">  </input>
-                </td>
-                <td style="width: 150px">
-                    <div class="hamsterChoosing" id="player1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                </td>
-                <td style="width: 400px">
-                    <input class="iptNamePlayer" type="text" placeholder="Player 2">  </input>
-                </td>
-                <td style="width: 150px">
-                    <div class="hamsterChoosing" id="player2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input class="iptNamePlayer" type="text" placeholder="Player 3">  </input>
-                </td>
-                <td>
-                    <div class="hamsterChoosing" id="player3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                </td>
-                <td>
-                    <input class="iptNamePlayer" type="text" placeholder="Player 4">  </input>
-                </td>
-                <td>
-                    <div class="hamsterChoosing" id="player4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input class="iptNamePlayer" type="text" placeholder="Player 5">  </input>
-                </td>
-                <td>
-                    <div class="hamsterChoosing" id="player5" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                </td>
-                <td>
-                    <input class="iptNamePlayer" type="text" placeholder="Player 6">  </input>
-                </td>
-                <td>
-                    <div class="hamsterChoosing" id="player6" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input class="iptNamePlayer" type="text" placeholder="Player 7">  </input>
-                </td>
-                <td>
-                    <div class="hamsterChoosing" id="player7" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                </td>
-                <td>
-                    <input class="iptNamePlayer" type="text" placeholder="Player 8">  </input>
-                </td>
-                <td>
-                    <div class="hamsterChoosing" id="player8" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                </td>
-            </tr>
-        </table> -->
             <h1 id="titlePlayer"> What your username ? (Player 1) </h1>
             <input class="iptNamePlayer" id="sNamePlayer" type="text" placeholder="Player 1" >  </input>
             <div class="hamsterChoosing" id="hPlayer" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
@@ -94,8 +36,12 @@
                 <div class="hamsterChoice" id="ham2" ondrop="drop(event)" ondragover="allowDrop(event)">
                     <img src="../IMAGE/ham2.jpg" draggable="true" ondragstart="drag(event)" id="drag2" width="75" height="75">
                 </div>
-                <div class="hamsterChoice" id="ham3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                <div class="hamsterChoice" id="ham4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="hamsterChoice" id="ham3" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <img src="../IMAGE/ham1.jpg" draggable="true" ondragstart="drag(event)" id="drag3" width="75" height="75">
+                </div>
+                <div class="hamsterChoice" id="ham4" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <img src="../IMAGE/ham1.jpg" draggable="true" ondragstart="drag(event)" id="drag4" width="75" height="75">
+                </div>
                 <div class="hamsterChoice" id="ham5" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
                 <div class="hamsterChoice" id="ham6" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
                 <div class="hamsterChoice" id="ham7" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
@@ -108,7 +54,7 @@
     </div>
 
     <div id="localisation">
-        <a href="../GameWindow.html"> Change page</a>
+        <a href="GameWindow.html"> Change page</a>
         <div id="map"></div>
 
     </div>
@@ -151,6 +97,7 @@
             });
 
             $("#btnValidatePlayer").click(function () {
+
               //  alert($("#iptNamePlayer").text())
                 var someimage = document.getElementById('hPlayer');
                 var myimg = someimage.getElementsByTagName('img')[0];
@@ -165,7 +112,6 @@
                         $(this).animate({ "left": "-=1000px" }, "fast").fadeOut("low", function () {
                              $("#localisation").css("visibility", "visible");
                            // alert(aPlayers);
-                            localStorage.removeItem("Game");
                             localStorage.setItem("Game", JSON.stringify(Game));
                             console.log(Game);
 
