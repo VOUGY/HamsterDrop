@@ -21,6 +21,7 @@ function defineGameBox(){
 function integrateObject(){
     // drawLines(listCalcLines);
     drawLines_rev(line);
+    drawGoal();
     // drawRects(listCalcRect);
 }
 

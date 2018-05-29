@@ -5,7 +5,7 @@ var lastCoord = [0,0];
 var coord = [280,0];
 var v = [4,0]; //velocity
 var a = [0.002, 0.1]; //acceleration
-var absorb = [0.9,0.9]; //rebound absorption
+var absorb = [0.7, 0.8]; //rebound absorption
 var potentialContact = [0,h];
 var contact = [0,h];
 var rebound = false;
@@ -76,7 +76,7 @@ function collision_rev(){
                 }
                 else{
                     x = (pBall - p) / (m - mBall); // calculate intersection between line and ball trajectory
-                    // https://lexique.netmath.ca/point-dintersection/
+                                                   // https://lexique.netmath.ca/point-dintersection/
                     y = pBall + mBall * x;
                 }
             }
@@ -85,8 +85,6 @@ function collision_rev(){
                 y = p + m*x;
             }
             if(x > startX && x < endX || y > startY && y < endY) {
-                coord[0] = x;
-                coord[1] = y;
                 var mAngle;
                 var mBallAngle;
                 var velocity;
@@ -106,6 +104,13 @@ function collision_rev(){
                     mAngle = 0;
                 }
 
+                // Correction for contact on the edge of the ball
+                var dx = Math.abs(Math.sin(mAngle) * ballRadius);
+                var dy = Math.abs(Math.cos(mAngle) * ballRadius);
+
+                coord[0] = x - Math.sign(v[0]) * dx;
+                coord[1] = y - Math.sign(v[1]) * dy;
+                console.log(coord[0]+"+"+dx+" and "+coord[1]+"+"+dy);
                 var angleAfterRebound =  mBallAngle - 2*mAngle;
 
                 v[0] = Math.round(Math.cos(-angleAfterRebound) * velocity * absorb[0]*100)/100;

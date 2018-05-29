@@ -14,6 +14,7 @@ var colors = {
     5:"pink",
     6:"black"
 };
+var goal = [700, 580, 50, 20];
 var listRect = [ // startX, startY, length, width, tilt
     [300, 300, 250, 100, Math.PI/4]
 ];
@@ -29,13 +30,16 @@ function drawRects() {
     for(var i=0;i<listRect.length;i++)
         drawRect(listRect[i]);
 };
+function drawGoal() {
+    ctx.fillStyle = "blue";
+    ctx.fillRect(goal[0], goal[1], goal[2], goal[3]);
+};
 
 function calcLines(){
     var l = listLines.length;
     listCalcLines[0] = [0, h, w, h, 1]; //add line for bottom
     listCalcLines[1] = [0, 0, 0, h, 1]; //add line for left wall
     listCalcLines[2] = [w, 0, w, h, 1]; //add line for right wall
-
 
     for(var i=0;i<l;i++){
         var startX = listLines[i][0];
