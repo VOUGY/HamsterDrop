@@ -60,6 +60,25 @@ class Play
     }
 
 }
+class Tournament
+{
+    constructor(){
+        this.tournament = [];
+        this.nbrMatch = aPlayers.length/2;
+        console.log(this.nbrMatch);
+    }
+    addMatch(player1,player2)
+    {
+        this.tournament.push(new Match(player1,player2));
+    }
+
+    winTournament()
+    {
+
+    }
+
+}
+/*
 class Player {
     constructor(id,name,idhamster)
     {
@@ -81,26 +100,8 @@ class Player {
     {
         return this.score.time;
     }
-}
-
-class Tournament
-{
-    constructor(){
-        this.tournament = [];
-        this.nbrMatch = aPlayers.length/2;
-        console.log(this.nbrMatch);
-    }
-    addMatch(player1,player2)
-    {
-        this.tournament.push(new Match(player1,player2));
-    }
-
-    winTournament()
-    {
-
-    }
-
-}
+}*/
+/*
 class Match {
     constructor(player1, player2) {
         this.player1 = Player(player1);
@@ -121,5 +122,5 @@ class Match {
     {
         return this.end;
     }
-}
+}*/
 
