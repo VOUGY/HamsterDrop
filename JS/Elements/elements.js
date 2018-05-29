@@ -1,11 +1,13 @@
 //Ce qui concerne les elements dynamiques qui seront integres au canvas, balle non comprise
 // var startX, startY, length, tilt, endX, endY;
 var listLines = [ //0:startX, 1:startY, 2:length, 3:tilt, 4:color
-    [100,80,150,Math.PI/3,1],
-    [500,320,200,-1,2],
-    [460,400,200,0,3],
-    [350,200,200,1,6]
+    [525,320,140,-1,1],
+    [520,400,600,-0.35,2],
+    [0,300,280,0,6],
+    [0,300,200,1,6],
+    [600,200,400,0.13,6]
 ];
+
 var colors = {
     1:"red",
     2:"blue",

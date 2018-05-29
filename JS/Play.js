@@ -8,6 +8,17 @@ class Play
         this.location = "";
 
     }
+    reload(json)
+    {
+        this.iTotalPlayer=json.iTotalPlayer;
+        this.aPlayers = json.aPlayers;
+        this.location = json.location;
+    }
+    closeGame()
+    {
+        localStorage.removeItem("Game");
+    }
+
     addPlayer(name, idHamster)
     {
         console.log("Création d'un nouveau joueur")
@@ -43,14 +54,32 @@ class Play
     {
         return this.getaPlayers();
     }
+    setaPlayers(aplayers)
+    {
+        this.aPlayers = aplayers;
+    }
 
 }
-class Player {
-    /*var name;
-    var idhamster;
-    var value;
-    var time;*/
+class Tournament
+{
+    constructor(){
+        this.tournament = [];
+        this.nbrMatch = aPlayers.length/2;
+        console.log(this.nbrMatch);
+    }
+    addMatch(player1,player2)
+    {
+        this.tournament.push(new Match(player1,player2));
+    }
 
+    winTournament()
+    {
+
+    }
+
+}
+/*
+class Player {
     constructor(id,name,idhamster)
     {
         this.playerId = id;
@@ -71,26 +100,8 @@ class Player {
     {
         return this.score.time;
     }
-}
-
-class Tournament
-{
-    constructor(){
-        this.tournament = [];
-        this.nbrMatch = aPlayers.length/2;
-        console.log(this.nbrMatch);
-    }
-    addMatch(player1,player2)
-    {
-        this.tournament.push(new Match(player1,player2));
-    }
-
-    winTournament()
-    {
-
-    }
-
-}
+}*/
+/*
 class Match {
     constructor(player1, player2) {
         this.player1 = Player(player1);
@@ -111,5 +122,5 @@ class Match {
     {
         return this.end;
     }
-}
+}*/
 

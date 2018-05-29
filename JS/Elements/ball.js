@@ -163,6 +163,7 @@ function collision_rev(){
 
 
 function drawBall() {
+
     defineGameBox();
     // Move the ball
     v[0] -= Math.sign(v[0])*a[0]; // decelerating X axis
@@ -212,6 +213,7 @@ function drawBall() {
 window.onload = function() {
     calcLines();
     calcRect();
+
     interval = setInterval(drawBall, frameRate);
 
     canvas.addEventListener('click', function(){
