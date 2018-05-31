@@ -1,5 +1,5 @@
-//Ce qui concerne les elements dynamiques qui seront integres au canvas, balle non comprise
-// var startX, startY, length, tilt, endX, endY;
+// Everything about the elements
+
 var listLines = [ //0:startX, 1:startY, 2:length, 3:tilt, 4:color
     [525,320,140,-1,1],
     [520,400,600,-0.35,2],
@@ -16,7 +16,7 @@ var colors = {
     5:"pink",
     6:"black"
 };
-var goal = [700, 580, 50, 20];
+var goal = [700, 580, 60, 40]; // [bottomLeftX, bottomLeftY, width, height]
 var listRect = [ // startX, startY, length, width, tilt
     [300, 300, 250, 100, Math.PI/4]
 ];
@@ -33,8 +33,15 @@ function drawRects() {
         drawRect(listRect[i]);
 };
 function drawGoal() {
-    ctx.fillStyle = "blue";
-    ctx.fillRect(goal[0], goal[1], goal[2], goal[3]);
+    ctx.fillStyle = "black";
+    ctx.fillRect(goal[0], h - goal[3], goal[2], goal[3]);
+    ctx.fillStyle = "purple";
+    ctx.beginPath();
+    var goalRoundRadius = goal[2] / 2;
+    ctx.arc(goal[0] + goalRoundRadius, h - goal[3], goalRoundRadius, Math.PI, Math.PI*2, false);
+    ctx.fill();
+
+
 };
 
 function calcLines(){
@@ -64,25 +71,6 @@ function calcLines(){
                 listCalcLines[i+3] = [endX, endY, startX, startY, 1];
         }
     }
-
-}
-
-function calcLines_rev(){
-    // var calcStX, calcStY, calcEndX, calcEnY;
-    var i;
-
-    if(Math.abs(line[3]) < Math.PI/2 || line[3] === Math.PI/2){
-        listCalcLines[i][0] = line[0];
-        listCalcLines[i][1] = line[1];
-        listCalcLines[i][2] = line[0] + Math.cos(line[3]) * line[2];
-        listCalcLines[i][3] = line[1] + Math.sin(line[3]) * line[2];
-    }
-    else if(Math.abs(line[3]) > Math.PI/2 || Line[3] === -Math.PI/2){
-        listCalcLines[i][0] = line[0] + Math.cos(line[3]) * line[2];
-        listCalcLines[i][1] = line[1] + Math.sin(line[3]) * line[2];
-        listCalcLines[i][2] = line[0];
-        listCalcLines[i][3] = line[1];
-    }
 }
 
 function calcRect() {
@@ -102,28 +90,6 @@ function calcRect() {
     }
 }
 
-
-function drawLine(line){
-    ctx.strokeStyle = "blue";
-    ctx.beginPath();
-    ctx.moveTo(line[0],line[1]);
-    ctx.lineTo(line[2], line[3]);
-    ctx.stroke();
-}
-
-function drawRect(rect) {
-    ctx.save();
-    ctx.translate(rect[0], rect[1]);
-    ctx.rotate(rect[4]);
-    var texture = new Image();
-    texture.src = "IMAGE/GameWindow/wood.jpg";
-    var pat = ctx.createPattern(texture,"repeat");
-    ctx.rect(0, 0, rect[2], rect[3]);
-    ctx.fillStyle = pat;
-    ctx.fill();
-    ctx.restore();
-}
-
 function drawLines_rev(){
     for(var i=0;i<listLines.length;i++){
         var line = listLines[i];
@@ -138,3 +104,45 @@ function drawLines_rev(){
         ctx.restore();
     }
 }
+
+// function calcLines_rev(){
+//     // var calcStX, calcStY, calcEndX, calcEnY;
+//     var i;
+//
+//     if(Math.abs(line[3]) < Math.PI/2 || line[3] === Math.PI/2){
+//         listCalcLines[i][0] = line[0];
+//         listCalcLines[i][1] = line[1];
+//         listCalcLines[i][2] = line[0] + Math.cos(line[3]) * line[2];
+//         listCalcLines[i][3] = line[1] + Math.sin(line[3]) * line[2];
+//     }
+//     else if(Math.abs(line[3]) > Math.PI/2 || Line[3] === -Math.PI/2){
+//         listCalcLines[i][0] = line[0] + Math.cos(line[3]) * line[2];
+//         listCalcLines[i][1] = line[1] + Math.sin(line[3]) * line[2];
+//         listCalcLines[i][2] = line[0];
+//         listCalcLines[i][3] = line[1];
+//     }
+// }
+//
+
+//
+// function drawLine(line){
+//     ctx.strokeStyle = "blue";
+//     ctx.beginPath();
+//     ctx.moveTo(line[0],line[1]);
+//     ctx.lineTo(line[2], line[3]);
+//     ctx.stroke();
+// }
+//
+// function drawRect(rect) {
+//     ctx.save();
+//     ctx.translate(rect[0], rect[1]);
+//     ctx.rotate(rect[4]);
+//     var texture = new Image();
+//     texture.src = "IMAGE/GameWindow/wood.jpg";
+//     var pat = ctx.createPattern(texture,"repeat");
+//     ctx.rect(0, 0, rect[2], rect[3]);
+//     ctx.fillStyle = pat;
+//     ctx.fill();
+//     ctx.restore();
+// }
+

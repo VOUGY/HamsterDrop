@@ -1,18 +1,19 @@
-//Tout ce qui concerne la ball, idealement sans les elements concernant le canvas
+// Everything about the ball's dynamics and collision detection
+
 var interval;
-var onPause = false;
-var lastCoord = [0,0];
-var coord = [280,0];
-var v = [4,0]; //velocity
+var ballSize = 20;
+var ballRadius = ballSize / 2;
+var dropped = false;
+var lastCoord = [0,0]; //saved previous coord to know if ball change of half-plan delimited by each element
+var coord = [400,ballRadius]; //actual coordinate
+var v = [0,0]; //velocity
 var a = [0.002, 0.1]; //acceleration
-var absorb = [0.7, 0.8]; //rebound absorption
-var potentialContact = [0,h];
-var contact = [0,h];
-var rebound = false;
-var roll = false;
-var ballSize = 20, ballRadius = ballSize / 2;
+var absorb = [0.7, 0.5]; //rebound absorption
+var roll = false; //to avoid multi mini micro nano rebounds
 var frameRate = 20;
 
+// var potentialContact = [0,h];
+// var contact = [0,h];
 // function collision(){
 //     contact[1] = h;
 //     for(var i=0; i<listCalcLines.length; i++){ //or with listLines, to define...
@@ -42,7 +43,6 @@ function collision_rev(){
         var endY = l[3];
         var status = l[4];
         var p, m;
-
 
         var nextCoord = [coord[0] + v[0],coord[1] + v[1]];
 
@@ -85,21 +85,22 @@ function collision_rev(){
                 y = p + m*x;
             }
             if(x > startX && x < endX || y > startY && y < endY) {
-                var mAngle;
-                var mBallAngle;
+                var mAngle; // angle of the rebound surface
+                var mBallAngle; // angle of the ball rebound
                 var velocity;
 
                 //considering velocity before and after rebound is equals
                 if(v[0] !== 0) {
                     velocity = Math.sign(v[0]) * Math.sqrt(v[0] * v[0] + v[1] * v[1]);
                     mBallAngle = Math.atan(mBall);
+
                     if(startX === endX)
                         mAngle = Math.PI / 2;
                     else
                         mAngle = Math.atan(m);
                 }
                 else {
-                    velocity = Math.sqrt(v[0] * v[0] + v[1] * v[1]);
+                    velocity = Math.sqrt(v[1] * v[1]);
                     mBallAngle = Math.PI/2;
                     mAngle = 0;
                 }
@@ -110,15 +111,30 @@ function collision_rev(){
 
                 coord[0] = x - Math.sign(v[0]) * dx;
                 coord[1] = y - Math.sign(v[1]) * dy;
-                console.log(coord[0]+"+"+dx+" and "+coord[1]+"+"+dy);
+
                 var angleAfterRebound =  mBallAngle - 2*mAngle;
 
                 v[0] = Math.round(Math.cos(-angleAfterRebound) * velocity * absorb[0]*100)/100;
-                v[1] = Math.round(Math.sin(-angleAfterRebound) * velocity * absorb[1]*100)/100;
+
+                if(roll === false){
+                    v[1] = (Math.round(Math.sin(-angleAfterRebound) * velocity *1000)/1000) * absorb[1];
+                    console.log(v[1]);
+                }
+                else{
+                    v[1] = 0;
+                }
+                if(Math.abs(v[1]) < a[1]){
+                    roll = true;
+
+                }
             }
-            else
-                status *= -1;
         }
+    }
+}
+
+function win(){
+    if(coord[0] + ballRadius >= goal[0] && coord[0] < goal[0] + goal[2] - ballRadius && coord[1] + ballRadius >= goal[1] - goal[3] - (goal[2] /2)){
+        console.log("youpiiii!!!");
     }
 }
 
@@ -163,41 +179,51 @@ function collision_rev(){
 
 
 function drawBall() {
-
     defineGameBox();
-    // Move the ball
-    v[0] -= Math.sign(v[0])*a[0]; // decelerating X axis
-    if(roll === false)
-        v[1] += a[1]; // aerating Y axis
-    lastCoord[0] = coord[0];
-    lastCoord[1] = coord[1];
-    // bounce_rev();
-    collision_rev();
 
+    dropped=true; // pour que ca fonctionne quand meme...
 
+    if(dropped === false){
+        // la fonction qui gere le drag n drop de la balle doit venir ici
+        // en l'etat la balle part du point coord = [ballRadius,ballRadius]
+        // modifier ici coord[0] pour deplacer la balle sur l'axe y=ballRadius
+        // quand drop alors passer dropped = true
+    }
+    else{
+        win();
+        // Move the ball
+        v[0] -= Math.sign(v[0]) * a[0]; // decelerating X axis
+        if (roll === false)
+            v[1] += a[1]; // aerating Y axis
+        // lastCoord[0] = coord[0];
+        // lastCoord[1] = coord[1];
 
-    //Anticipate wall rebound
-    // if(coord[0] - ballRadius + (v[0] - a[0]) < 0)//left side
-    //     coord[0] = ballRadius;
-    // else if(coord[0] + ballRadius + (v[0] - a[0]) > w)//right side
-    //     coord[0] = w - ballRadius;
-    // else
+        collision_rev();
         coord[0] += v[0];
+        coord[1] += v[1]; // falling (if v < 0)
 
-    //Anticipate horizontal rebound
-    // if(roll === false){
-    //     if(v[1] > 0 && coord[1] < contact[1] && coord[1] + ballRadius + v[1] + a[1] > contact[1])
-    //         coord[1] = contact[1] - ballRadius;
-    //     else if(v[1] < 0 && coord[1] > contact[1] && coord[1] - ballRadius + v[1] + a[1] < contact[1])
-    //         coord[1] = contact[1] + ballRadius;
-    //     else
-            coord[1] += v[1]; // falling (if v < 0)
-    // }
+        //Anticipate wall rebound
+        // if(coord[0] - ballRadius + (v[0] - a[0]) < 0)//left side
+        //     coord[0] = ballRadius;
+        // else if(coord[0] + ballRadius + (v[0] - a[0]) > w)//right side
+        //     coord[0] = w - ballRadius;
+        // else
+        //     coord[0] += v[0];
+        //Anticipate horizontal rebound
+        // if(roll === false){
+        //     if(v[1] > 0 && coord[1] < contact[1] && coord[1] + ballRadius + v[1] + a[1] > contact[1])
+        //         coord[1] = contact[1] - ballRadius;
+        //     else if(v[1] < 0 && coord[1] > contact[1] && coord[1] - ballRadius + v[1] + a[1] < contact[1])
+        //         coord[1] = contact[1] + ballRadius;
+        //     else
+        //         coord[1] += v[1]; // falling (if v < 0)
+        // }
 
-    if(roll === true && Math.abs(v[0]) < 0.02){
-        clearInterval(interval);
-        interval = null;
-        console.log('stop');
+        if (roll === true && Math.abs(v[0]) < 0.02) {
+            clearInterval(interval);
+            interval = null;
+            console.log('stop');
+        }
     }
 
     // drawing ball
@@ -217,15 +243,6 @@ window.onload = function() {
     interval = setInterval(drawBall, frameRate);
 
     canvas.addEventListener('click', function(){
-        // if(onPause === false){
-        //     drawBall().pause();
-        //     onPause = true;
-        // }
-        // else if(onPause === true){
-        //     drawBall();
-        //     onPause = false;
-        // }
-
         clearInterval(interval);
         interval = null;
         console.log('stop');

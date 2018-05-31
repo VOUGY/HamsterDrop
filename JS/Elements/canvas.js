@@ -1,4 +1,4 @@
-//Ce qui concerne le canvas (taille, contexte, couleur, ...)
+// Everything about the canvas
 
 var h = 600, w = 800,
     canvas = document.getElementById('c'), ctx = canvas.getContext('2d'), interval,
@@ -26,8 +26,6 @@ function defineGameBox(){
 
 
 function integrateObject(){
-    // drawLines(listCalcLines);
     drawLines_rev(line);
     drawGoal();
-    // drawRects(listCalcRect);
 }
