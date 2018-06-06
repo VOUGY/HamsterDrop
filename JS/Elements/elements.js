@@ -3,8 +3,7 @@
 // Define the escape room
 var goal = [700, 580, 60, 40]; // [bottomLeftX, bottomLeftY, width, height]
 
-// initialise the list of lines that will be used for rebound detection
-var listCalcLines = Array(listLines.length+1);
+
 
 // Define lines and colors
 var listLines = [ //0:startX, 1:startY, 2:length, 3:tilt, 4:color
@@ -14,6 +13,8 @@ var listLines = [ //0:startX, 1:startY, 2:length, 3:tilt, 4:color
     [0,300,200,80,3],
     [600,200,200,25,4]
 ];
+// initialise the list of lines that will be used for rebound detection
+var listCalcLines = Array(listLines.length+3);
 
 var colors = {
     0:"black",
