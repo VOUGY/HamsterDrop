@@ -1,37 +1,30 @@
 // Everything about the elements
 
+// Define the escape room
+var goal = [700, 580, 60, 40]; // [bottomLeftX, bottomLeftY, width, height]
+
+// initialise the list of lines that will be used for rebound detection
+var listCalcLines = Array(listLines.length+1);
+
+// Define lines and colors
 var listLines = [ //0:startX, 1:startY, 2:length, 3:tilt, 4:color
-    [525,320,140,-1,1],
-    [520,400,600,-0.35,2],
-    [0,300,280,0,6],
-    [0,300,200,1,6],
-    [600,200,400,0.13,6]
+    [125,320,140,-45,1],
+    [220,400,600,0,2],
+    [100,300,280,0,1],
+    [0,300,200,80,3],
+    [600,200,200,25,4]
 ];
 
 var colors = {
+    0:"black",
     1:"red",
     2:"blue",
     3:"orange",
     4:"yellow",
     5:"pink",
-    6:"black"
-};
-var goal = [700, 580, 60, 40]; // [bottomLeftX, bottomLeftY, width, height]
-var listRect = [ // startX, startY, length, width, tilt
-    [300, 300, 250, 100, Math.PI/4]
-];
-var listCalcLines = Array(listLines.length+3);
-var listCalcRect = Array(listRect.length);
-
-function drawLines() {
-    for(var i=0;i<listCalcLines.length;i++)
-        drawLine(listCalcLines[i]);
 };
 
-function drawRects() {
-    for(var i=0;i<listRect.length;i++)
-        drawRect(listRect[i]);
-};
+
 function drawGoal() {
     ctx.fillStyle = "black";
     ctx.fillRect(goal[0], h - goal[3], goal[2], goal[3]);
@@ -40,53 +33,37 @@ function drawGoal() {
     var goalRoundRadius = goal[2] / 2;
     ctx.arc(goal[0] + goalRoundRadius, h - goal[3], goalRoundRadius, Math.PI, Math.PI*2, false);
     ctx.fill();
-
-
 };
 
+// Make line format for canvas. Will be use for rebound detection and drawlines()
 function calcLines(){
+
+    listCalcLines[0] = [0, 0, 0, h]; //add black line for left wall
+    listCalcLines[1] = [0, h, w, h]; //add black line for bottom
+    listCalcLines[2] = [w, 0, w, h]; //add black line for right wall
+
     var l = listLines.length;
-    listCalcLines[0] = [0, h, w, h, 1]; //add line for bottom
-    listCalcLines[1] = [0, 0, 0, h, 1]; //add line for left wall
-    listCalcLines[2] = [w, 0, w, h, 1]; //add line for right wall
 
     for(var i=0;i<l;i++){
         var startX = listLines[i][0];
         var startY = listLines[i][1];
         var length = listLines[i][2];
-        var tilt = listLines[i][3];
+        var tilt = listLines[i][3] / 180 * Math.PI; // from deg to rad
         var endX = startX+Math.cos(tilt)*length;
         var endY = startY+Math.sin(tilt)*length;
 
         //from left to right line or from top to down
         if(endX > startX)
-            listCalcLines[i+3] = [startX, startY, endX, endY, 1]; //last one is the status of the ball position,
-                                                                  //passed or not the half plan delimited by the line
+            listCalcLines[i+3] = [startX, startY, endX, endY]; //last one is the status of the ball position,
+        //passed or not the half plan delimited by the line
         else if(endX < startX)
-            listCalcLines[i+3] = [endX, endY, startX, startY, 1];
+            listCalcLines[i+3] = [endX, endY, startX, startY];
         else {
             if (startX > endX)
-                listCalcLines[i+3] = [startX, startY, endX, endY, 1];
+                listCalcLines[i+3] = [startX, startY, endX, endY];
             else
-                listCalcLines[i+3] = [endX, endY, startX, startY, 1];
+                listCalcLines[i+3] = [endX, endY, startX, startY];
         }
-    }
-}
-
-function calcRect() {
-    var l = listRect.length;
-
-    for(var i=0;i<l;i++){
-        var r = listRect[i];
-        var startX = r[0];
-        var startY = r[1];
-        var length = r[2];
-        var width = r[3];
-        var tilt = r[4];
-        var endX = startX + length;
-        var endY = startY + width;
-
-        listCalcRect[i] = [startX, startY, length, width];
     }
 }
 
@@ -95,8 +72,9 @@ function drawLines_rev(){
         var line = listLines[i];
         ctx.save();
         ctx.translate(line[0], line[1]);
-        ctx.rotate(line[3]);
+        ctx.rotate(line[3]/180*Math.PI);
         ctx.strokeStyle = colors[line[4]];
+        ctx.lineWidth = 2;
         ctx.beginPath();
         ctx.moveTo(0,0);
         ctx.lineTo(line[2],0);
@@ -105,44 +83,4 @@ function drawLines_rev(){
     }
 }
 
-// function calcLines_rev(){
-//     // var calcStX, calcStY, calcEndX, calcEnY;
-//     var i;
-//
-//     if(Math.abs(line[3]) < Math.PI/2 || line[3] === Math.PI/2){
-//         listCalcLines[i][0] = line[0];
-//         listCalcLines[i][1] = line[1];
-//         listCalcLines[i][2] = line[0] + Math.cos(line[3]) * line[2];
-//         listCalcLines[i][3] = line[1] + Math.sin(line[3]) * line[2];
-//     }
-//     else if(Math.abs(line[3]) > Math.PI/2 || Line[3] === -Math.PI/2){
-//         listCalcLines[i][0] = line[0] + Math.cos(line[3]) * line[2];
-//         listCalcLines[i][1] = line[1] + Math.sin(line[3]) * line[2];
-//         listCalcLines[i][2] = line[0];
-//         listCalcLines[i][3] = line[1];
-//     }
-// }
-//
-
-//
-// function drawLine(line){
-//     ctx.strokeStyle = "blue";
-//     ctx.beginPath();
-//     ctx.moveTo(line[0],line[1]);
-//     ctx.lineTo(line[2], line[3]);
-//     ctx.stroke();
-// }
-//
-// function drawRect(rect) {
-//     ctx.save();
-//     ctx.translate(rect[0], rect[1]);
-//     ctx.rotate(rect[4]);
-//     var texture = new Image();
-//     texture.src = "IMAGE/GameWindow/wood.jpg";
-//     var pat = ctx.createPattern(texture,"repeat");
-//     ctx.rect(0, 0, rect[2], rect[3]);
-//     ctx.fillStyle = pat;
-//     ctx.fill();
-//     ctx.restore();
-// }
 
