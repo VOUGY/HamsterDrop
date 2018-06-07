@@ -2,19 +2,34 @@
 
 // Define the escape room
 var goal = [700, 580, 60, 40]; // [bottomLeftX, bottomLeftY, width, height]
-
-
+var level = 0;
 
 // Define lines and colors
-var listLines = [ //0:startX, 1:startY, 2:length, 3:tilt, 4:color
-    [125,320,140,-45,1],
-    [220,400,600,0,2],
-    [100,300,280,0,1],
-    [0,300,200,80,3],
-    [600,200,200,25,4]
+var listLines = [
+    [ //0:startX, 1:startY, 2:length, 3:tilt, 4:color
+        [125,320,140,-45,1], //LEVEL 1
+        [220,400,600,0,2],
+        [100,300,280,0,1],
+        [0,300,200,80,3],
+        [600,200,200,25,4]
+    ],
+    [
+        [0,100,140,-45,1], // LEVEL 2
+        [100,0,600,0,2],
+        [100,300,280,0,1],
+        [4,180,200,80,3],
+        [250,10,200,25,4]
+    ],
+    [
+        [0,320,140,-45,1], // LEVEL 3
+        [0,400,600,0,2],
+        [100,300,280,0,1],
+        [0,300,200,80,3],
+        [400,200,200,25,4]
+    ]
 ];
 // initialise the list of lines that will be used for rebound detection
-var listCalcLines = Array(listLines.length+3);
+var listCalcLines = Array(listLines[level].length+3);
 
 var colors = {
     0:"black",
@@ -43,13 +58,13 @@ function calcLines(){
     listCalcLines[1] = [0, h, w, h]; //add black line for bottom
     listCalcLines[2] = [w, 0, w, h]; //add black line for right wall
 
-    var l = listLines.length;
+    var l = listLines[level].length;
 
     for(var i=0;i<l;i++){
-        var startX = listLines[i][0];
-        var startY = listLines[i][1];
-        var length = listLines[i][2];
-        var tilt = listLines[i][3] / 180 * Math.PI; // from deg to rad
+        var startX = listLines[level][i][0];
+        var startY = listLines[level][i][1];
+        var length = listLines[level][i][2];
+        var tilt = listLines[level][i][3] / 180 * Math.PI; // from deg to rad
         var endX = startX+Math.cos(tilt)*length;
         var endY = startY+Math.sin(tilt)*length;
 
@@ -68,9 +83,11 @@ function calcLines(){
     }
 }
 
-function drawLines_rev(){
-    for(var i=0;i<listLines.length;i++){
-        var line = listLines[i];
+function drawLines_rev(level){
+
+    level = level;
+    for(var i=0;i<listLines[level].length;i++){
+        var line = listLines[level][i];
         ctx.save();
         ctx.translate(line[0], line[1]);
         ctx.rotate(line[3]/180*Math.PI);

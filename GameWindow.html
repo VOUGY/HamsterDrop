@@ -7,7 +7,7 @@
         <div class="header" id="header">
             <div class="timeline">
                 <input type="range" min="1" max="24000" value="1" class="timelineBar" id="NS_hamsterOne">
-                <input type="range" min="1" max="24000" value="1" class="timelineBar" id="NS_hamsterTwo" style="margin-top: 15px">
+                <input type="range" min="1" max="24000" value="1" class="timelineBar" id="NS_hamsterTwo" style="margin-top: 30px">
             </div>
         </div>
 
@@ -22,7 +22,9 @@
         </div>
 
         <div class="right" id="right">Nom des joueurs</div>
-        <div class="footer" id="footer">???</div>
+        <div class="footer" id="footer">
+            <p id="error"></p>
+        </div>
     </div>
 
     <!-- MONTAINE: en écriture, je le mettrai au propre dans un .css après -->
@@ -62,6 +64,8 @@
     <script src="JS/Elements/hamsterTimeline.js"></script>
     <script>
 
+        hamsterTimeline(1500);
+
         // Retrieve the object from storage
         if(localStorage.getItem('Game') != null){
             var retrievedObject = localStorage.getItem('Game');
@@ -73,9 +77,6 @@
             alert("Vous devez configurer la partie avant de pouvoir y jouer !")
             document.location.replace("VOUG_Prepa/GameBegin.html")
         }
-
-        hamsterTimeline(1500);
-
 
     </script>
 </body>

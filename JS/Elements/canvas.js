@@ -25,7 +25,7 @@ function defineGameBox(){
 }
 
 
-function integrateObject(){
-    drawLines_rev(line);
+function integrateObject(level){
+    drawLines_rev(level);
     drawGoal();
 }

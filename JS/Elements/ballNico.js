@@ -4,13 +4,14 @@ var ballSize = 20;
 var ballRadius = ballSize / 2;
 var dropped = false;
 // var lastCoord = [0,0]; //saved previous coord to know if ball change of half-plan delimited by each element
-var coord = [0,0]; //actual coordinate
+var coord = [0,15]; //actual coordinate
 var nextCoord = [340,0];
 var v = [0.2,0.2]; //velocity
 var a = [0.002, 0.1]; //acceleration
 var absorb = [0.8, 0.8]; //rebound absorption
 var roll = false; //to avoid multi mini micro nano rebounds
 var frameRate = 20;
+var level;
 
 function collision_rev2(){
     for(var i=0;i<listCalcLines.length;i++){
@@ -108,6 +109,16 @@ function collision_rev2(){
 
 function win(){
     if(coord[0] + ballRadius >= goal[0] && coord[0] < goal[0] + goal[2] - ballRadius && coord[1] + ballRadius >= goal[1] - goal[3] - (goal[2] /2)){
+
+        level++;
+        sessionStorage.setItem("level", String(level));
+        sessionStorage.setItem("levelStarted", "yes");
+
+        if(level == 3)
+        {
+            document.getElementById("error").innerText = "YOU FINISHED";
+            sessionStorage.setItem("levelStarted", "no");
+        }
         window.location.reload(false);
     }
 }
@@ -131,7 +142,7 @@ function drawBall(e) {
     defineGameBox();
 
     ctx.clearRect(0, 0, w, h);
-    integrateObject();
+    integrateObject(level);
 
 
     ctx.fillStyle = "purple";
@@ -163,7 +174,7 @@ function drawBall(e) {
 
         // drawing ball
         ctx.clearRect(0, 0, w, h);
-        integrateObject();
+        integrateObject(level);
 
         ctx.fillStyle = "purple";
         ctx.beginPath();
@@ -173,7 +184,16 @@ function drawBall(e) {
 }
 
 window.onload = function() {
+
+    if(sessionStorage.getItem("levelStarted") != "yes")
+    {
+        sessionStorage.setItem("level", "0");
+    }
+
+    level = sessionStorage.getItem("level");
     calcLines();
+
+
     interval = setInterval(drawBall, frameRate);
 
     canvas.addEventListener('click', function(){
