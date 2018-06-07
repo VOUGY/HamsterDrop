@@ -4,7 +4,6 @@ var h = 600, w = 800,
     canvas = document.getElementById('c'), ctx = canvas.getContext('2d'), interval,
     line;
 
-
 function defineGameBox(){
     canvas.height = h;
     canvas.width = w;

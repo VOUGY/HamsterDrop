@@ -108,17 +108,25 @@ function collision_rev2(){
 }
 
 function win(){
+
     if(coord[0] + ballRadius >= goal[0] && coord[0] < goal[0] + goal[2] - ballRadius && coord[1] + ballRadius >= goal[1] - goal[3] - (goal[2] /2)){
 
+        clearInterval(interval);
         level++;
-        sessionStorage.setItem("level", String(level));
         sessionStorage.setItem("levelStarted", "yes");
+
+
 
         if(level == 3)
         {
-            document.getElementById("error").innerText = "YOU FINISHED";
             sessionStorage.setItem("levelStarted", "no");
+            sessionStorage.setItem("level", undefined);
         }
+        else
+        {
+            sessionStorage.setItem("level", String(level));
+        }
+
         window.location.reload(false);
     }
 }
@@ -142,7 +150,7 @@ function drawBall(e) {
     defineGameBox();
 
     ctx.clearRect(0, 0, w, h);
-    integrateObject(level);
+    integrateObject(Number(sessionStorage.getItem("level")));
 
 
     ctx.fillStyle = "purple";
@@ -174,7 +182,7 @@ function drawBall(e) {
 
         // drawing ball
         ctx.clearRect(0, 0, w, h);
-        integrateObject(level);
+        integrateObject(Number(sessionStorage.getItem("level")));
 
         ctx.fillStyle = "purple";
         ctx.beginPath();
@@ -185,13 +193,15 @@ function drawBall(e) {
 
 window.onload = function() {
 
+
     if(sessionStorage.getItem("levelStarted") != "yes")
     {
         sessionStorage.setItem("level", "0");
     }
 
+
     level = sessionStorage.getItem("level");
-    calcLines();
+    calcLines(Number(level));
 
 
     interval = setInterval(drawBall, frameRate);

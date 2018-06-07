@@ -67,17 +67,26 @@
 
         hamsterTimeline(2000);
 
+
         // Retrieve the object from storage
         if(localStorage.getItem('Game') != null){
             var retrievedObject = localStorage.getItem('Game');
             var oldGame = JSON.parse(retrievedObject);
             var Game = new Play();
             Game.reload(oldGame);
+
+            var p1 = Game.getaPlayers();
+            Object.assign(p1, Player);
+
+            document.getElementById("error").innerText = p1[1].fludludl();
+
         }
         else{
             alert("Vous devez configurer la partie avant de pouvoir y jouer !")
             document.location.replace("VOUG_Prepa/GameBegin.html")
         }
+
+
 
     </script>
 </body>

@@ -46,10 +46,6 @@ $(document).ready(function () {
                     // alert(aPlayers);
                     localStorage.removeItem("Game");
                     localStorage.setItem("Game", JSON.stringify(Game));
-
-
-
-
                 });
             });
         } else
