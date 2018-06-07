@@ -15,7 +15,7 @@
 
         <div class="main">
             <!--Ne pas modifier le canvas-->
-            <canvas id="c" style="width:800px;height:600px;">
+            <canvas onmousemove="drawBall(event)" id="c" style="width:800px;height:600px;">
                 Not working
             </canvas>
             <!--Fin du canvas-->
@@ -24,9 +24,6 @@
         <div class="right" id="right">Nom des joueurs</div>
         <div class="footer" id="footer">???</div>
     </div>
-
-
-
 
     <!-- MONTAINE: en écriture, je le mettrai au propre dans un .css après -->
     <style>
@@ -58,15 +55,9 @@
 
     </style>
 
-
-
-
-
-
-
     <script src="JS/Elements/canvas.js"></script>
     <script src="JS/Elements/elements.js"></script>
-    <script src="JS/Elements/ball.js"></script>
+    <script src="JS/Elements/ballNico.js"></script>
     <script src="JS/Play.js"></script>
     <script src="JS/Elements/hamsterTimeline.js"></script>
     <script>
@@ -82,6 +73,8 @@
             alert("Vous devez configurer la partie avant de pouvoir y jouer !")
             document.location.replace("VOUG_Prepa/GameBegin.html")
         }
+
+        hamsterTimeline(1500);
 
 
     </script>
