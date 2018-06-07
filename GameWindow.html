@@ -3,8 +3,14 @@
     <link rel="stylesheet" type="text/css" href="CSS/own.css">
 </head>
 <body>
-    <div id="grid-container">
-        <div class="header" id="header">Barre de Nicolas</div>
+    <div id="MB_grid-container">
+        <div class="header" id="header">
+            <div class="timeline">
+                <input type="range" min="1" max="24000" value="1" class="timelineBar" id="NS_hamsterOne">
+                <input type="range" min="1" max="24000" value="1" class="timelineBar" id="NS_hamsterTwo" style="margin-top: 15px">
+            </div>
+        </div>
+
         <div class="left" id="left">???</div>
 
         <div class="main">
@@ -27,7 +33,6 @@
         .header {
             grid-area: header;
             background-color: lightgrey;
-            height:
         }
 
         .left {
@@ -51,21 +56,19 @@
             background-color: deepskyblue;
         }
 
-
-        #grid-container {
-            display: grid;
-            grid-template-areas:
-                    'header header header'
-                    'left main right'
-                    'footer footer footer';
-        }
     </style>
+
+
+
+
+
 
 
     <script src="JS/Elements/canvas.js"></script>
     <script src="JS/Elements/elements.js"></script>
     <script src="JS/Elements/ball.js"></script>
     <script src="JS/Play.js"></script>
+    <script src="JS/Elements/hamsterTimeline.js"></script>
     <script>
 
         // Retrieve the object from storage
