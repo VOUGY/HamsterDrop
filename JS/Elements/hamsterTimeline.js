@@ -15,6 +15,6 @@ function hamsterTimeline(playerOneScore)
                 document.getElementById("NS_hamsterOne").style.background = "#92f442";
             }
             document.getElementById("NS_hamsterTwo").value = i++;
-        }while(i>24000);
+        }while(i>8000);
     }, 5);
 }
