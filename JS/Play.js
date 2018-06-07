@@ -14,6 +14,7 @@ class Play
         this.aPlayers = json.aPlayers;
         this.location = json.location;
     }
+
     closeGame()
     {
         localStorage.removeItem("Game");
@@ -59,6 +60,7 @@ class Play
         this.aPlayers = aplayers;
     }
 
+
 }
 class Tournament
 {
@@ -67,6 +69,15 @@ class Tournament
         this.nbrMatch = aPlayers.length/2;
         console.log(this.nbrMatch);
     }
+
+    startTournamen(){
+        for(i = 0; i<aPlayers.length; i+2)
+        {
+            addMatch(player[i], player[i+1])
+            y = y+2;
+        }
+    }
+
     addMatch(player1,player2)
     {
         this.tournament.push(new Match(player1,player2));
