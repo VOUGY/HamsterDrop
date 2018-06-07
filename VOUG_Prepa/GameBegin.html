@@ -18,6 +18,11 @@
 
     <body>
         <div>
+            <!-- A MODIFIER car prend le style de tous les autres boutons... -->
+            <button href="#" title="Help page" data-toggle="popover" data-trigger="focus"
+                    data-placement="right" data-content="Content...?">Help</button>
+
+
             <button id="btnPlayInit" class="btnBegin"> Are you ready to play? </button>
 
             <div id="dBoxNbrPlayer">
@@ -71,4 +76,10 @@
             </div>
         </div>
     </body>
+
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="popover"]').popover();
+        });
+    </script>
 </html>
