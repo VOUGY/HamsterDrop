@@ -4,7 +4,6 @@ $(document).ready(function () {
     $("#btnPlayInit").click(function () {
         //alert("click");
         $(this).animate({ "left": "-=1000px" }, "fast").fadeOut( "low", function () {
-
             $("#dBoxNbrPlayer").css("visibility", "visible");
             $("#dBoxNbrPlayer").fadeIn("low");
             //      $("#btnPlay2").css("background-color","red");

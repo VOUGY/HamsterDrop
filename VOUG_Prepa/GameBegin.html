@@ -4,34 +4,35 @@
         <meta charset="UTF-8">
         <title>Start page</title>
         <link rel="stylesheet" type="text/css" href="GameBeginCSS.css">
-        <script src="../JS/jquery-3.3.1.js"></script>
-    <!--    <script src="../JS/PlayerScore.js"></script>-->
-        <script src="../JS/Player.js"></script>
-        <script src="../JS/Play.js"></script>
-        <script src="GameBeginJS.js"></script>
-        <script src="GameBeginJQ.js"></script>
-        <script>
-            var Game = new Play();
-        </script>
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxVfslsraU7WYmYNmFeVYgV3yVvxK1mYk&callback=initMap"></script>
+        <link rel="stylesheet" type="text/css" href="../CSS/bootstrap-grid.css">
     </head>
-
     <body>
         <div>
-            <!-- A MODIFIER car prend le style de tous les autres boutons... -->
-            <button href="#" title="Help page" data-toggle="popover" data-trigger="focus"
-                    data-placement="right" data-content="Content...?">Help</button>
+            <!-- Container for the help button -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-11"></div>
+                    <div class="col-lg-1">
+                        <button class="btnHelp" href="#" title="Help page" data-toggle="popover" data-trigger="focus"
+                                data-placement="left" data-content="Content...?">?</button>
+                    </div>
+                </div>
+            </div>
 
 
+            <!-- First part : button for start the game -->
             <button id="btnPlayInit" class="btnBegin"> Are you ready to play? </button>
 
+
+            <!-- Second part : box to choose the number of players -->
             <div id="dBoxNbrPlayer">
-                <h1 id="title"> How many players want to play? </h1>
                 <button id="btnPlay2" class="btnBegin btnChoiceNbrPlayer" value="2" onclick=""> 2 players</button>
                 <button id="btnPlay4" class="btnBegin btnChoiceNbrPlayer" value="4" onclick=""> 4 players</button>
                 <button id="btnPlay8" class="btnBegin btnChoiceNbrPlayer" value="8" onclick=""> 8 players</button>
             </div>
 
+
+            <!-- Third part : box to choose the avatar -->
             <div id="dBoxInfoPlayer">
                 <div id="dBoxPlayer">
                     <h1 id="titlePlayer"> What's your username? (Player 1) </h1>
@@ -69,17 +70,35 @@
                 </div>
             </div>
 
-            <div id="localisation">
-                <a href="../GameWindow.html"> Change page</a>
-                <div id="map"></div>
 
+            <!-- Fourth part : page with the map -->
+            <div id="localisation">
+                <a href="../GameWindow.html"> Change page </a>
+                <div id="map"></div>
             </div>
         </div>
-    </body>
 
-    <script>
-        $(document).ready(function(){
-            $('[data-toggle="popover"]').popover();
-        });
-    </script>
+
+
+
+        <script>
+            $(document).ready(function(){
+                $('[data-toggle="popover"]').popover();
+            });
+        </script>
+
+
+
+
+
+        <script src="../JS/jquery-3.3.1.js"></script>
+        <script src="../JS/Player.js"></script>
+        <script src="../JS/Play.js"></script>
+        <script src="GameBeginJS.js"></script>
+        <script src="GameBeginJQ.js"></script>
+        <script>
+            var Game = new Play();
+        </script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxVfslsraU7WYmYNmFeVYgV3yVvxK1mYk&callback=initMap"></script>
+    </body>
 </html>

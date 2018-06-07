@@ -1,13 +1,15 @@
 body {
-    background-color: #1c7430;
+    background-image: url(../IMAGE/xom_01.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
     max-height: 600px ;
     height: 600px;
 }
 
 button:hover
 {
-    background-color : darkred;
-    border: red;
+    background-color : darkorange;
+    color: black;
     -webkit-transform: scale(1.01);
     -moz-transform: scale(1.01);
     -o-transform: scale(1.01);
@@ -30,7 +32,7 @@ button:hover
     background-color: #005cbf;
     border: none;
     color: #FFFFFF;
-    font-size: 28px;
+    font-size: 32px;
     transition: all 0.5s;
 
     /* Firefox */
@@ -50,6 +52,19 @@ button:hover
     left: -o-calc(50% - 175px);
     /* Standard */
     left: calc(50% - 175px);
+}
+
+.btnHelp
+{
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    margin-left: 200px;
+    background-color: dodgerblue;
+    color: white;
 }
 
 #btnPlay4
@@ -99,10 +114,7 @@ button:hover
     border-radius: 10px;
 }
 
-#btnPlayInit
-{
 
-}
 
 #dBoxNbrPlayer
 {
