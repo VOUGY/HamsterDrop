@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Game Begin</title>
+        <title>Start page</title>
         <link rel="stylesheet" type="text/css" href="GameBeginCSS.css">
         <script src="../JS/jquery-3.3.1.js"></script>
     <!--    <script src="../JS/PlayerScore.js"></script>-->
@@ -13,47 +13,54 @@
         <script>
             var Game = new Play();
         </script>
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxVfslsraU7WYmYNmFeVYgV3yVvxK1mYk&callback=initMap">
-        </script>
-
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxVfslsraU7WYmYNmFeVYgV3yVvxK1mYk&callback=initMap"></script>
     </head>
+
     <body>
         <div>
-            <button id="btnPlayInit" class="btnBegin"> Etes-vous prêt à jouer ?</button>
-
+            <button id="btnPlayInit" class="btnBegin"> Are you ready to play? </button>
 
             <div id="dBoxNbrPlayer">
-                <h1 id="title"> How many players want to play ? </h1>
+                <h1 id="title"> How many players want to play? </h1>
                 <button id="btnPlay2" class="btnBegin btnChoiceNbrPlayer" value="2" onclick=""> 2 players</button>
                 <button id="btnPlay4" class="btnBegin btnChoiceNbrPlayer" value="4" onclick=""> 4 players</button>
                 <button id="btnPlay8" class="btnBegin btnChoiceNbrPlayer" value="8" onclick=""> 8 players</button>
             </div>
 
             <div id="dBoxInfoPlayer">
-
                 <div id="dBoxPlayer">
-
-                    <h1 id="titlePlayer"> What your username ? (Player 1) </h1>
-                    <input class="iptNamePlayer" id="sNamePlayer" type="text" placeholder="Player 1" >  </input>
+                    <h1 id="titlePlayer"> What's your username? (Player 1) </h1>
+                    <input class="iptNamePlayer" id="sNamePlayer" type="text" placeholder="Player 1"/>
                     <div class="hamsterChoosing" id="hPlayer" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 
                     <div id="dBoxHamster">
                         <div class="hamsterChoice" id="ham1" ondrop="drop(event)" ondragover="allowDrop(event)">
-                            <img src="../IMAGE/ham1.jpg" draggable="true" ondragstart="drag(event)" id="drag1" width="75" height="75">
+                            <img src="../IMAGE/Avatars/ham1.gif" draggable="true" ondragstart="drag(event)" id="drag1" width="101" height="75">
                         </div>
                         <div class="hamsterChoice" id="ham2" ondrop="drop(event)" ondragover="allowDrop(event)">
-                            <img src="../IMAGE/ham2.jpg" draggable="true" ondragstart="drag(event)" id="drag2" width="75" height="75">
+                            <img src="../IMAGE/Avatars/ham2.gif" draggable="true" ondragstart="drag(event)" id="drag2" width="101" height="75">
                         </div>
-                        <div class="hamsterChoice" id="ham3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                        <div class="hamsterChoice" id="ham4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                        <div class="hamsterChoice" id="ham5" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                        <div class="hamsterChoice" id="ham6" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                        <div class="hamsterChoice" id="ham7" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                        <div class="hamsterChoice" id="ham8" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                        <div class="hamsterChoice" id="ham3" ondrop="drop(event)" ondragover="allowDrop(event)">
+                            <img src="../IMAGE/Avatars/ham3.gif" draggable="true" ondragstart="drag(event)" id="drag3" width="101" height="75">
+                        </div>
+                        <div class="hamsterChoice" id="ham4" ondrop="drop(event)" ondragover="allowDrop(event)">
+                            <img src="../IMAGE/Avatars/ham4.gif" draggable="true" ondragstart="drag(event)" id="drag4" width="101" height="75">
+                        </div>
+                        <div class="hamsterChoice" id="ham5" ondrop="drop(event)" ondragover="allowDrop(event)">
+                            <img src="../IMAGE/Avatars/ham5.gif" draggable="true" ondragstart="drag(event)" id="drag5" width="101" height="75">
+                        </div>
+                        <div class="hamsterChoice" id="ham6" ondrop="drop(event)" ondragover="allowDrop(event)">
+                            <img src="../IMAGE/Avatars/ham6.gif" draggable="true" ondragstart="drag(event)" id="drag6" width="101" height="75">
+                        </div>
+                        <div class="hamsterChoice" id="ham7" ondrop="drop(event)" ondragover="allowDrop(event)">
+                            <img src="../IMAGE/Avatars/ham7.gif" draggable="true" ondragstart="drag(event)" id="drag7" width="101" height="75">
+                        </div>
+                        <div class="hamsterChoice" id="ham8" ondrop="drop(event)" ondragover="allowDrop(event)">
+                            <img src="../IMAGE/Avatars/ham8.gif" draggable="true" ondragstart="drag(event)" id="drag8" width="101" height="75">
+                        </div>
                     </div>
 
-                    <button id="btnValidatePlayer" class="btnBegin" value="" onclick=""> Let's GO</button>
-
+                    <button id="btnValidatePlayer" class="btnBegin" value="" onclick=""> Let's GO </button>
                 </div>
             </div>
 
