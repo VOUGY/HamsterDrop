@@ -1,20 +1,22 @@
-class Play
-{
+class Play {
     constructor()
     {
         this.iTotalPlayer =0;
         this.iCurrentUser = 0;
-        this.aPlayers = "hello";
+        this.aPlayers = [];
         this.location = "";
 
     }
     reload(json)
     {
         this.iTotalPlayer=json.iTotalPlayer;
-        this.aPlayers = json.aPlayers;
+        json.aPlayers.forEach(function(element)
+        {
+           Game.addPlayer(element.name,element.idhamster)
+        })
+        //  this.aPlayers = json.aPlayers;
         this.location = json.location;
     }
-
     closeGame()
     {
         localStorage.removeItem("Game");
@@ -53,7 +55,7 @@ class Play
     }
     getaPlayers()
     {
-        return this.aPlayers();
+        return this.aPlayers;
     }
     setaPlayers(aplayers)
     {
@@ -62,6 +64,7 @@ class Play
 
 
 }
+/*
 class Tournament
 {
     constructor(){
