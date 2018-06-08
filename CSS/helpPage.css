@@ -1,5 +1,5 @@
 body {
-    background-image: url("IMAGE/Home/grey-background.jpg");
+    background-image: url("../IMAGE/Home/grey-background.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     font-family:Sans-serif;
@@ -35,7 +35,8 @@ h2 {
     margin: 1em;
     color: black;
     clear:both;
-    padding-top:2em;
+    padding-top:1em;
+    text-align: justify;
 }
 
 #goal, #howTo {
@@ -51,14 +52,26 @@ h2 {
     background: darkgray;
 }
 
-/* Gestion des moyennes résolutions */
-@media screen and (min-width: 1024px) {
+/* Gestion des grandes résolutions */
+@media screen {
     #goal {
         width:30%;
         clear:none;
     }
     #howTo {
         width:70%;
+        clear:none;
+    }
+}
+
+/* Gestion des moyennes résolutions */
+@media screen and (max-width: 950px) {
+    #goal {
+        width:50%;
+        clear:none;
+    }
+    #howTo {
+        width:50%;
         clear:none;
     }
 }
