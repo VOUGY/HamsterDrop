@@ -2,7 +2,7 @@ function win(){
 
     if(coord[0] + ballRadius >= goal[0] && coord[0] < goal[0] + goal[2] - ballRadius && coord[1] + ballRadius >= goal[1] - goal[3] - (goal[2] /2)){
 
-        clearInterval(interval);
+        //clearInterval(interval);
 
         level++;
         sessionStorage.setItem("levelStarted", "yes");
@@ -45,16 +45,16 @@ function win(){
         sessionStorage.setItem("listPlayers",JSON.stringify(listPlayers));
         sessionStorage.setItem("listMatch", JSON.stringify(listMatch));
 
-        if(level == 3)
+        if(level == 3) //check if last level
         {
-            if(!isOdd(currentPlayer))
+            if(!isOdd(currentPlayer)) //check if player one or player two
             {
-                currentPlayer++;
+                currentPlayer++; //player one
                 sessionStorage.setItem("currentPlayer", String(currentPlayer));
                 sessionStorage.setItem("TourOnePlayed", "yes");
             }
 
-            else
+            else //player two
             {
 
                 var p1 = new PlayerNico(match.getPOne().id, match.getPOne().name, match.getPOne().idHamster, match.getPOne().score);
@@ -82,7 +82,7 @@ function win(){
                 temp++;
                 sessionStorage.setItem("currentMatch", "1");
 
-                if(listMatch.length == currentMatch+2)
+                if(listPlayers.length == 2) //check if any matches left
                 {
                     alert("end of round");
                     if(listMatch.length != 2)
@@ -94,6 +94,9 @@ function win(){
                         ));
 
                         sessionStorage.setItem("currentPlayer", "0");
+                        var nextMatch = parseInt(sessionStorage.getItem("currentMatch"));
+                        nextMatch++;
+                        sessionStorage.setItem("currentMatch", nextMatch);
                     }
                     else
                     {

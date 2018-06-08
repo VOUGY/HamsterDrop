@@ -198,7 +198,9 @@ window.onload = function() {
     var currentMatch = parseInt(sessionStorage.getItem("currentMatch"));
     var listMatch = JSON.parse(sessionStorage.getItem("listMatch"));
 
-    document.getElementById("error").innerText = listMatch[currentMatch].player1.score + " VS " + listMatch[currentMatch].player2.score;
+    var currentPlayer = sessionStorage.getItem("currentPlayer");
+
+    document.getElementById("error").innerText = "PLAYER " + currentPlayer + " IS PLAYING : " + listMatch[currentMatch].player1.score + " VS " + listMatch[currentMatch].player2.score;
 
     if(sessionStorage.getItem("levelStarted") != "yes")
     {
