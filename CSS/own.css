@@ -204,3 +204,35 @@ canvas#c
 	height: 25px;
 	background: #4CAF50;
 }
+
+
+#btnStop
+{
+	text-align: center;
+	cursor: pointer;
+	position: absolute;
+	width: 130px;
+	height: 40px;
+	border-radius: 10px;
+	background-color: #005cbf;
+	border: none;
+	color: #FFFFFF;
+	font-size: 14px;
+    margin-left: 120px;
+    margin-top: 520px;
+}
+
+
+#btnStop:hover
+{
+    background-color : darkorange;
+    color: black;
+    -webkit-transform: scale(1.01);
+    -moz-transform: scale(1.01);
+    -o-transform: scale(1.01);
+    transform: scale(1.01);
+    -webkit-transform-origin: top right;
+    -moz-transform-origin: top right;
+    -o-transform-origin: top right;
+    transform-origin: top right;
+}

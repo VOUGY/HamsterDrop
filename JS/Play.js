@@ -19,6 +19,7 @@ class Play {
     closeGame()
     {
         localStorage.removeItem("Game");
+        location.href="VOUG_Prepa/GameBegin.html";
     }
 
     addPlayer(name, idHamster)

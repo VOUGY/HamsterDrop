@@ -1,0 +1,36 @@
+.header
+{
+    grid-area: header;
+}
+
+
+.left
+{
+    grid-area: left;
+    background-color: yellow;
+    height: 600px;
+}
+
+
+.main
+{
+    grid-area: main;
+    width: 800px;
+}
+
+
+.right
+{
+    grid-area: right;
+    margin-left: 40px;
+    font-size: 24px;
+    color: black;
+    font-weight: bold;
+}
+
+
+.footer
+{
+    grid-area: footer;
+    background-color: deepskyblue;
+}
