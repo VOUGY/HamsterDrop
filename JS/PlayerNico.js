@@ -1,12 +1,12 @@
 class PlayerNico
 {
-    constructor(id, name, idHamster)
+    constructor(id, name, idHamster, score)
     {
         this.id = id;
         this.name = name;
         this.idHamster = idHamster;
         this.lose = 0;
-        this.score = 0;
+        this.score = score;
     }
 
     getName()

@@ -1,10 +1,10 @@
 var i;
 
 function setListPlayers() {
-    var p1 = new PlayerNico(1,"p1",1);
-    var p2 = new PlayerNico(2,"p2",2);
-    var p3 = new PlayerNico(3,"p3",3);
-    var p4 = new PlayerNico(4,"p4",4);
+    var p1 = new PlayerNico(1,"p1",1,0);
+    var p2 = new PlayerNico(2,"p2",2,0);
+    var p3 = new PlayerNico(3,"p3",3,0);
+    var p4 = new PlayerNico(4,"p4",4,0);
 
     var listPlayers = [p1,p2,p3,p4];
 

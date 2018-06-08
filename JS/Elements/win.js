@@ -16,30 +16,30 @@ function win(){
         if(!isOdd(currentPlayer))
         {
             var match = new Match(listPlayers[currentPlayer], listPlayers[currentPlayer + 1]);
+            var score = parseInt(listMatch[currentMatch].player1.score + parseInt(document.getElementById("NS_hamsterTwo").value));
 
-            var player = new PlayerNico(match.getPOne().id, match.getPOne().name, match.getPOne().idHamster);
-            var score = parseInt(match.player1.score + document.getElementById("NS_hamsterTwo").value);
-            player.setScore(score);
+            var p1 = new PlayerNico(match.getPOne().id, match.getPOne().name, match.getPOne().idHamster, score);
+            var p2 = new PlayerNico(match.getPTwo().id, match.getPTwo().name, match.getPTwo().idHamster, match.getPTwo().score);
 
-            match.setPOne(player);
+            match.setPOne(p1);
+            match.setPTwo(p2);
 
-            alert("score : " + player.getScore());
             listMatch[currentMatch] = match;
-            listPlayers[currentPlayer] =  player;
+            listPlayers[currentPlayer] =  p1;
         }
         else
         {
-            var match = new Match(listPlayers[currentPlayer], listPlayers[currentPlayer - 1]);
+            var match = new Match(listPlayers[currentPlayer - 1], listPlayers[currentPlayer]);
+            var score = parseInt(listMatch[currentMatch].player2.score + parseInt(document.getElementById("NS_hamsterTwo").value));
 
-            var player = new PlayerNico(match.getPOne().id, match.getPOne().name, match.getPOne().idHamster);
-            var score = listMatch[currentMatch].player2.score + document.getElementById("NS_hamsterTwo").value;
-            player.setScore(score);
+            var p1 = new PlayerNico(match.getPOne().id, match.getPOne().name, match.getPOne().idHamster, match.getPOne().score);
+            var p2 = new PlayerNico(match.getPTwo().id, match.getPTwo().name, match.getPTwo().idHamster, score);
 
-
-            match.setPTwo(player);
+            match.setPOne(p1);
+            match.setPTwo(p2);
 
             listMatch[currentMatch] = match;
-            listPlayers[currentPlayer] =  player;
+            listPlayers[currentPlayer] =  p2;
         }
 
         sessionStorage.setItem("listPlayers",JSON.stringify(listPlayers));
@@ -47,7 +47,7 @@ function win(){
 
         if(level == 3)
         {
-            if(isOdd(parseInt(sessionStorage.getItem("currentPlayer"))) == 1)
+            if(!isOdd(currentPlayer))
             {
                 currentPlayer++;
                 sessionStorage.setItem("currentPlayer", String(currentPlayer));
@@ -57,8 +57,8 @@ function win(){
             else
             {
 
-                var p1 = new PlayerNico(match.getPOne().id, match.getPOne().name, match.getPOne().idHamster);
-                var p2 = new PlayerNico(match.PTwo().id, match.getPtwo().name, match.getPTwo().idHamster);
+                var p1 = new PlayerNico(match.getPOne().id, match.getPOne().name, match.getPOne().idHamster, match.getPOne().score);
+                var p2 = new PlayerNico(match.getPTwo().id, match.getPTwo().name, match.getPTwo().idHamster, match.getPTwo().score);
 
                 if(p1.getScore() > p2.getScore())
                 {
@@ -73,13 +73,11 @@ function win(){
                     sessionStorage.setItem("result", "Player 1 won !");
                 }
 
-
                 listPlayers[currentPlayer-1] = p1;
                 listPlayers[currentPlayer] = p2;
 
                 sessionStorage.setItem("listPlayers", JSON.stringify(listPlayers));
 
-                alert("NEXT MATCH");
                 var temp = parseInt(sessionStorage.getItem("currentMatch"));
                 temp++;
                 sessionStorage.setItem("currentMatch", "1");
@@ -95,9 +93,7 @@ function win(){
                             ))
                         ));
 
-                        listPlayers = sessionStorage.getItem("listPlayers");
-                        currentPlayer = new PlayerNico(listPlayers[0]);
-                        sessionStorage.setItem("currentPlayer", String(currentPlayer.getID()));
+                        sessionStorage.setItem("currentPlayer", "0");
                     }
                     else
                     {
