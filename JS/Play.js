@@ -4,7 +4,7 @@ class Play
     {
         this.iTotalPlayer =0;
         this.iCurrentUser = 0;
-        this.aPlayers = [];
+        this.aPlayers = "hello";
         this.location = "";
 
     }
@@ -53,7 +53,7 @@ class Play
     }
     getaPlayers()
     {
-        return this.getaPlayers();
+        return this.aPlayers();
     }
     setaPlayers(aplayers)
     {

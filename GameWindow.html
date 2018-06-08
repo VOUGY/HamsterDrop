@@ -62,11 +62,25 @@
     <script src="JS/Elements/ballNico.js"></script>
     <script src="JS/Play.js"></script>
     <script src="JS/Elements/hamsterTimeline.js"></script>
+    <script src="JS/MatchMaker.js"></script>
+    <script src="JS/PlayerNico.js"></script>
+    <script src="JS/Match.js"></script>
     <script>
 
 
-        hamsterTimeline(2000);
 
+        if(sessionStorage.getItem("TourOnePlayed") != "yes")
+        {
+            var listPlayers = setListPlayers();
+            var listMatch = createMatches(listPlayers);
+            sessionStorage.setItem("listPlayers", JSON.stringify(listPlayers));
+            sessionStorage.setItem("listMatch", JSON.stringify(listMatch));
+            sessionStorage.setItem("currentPlayer", "0");
+            sessionStorage.setItem("currentMatch", "0");
+        }
+
+
+        hamsterTimeline(2000);
 
         // Retrieve the object from storage
         if(localStorage.getItem('Game') != null){
@@ -75,18 +89,10 @@
             var Game = new Play();
             Game.reload(oldGame);
 
-            var p1 = Game.getaPlayers();
-            Object.assign(p1, Player);
-
-            document.getElementById("error").innerText = p1[1].fludludl();
-
         }
         else{
             alert("Vous devez configurer la partie avant de pouvoir y jouer !")
             document.location.replace("VOUG_Prepa/GameBegin.html")
         }
-
-
-
     </script>
 </body>

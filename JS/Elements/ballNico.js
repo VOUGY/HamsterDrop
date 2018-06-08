@@ -112,13 +112,99 @@ function win(){
     if(coord[0] + ballRadius >= goal[0] && coord[0] < goal[0] + goal[2] - ballRadius && coord[1] + ballRadius >= goal[1] - goal[3] - (goal[2] /2)){
 
         clearInterval(interval);
+
         level++;
         sessionStorage.setItem("levelStarted", "yes");
 
-
-
         if(level == 3)
         {
+            if(isOdd(parseInt(sessionStorage.getItem("currentPlayer"))) == 1)
+            {
+                // ADD SCORE P1
+                var listPlayers = JSON.parse(sessionStorage.getItem("listPlayers"));
+                var listMatch = JSON.parse(sessionStorage.getItem("listMatch"));
+                var currentPlayer = parseInt(sessionStorage.getItem("currentPlayer"));
+                var currentMatch = parseInt(sessionStorage.getItem("currentMatch"));
+
+                var player = new PlayerNico(listPlayers[currentPlayer]);
+                player.setScore(document.getElementById("NS_hamsterOne").value);
+
+                listPlayers[currentPlayer] = player;
+                sessionStorage.setItem("listPlayers",JSON.stringify(listPlayers));
+
+                currentPlayer++;
+                sessionStorage.setItem("currentPlayer", String(currentPlayer));
+                sessionStorage.setItem("TourOnePlayed", "yes");
+            }
+
+            else
+            {
+
+                // ADD SCORE P2
+                var listPlayers = JSON.parse(sessionStorage.getItem("listPlayers"));
+                var listMatch = JSON.parse(sessionStorage.getItem("listMatch"));
+                var currentPlayer = parseInt(sessionStorage.getItem("currentPlayer"));
+                var currentMatch = parseInt(sessionStorage.getItem("currentMatch"));
+
+                var player = new PlayerNico(listPlayers[currentPlayer]);
+                player.setScore(document.getElementById("NS_hamsterTwo").value);
+
+                listPlayers[currentPlayer] = player;
+                sessionStorage.setItem("listPlayers",JSON.stringify(listPlayers));
+
+                var p1 = new PlayerNico(listPlayers[currentPlayer-1]);
+                var p2 = new PlayerNico(listPlayers[currentPlayer]);
+
+                if(p1.getScore() > p2.getScore())
+                {
+                    //P2 WINS
+                    p1.setLose(1);
+                    sessionStorage.setItem("result", "Player 2 won !");
+
+                }
+                else
+                {
+                    p2.setLose(1);
+                    sessionStorage.setItem("result", "Player 1 won !");
+                }
+
+
+                listPlayers[currentPlayer-1] = p1;
+                listPlayers[currentPlayer] = p2;
+
+                sessionStorage.setItem("listPlayers", JSON.stringify(listPlayers));
+
+                alert("NEXT MATCH");
+                var temp = parseInt(sessionStorage.getItem("currentMatch"));
+                temp++;
+                sessionStorage.setItem("currentMatch", "1");
+
+                if(listMatch.length == currentMatch)
+                {
+                    if(listMatch.length != 1)
+                    {
+                        sessionStorage.setItem("listPlayers", JSON.stringify(
+                            getWinners(JSON.parse(
+                                sessionStorage.getItem("listPlayers")
+                            ))
+                        ));
+
+                        listPlayers = sessionStorage.getItem("listPlayers");
+                        currentPlayer = new PlayerNico(listPlayers[0]);
+                        sessionStorage.setItem("currentPlayer", String(currentPlayer.getID()));
+                    }
+                    else
+                    {
+                        alert("END OF GAME");
+                    }
+
+                }
+                else
+                {
+                    currentPlayer++;
+                    sessionStorage.setItem("currentPlayer", String(currentPlayer));
+                }
+            }
             sessionStorage.setItem("levelStarted", "no");
             sessionStorage.setItem("level", undefined);
         }
@@ -130,6 +216,9 @@ function win(){
         window.location.reload(false);
     }
 }
+
+function isOdd(num) { return num % 2;} //SOURCE https://stackoverflow.com/questions/5016313/how-to-determine-if-a-number-is-odd-in-javascript
+
 
 function  getMousePos(canvas, evt) { // source https://stackoverflow.com/questions/17130395/real-mouse-position-in-canvas
     var rect = canvas.getBoundingClientRect(), // abs. size of element
@@ -193,6 +282,11 @@ function drawBall(e) {
 
 window.onload = function() {
 
+    var currentMatch = parseInt(sessionStorage.getItem("currentMatch"));
+    var listMatch = JSON.parse(sessionStorage.getItem("listMatch"));
+
+    document.getElementById("error").innerText = sessionStorage.getItem("currentMatch");
+        //listMatch[currentMatch].player1.name + " VS " + listMatch[currentMatch].player2.name;
 
     if(sessionStorage.getItem("levelStarted") != "yes")
     {
