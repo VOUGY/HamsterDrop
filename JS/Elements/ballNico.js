@@ -8,7 +8,7 @@ var coord = [0,15]; //actual coordinate
 var nextCoord = [340,0];
 var v = [0.2,0.2]; //velocity
 var a = [0.002, 0.1]; //acceleration
-var absorb = [0.8, 0.8]; //rebound absorption
+var absorb = [0.8, 0.7]; //rebound absorption
 var roll = false; //to avoid multi mini micro nano rebounds
 var frameRate = 20;
 var level;
