@@ -1,10 +1,12 @@
-body {
+body
+{
     background-image: url(../IMAGE/Home/background.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     max-height: 600px ;
     height: 600px;
 }
+
 
 button:hover
 {
@@ -19,6 +21,7 @@ button:hover
     -o-transform-origin: top right;
     transform-origin: top right;
 }
+
 
 .btnBegin
 {
@@ -54,6 +57,15 @@ button:hover
     left: calc(50% - 175px);
 }
 
+
+.btnStart
+{
+    margin-top: 310px;
+    margin-left: 650px;
+    width: 150px;
+}
+
+
 .btnHelp
 {
     text-align: center;
@@ -67,6 +79,7 @@ button:hover
     color: white;
 }
 
+
 #btnPlay4
 {
     /* Firefox */
@@ -76,6 +89,7 @@ button:hover
     /* Standard */
     top: calc(65% - 80px);
 }
+
 
 #btnPlay8
 {
@@ -89,6 +103,7 @@ button:hover
     background-color: dimgray;
     color: black;
 }
+
 
 #btnValidatePlayer
 {
@@ -109,6 +124,7 @@ button:hover
     top: calc(100% - 160px);
 }
 
+
 .iptNamePlayer
 {
     width: 350px;
@@ -120,11 +136,11 @@ button:hover
 }
 
 
-
 #dBoxNbrPlayer
 {
     visibility: hidden;
 }
+
 
 #dBoxNbrPlayer button
 {
@@ -139,6 +155,7 @@ button:hover
     left: calc(50% - 250px);
 }
 
+
 #dBoxInfoPlayer
 {
     visibility: hidden;
@@ -151,34 +168,38 @@ button:hover
     left: calc(50% - 250px);
 }
 
+
 #dBoxHamster
 {
     margin-left: 50px;
     margin-right: 25%;
 }
 
+
 #dBoxPlayer
 {
     height: 600px;
 }
 
+
 #localisation
 {
     visibility: hidden;
-
 }
+
 
 #map
 {
     width: 100%;
-    height: 400px;
+    height: 90%;
     background-color: grey;
     position: absolute;
-    top : 60%;
-    left: 0px;
+    margin-top: 24px;
 }
 
-.hamsterChoice {
+
+.hamsterChoice
+{
     float: left;
     width: 151px;
     height: 125px;
@@ -187,6 +208,7 @@ button:hover
     border: 1px solid black;
     background-color: white;
 }
+
 
 .hamsterChoosing
 {
@@ -201,20 +223,23 @@ button:hover
     margin-bottom: 24px;
 }
 
+
 tr
 {
     margin-top: 20px;
 }
 
 
-.popup {
+.popup
+{
     position: relative;
     display: inline-block;
     cursor: pointer;
 }
 
 
-.popup .popuptext {
+.popup .popuptext
+{
     visibility: hidden;
     width: 350px;
     background-color: #555;
@@ -230,7 +255,8 @@ tr
 }
 
 
-.popup .popuptext::after {
+.popup .popuptext::after
+{
     content: "";
     position: absolute;
     top: 50%;
@@ -242,26 +268,30 @@ tr
 }
 
 
-.popup .show {
+.popup .show
+{
     visibility: visible;
     -webkit-animation: fadeIn 1s;
     animation: fadeIn 1s
 }
 
 
-@-webkit-keyframes fadeIn {
+@-webkit-keyframes fadeIn
+{
     from {opacity: 0;}
     to {opacity: 1;}
 }
 
 
-@keyframes fadeIn {
+@keyframes fadeIn
+{
     from {opacity: 0;}
     to {opacity:1 ;}
 }
 
 
-h1 {
+h1
+{
     color:deeppink;
     text-shadow:1px 1px 1px black;
     font-size: 64px;

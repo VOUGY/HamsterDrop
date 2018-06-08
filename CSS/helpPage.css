@@ -1,4 +1,5 @@
-body {
+body
+{
     background-image: url("../IMAGE/Home/grey-background.jpg");
     background-repeat: no-repeat;
     background-size: cover;
@@ -7,7 +8,9 @@ body {
     height: 600px;
 }
 
-h1 {
+
+h1
+{
     padding:0;
     color:deeppink;
     text-shadow:1px 1px 1px black;
@@ -15,7 +18,9 @@ h1 {
     font-size: 64px;
 }
 
-h2 {
+
+h2
+{
     font-size: 32px;
     font-weight: bold;
     color: black;
@@ -23,15 +28,21 @@ h2 {
     padding:4px;
 }
 
-#goal > h2 {
+
+#goal > h2
+{
     background-color: darkorange;
 }
 
-#howTo > h2 {
+
+#howTo > h2
+{
     background-color: dodgerblue;
 }
 
-#paragraph {
+
+#paragraph
+{
     margin: 1em;
     color: black;
     clear:both;
@@ -39,7 +50,9 @@ h2 {
     text-align: justify;
 }
 
-#goal, #howTo {
+
+#goal, #howTo
+{
     float:left;
     background: lightgrey;
     min-height:300px;
@@ -48,12 +61,16 @@ h2 {
     clear:both;
 }
 
-#howTo {
+
+#howTo
+{
     background: darkgray;
 }
 
+
 /* Gestion des grandes résolutions */
-@media screen {
+@media screen
+{
     #goal {
         width:30%;
         clear:none;
@@ -64,8 +81,10 @@ h2 {
     }
 }
 
+
 /* Gestion des moyennes résolutions */
-@media screen and (max-width: 950px) {
+@media screen and (max-width: 950px)
+{
     #goal {
         width:50%;
         clear:none;
@@ -76,8 +95,10 @@ h2 {
     }
 }
 
+
 /* Gestion des faibles résolutions */
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 640px)
+{
     #goal, #howTo {
         clear:both;
         width:100%;
