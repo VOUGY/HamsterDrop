@@ -79,21 +79,19 @@
 <script src="JS/Elements/hamsterTimeline.js"></script>
 <script src="JS/Play.js"></script>
 <script src="JS/Player.js"></script>
+<script src="JS/Elements/win.js"></script>
 
 
 <script>
-
-
     if(sessionStorage.getItem("TourOnePlayed") != "yes")
     {
         var listPlayers = setListPlayers();
         var listMatch = createMatches(listPlayers);
         sessionStorage.setItem("listPlayers", JSON.stringify(listPlayers));
         sessionStorage.setItem("listMatch", JSON.stringify(listMatch));
-        sessionStorage.setItem("currentPlayer", "1");
+        sessionStorage.setItem("currentPlayer", "0");
         sessionStorage.setItem("currentMatch", "0");
     }
-
 
     hamsterTimeline(2000);
 
