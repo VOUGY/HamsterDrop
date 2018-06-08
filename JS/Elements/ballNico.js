@@ -1,6 +1,6 @@
 // Everything about the ball's dynamics and collision detection
 var interval;
-var ballSize = 20;
+var ballSize = 40;
 var ballRadius = ballSize / 2;
 var dropped = false;
 // var lastCoord = [0,0]; //saved previous coord to know if ball change of half-plan delimited by each element
@@ -93,6 +93,7 @@ function collision_rev() {
             } else {
                 x = lastCoord[0];
                 y = p + m * x;
+                v[0] = 0;
             }
             // if ((x >= startX && x <= endX) || (y >= startY && y <= endY)) {
             if ((coord[0] >= startX && coord[0] <= endX) || (coord[1] >= startY && coord[1] <= endY)) {
@@ -102,16 +103,14 @@ function collision_rev() {
 
                 //considering velocity before and after rebound is equals
                 if (v[0] !== 0) {
-                    velocity = Math.sign(v[0]) * Math.sqrt(v[0] * v[0] + v[1] * v[1]);
+                    velocity = Math.sqrt(v[0] * v[0] + v[1] * v[1]);
                     mBallAngle = Math.atan(mBall);
                 } else {
                     velocity = Math.sqrt(v[1] * v[1]);
                     mBallAngle = Math.PI / 2;
-                    // mAngle = 0;
                 }
 
                 var angleAfterRebound = mBallAngle - 2 * mAngle;
-
                 v[0] = Math.round(Math.cos(-angleAfterRebound) * velocity * absorb[0] * 100) / 100;
 
                 if (roll === false) {
@@ -119,14 +118,16 @@ function collision_rev() {
                 } else {
                     v[1] = 0;
                 }
-                if (Math.abs(v[1]) < a[1]/10) {
+                if (Math.abs(v[1]) < a[1]) {
                     roll = true;
                     console.log("roll");
                 }
 
-                console.log(coord[0]+" "+coord[1]);
-                console.log(dist);
+                console.log(v[0]+" "+v[1]);
+
+                break;
             }
+
         }
     }
 }
@@ -208,9 +209,9 @@ function drawBall(e) {
         ctx.clearRect(0, 0, w, h);
         integrateObject(Number(sessionStorage.getItem("level")));
 
-        ctx.fillStyle = "purple";
-        ctx.beginPath();
-        ctx.arc(coord[0], coord[1], ballRadius, 0, Math.PI*2, false);
+        var img = new Image();
+        img.src = "IMAGE/smiley.gif";
+        ctx.drawImage(img , coord[0] - ballRadius, coord[1] - ballRadius, ballSize, ballSize);
         ctx.fill();
     }
 }
