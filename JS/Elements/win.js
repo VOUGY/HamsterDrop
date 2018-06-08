@@ -82,10 +82,10 @@ function win(){
                 temp++;
                 sessionStorage.setItem("currentMatch", "1");
 
-                if(listMatch.length == currentMatch+1)
+                if(listMatch.length == currentMatch+2)
                 {
                     alert("end of round");
-                    if(listMatch.length != 1)
+                    if(listMatch.length != 2)
                     {
                         sessionStorage.setItem("listPlayers", JSON.stringify(
                             getWinners(JSON.parse(
@@ -97,7 +97,9 @@ function win(){
                     }
                     else
                     {
-                        alert("END OF GAME");
+                        alert(sessionStorage.getItem("result"));
+                        Game.closeGame();
+                        document.location.replace("VOUG_Prepa/GameBegin.html");
                     }
 
                 }
