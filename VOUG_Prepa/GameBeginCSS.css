@@ -85,6 +85,9 @@ button:hover
     top: -webkit-calc(80% - 80px);
     /* Standard */
     top: calc(80% - 80px);
+
+    background-color: dimgray;
+    color: black;
 }
 
 #btnValidatePlayer
@@ -112,6 +115,8 @@ button:hover
     height: 75px;
     font-size: 50px;
     border-radius: 10px;
+    margin-top: 28px;
+    margin-left: 48px;
 }
 
 
@@ -137,7 +142,6 @@ button:hover
 #dBoxInfoPlayer
 {
     visibility: hidden;
-    background-color: #0b2e13;
     /* Firefox */
     left: -moz-calc(50% - 250px);
     /* WebKit */
@@ -149,7 +153,6 @@ button:hover
 
 #dBoxHamster
 {
-    margin-top: 5%;
     margin-left: 50px;
     margin-right: 25%;
 }
@@ -177,8 +180,8 @@ button:hover
 
 .hamsterChoice {
     float: left;
-    width: 101px;
-    height: 75px;
+    width: 151px;
+    height: 125px;
     margin: 10px;
     padding: 10px;
     border: 1px solid black;
@@ -188,11 +191,14 @@ button:hover
 .hamsterChoosing
 {
     display: inline-block;
-    width: 101px;
-    height: 75px;
+    width: 151px;
+    height: 125px;
+    padding: 10px;
     border: 1px solid black;
     background-color: white;
     border-radius: 50px 50px;
+    margin-left: 48px;
+    margin-bottom: 24px;
 }
 
 tr
@@ -252,4 +258,12 @@ tr
 @keyframes fadeIn {
     from {opacity: 0;}
     to {opacity:1 ;}
+}
+
+
+h1 {
+    color:deeppink;
+    text-shadow:1px 1px 1px black;
+    font-size: 64px;
+    margin-left: 24px;
 }

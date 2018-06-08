@@ -50,7 +50,7 @@ $(document).ready(function () {
             });
         } else
         {
-            $("#titlePlayer").text("What your username ? (Player " + Game.getiCurrentUser() + ")")
+            $("#titlePlayer").text("Choose your pseudo (Player " + Game.getiCurrentUser() + ")")
             $("#sNamePlayer").val("");
             $("#sNamePlayer").attr("placeholder","Player " + Game.getiCurrentUser());
             $("#hPlayer").empty();
