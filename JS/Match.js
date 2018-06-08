@@ -25,6 +25,16 @@ class Match {
         return this.player1;
     }
 
+    setPOne(player)
+    {
+        this.player1 = player;
+    }
+
+    setPTwo(player)
+    {
+        this.player2 = player;
+    }
+
     getPTwo()
     {
         return this.player2;

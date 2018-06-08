@@ -70,8 +70,11 @@
 
 </style>
 
-
-
+<script src="JS/MatchMaker.js"></script>
+<script src="JS/Match.js"></script>
+<script src="JS/PlayerNico.js"></script>
+<script src="JS/Elements/hamsterTimeline.js"></script>
+<script src="JS/Play.js"></script>
 
 <script>
 
@@ -85,8 +88,6 @@
         sessionStorage.setItem("currentMatch", "0");
     }
 
-
-    document.getElementById("error").innerText = "IT'S PLAYER " + sessionStorage.getItem("result") + " WHO IS PLAYING";
 
     hamsterTimeline(2000);
 
@@ -105,14 +106,9 @@
 
 </script>
 
-
-
-
 <script src="JS/Elements/canvas.js"></script>
 <script src="JS/Elements/elements.js"></script>
 <script src="JS/Elements/ballNico.js"></script>
-<script src="JS/Play.js"></script>
-<script src="JS/Elements/hamsterTimeline.js"></script>
 <script src="JS/ShowPlayers.js"></script>
 
 </body>

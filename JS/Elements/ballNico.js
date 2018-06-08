@@ -116,22 +116,51 @@ function win(){
         level++;
         sessionStorage.setItem("levelStarted", "yes");
 
+        //add score to current player
+        var currentPlayer = parseInt(sessionStorage.getItem("currentPlayer"));
+
+
+        if (currentPlayer == undefined)
+            currentPlayer = 0;
+
+        var listPlayers = JSON.parse(sessionStorage.getItem("listPlayers"));
+        var listMatch = JSON.parse(sessionStorage.getItem("listMatch"));
+
+        var currentMatch = parseInt(sessionStorage.getItem("currentMatch"));
+
+        if(isOdd(currentPlayer) == 1)
+        {
+            var player = new PlayerNico(listPlayers[currentPlayer]);
+            var score = listMatch[currentMatch].player1.score + document.getElementById("NS_hamsterTwo").value;
+            player.setScore(score);
+
+            var match = new Match(listMatch[currentMatch]);
+            match.setPOne(player);
+
+            alert("score : " + listPlayers[currentPlayer].score);
+            listMatch[currentMatch] = match;
+            listPlayers[currentPlayer] =  player;
+        }
+        else
+        {
+            var player = new PlayerNico(listPlayers[currentPlayer]);
+            var score = listMatch[currentMatch].player2.score + document.getElementById("NS_hamsterTwo").value;
+            player.setScore(score);
+
+            var match = new Match(listMatch[currentMatch]);
+            match.setPTwo(player);
+
+            listMatch[currentMatch] = match;
+            listPlayers[currentPlayer] =  player;
+        }
+
+        sessionStorage.setItem("listPlayers",JSON.stringify(listPlayers));
+        sessionStorage.setItem("listMatch", JSON.stringify(listMatch));
+
         if(level == 3)
         {
             if(isOdd(parseInt(sessionStorage.getItem("currentPlayer"))) == 1)
             {
-                // ADD SCORE P1
-                var listPlayers = JSON.parse(sessionStorage.getItem("listPlayers"));
-                var listMatch = JSON.parse(sessionStorage.getItem("listMatch"));
-                var currentPlayer = parseInt(sessionStorage.getItem("currentPlayer"));
-                var currentMatch = parseInt(sessionStorage.getItem("currentMatch"));
-
-                var player = new PlayerNico(listPlayers[currentPlayer]);
-                player.setScore(document.getElementById("NS_hamsterOne").value);
-
-                listPlayers[currentPlayer] = player;
-                sessionStorage.setItem("listPlayers",JSON.stringify(listPlayers));
-
                 currentPlayer++;
                 sessionStorage.setItem("currentPlayer", String(currentPlayer));
                 sessionStorage.setItem("TourOnePlayed", "yes");
@@ -139,18 +168,12 @@ function win(){
 
             else
             {
+                listMatch[currentMatch].player2.score += document.getElementById("NS_hamsterTwo").value;
 
-                // ADD SCORE P2
-                var listPlayers = JSON.parse(sessionStorage.getItem("listPlayers"));
-                var listMatch = JSON.parse(sessionStorage.getItem("listMatch"));
-                var currentPlayer = parseInt(sessionStorage.getItem("currentPlayer"));
-                var currentMatch = parseInt(sessionStorage.getItem("currentMatch"));
+                listPlayers[currentPlayer] =  listMatch[currentMatch].player2;
 
-                var player = new PlayerNico(listPlayers[currentPlayer]);
-                player.setScore(document.getElementById("NS_hamsterTwo").value);
-
-                listPlayers[currentPlayer] = player;
                 sessionStorage.setItem("listPlayers",JSON.stringify(listPlayers));
+                sessionStorage.setItem("listMatch", JSON.stringify(listMatch));
 
                 var p1 = new PlayerNico(listPlayers[currentPlayer-1]);
                 var p2 = new PlayerNico(listPlayers[currentPlayer]);
@@ -179,8 +202,9 @@ function win(){
                 temp++;
                 sessionStorage.setItem("currentMatch", "1");
 
-                if(listMatch.length == currentMatch)
+                if(listMatch.length == currentMatch+1)
                 {
+                    alert("end of round");
                     if(listMatch.length != 1)
                     {
                         sessionStorage.setItem("listPlayers", JSON.stringify(
@@ -285,8 +309,7 @@ window.onload = function() {
     var currentMatch = parseInt(sessionStorage.getItem("currentMatch"));
     var listMatch = JSON.parse(sessionStorage.getItem("listMatch"));
 
-    document.getElementById("error").innerText = sessionStorage.getItem("currentMatch");
-        //listMatch[currentMatch].player1.name + " VS " + listMatch[currentMatch].player2.name;
+    document.getElementById("error").innerText = listMatch[currentMatch].player1.score + " VS " + listMatch[currentMatch].player2.score;
 
     if(sessionStorage.getItem("levelStarted") != "yes")
     {
