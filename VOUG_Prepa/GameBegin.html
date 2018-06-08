@@ -13,11 +13,86 @@
                 <div class="row">
                     <div class="col-lg-11"></div>
                     <div class="col-lg-1">
-                        <button class="btnHelp" href="#" title="Help page" data-toggle="popover" data-trigger="focus"
-                                data-placement="left" data-content="Content...?">?</button>
+
+                        <!-- TODO: choose what to put in the help popup -->
+                        <button class="btnHelp popup" onclick="showPopup()">?
+                            <span class="popuptext" id="popupHelp">Popup text...</span>
+                        </button>
                     </div>
                 </div>
             </div>
+
+            <!--<style>-->
+                <!--/* Popup container */-->
+                <!--.popup {-->
+                    <!--position: relative;-->
+                    <!--display: inline-block;-->
+                    <!--cursor: pointer;-->
+                <!--}-->
+
+                <!--/* The actual popup (appears on top) */-->
+                <!--.popup .popuptext {-->
+                    <!--visibility: hidden;-->
+                    <!--width: 350px;-->
+                    <!--background-color: #555;-->
+                    <!--color: #fff;-->
+                    <!--text-align: center;-->
+                    <!--border-radius: 6px;-->
+                    <!--padding: 8px 0;-->
+                    <!--position: absolute;-->
+                    <!--z-index: 1;-->
+                    <!--top: -5px;-->
+                    <!--bottom:auto;-->
+                    <!--right: 128%;-->
+                <!--}-->
+
+                <!--/* Popup arrow */-->
+                <!--.popup .popuptext::after {-->
+                    <!--content: "";-->
+                    <!--position: absolute;-->
+                    <!--top: 50%;-->
+                    <!--left: 100%;-->
+                    <!--margin-top: -5px;-->
+                    <!--border-width: 5px;-->
+                    <!--border-style: solid;-->
+                    <!--border-color: transparent transparent transparent #555;-->
+                <!--}-->
+
+                <!--/* Toggle this class when clicking on the popup container (hide and show the popup) */-->
+                <!--.popup .show {-->
+                    <!--visibility: visible;-->
+                    <!-- -webkit-animation: fadeIn 1s;-->
+                    <!--animation: fadeIn 1s-->
+                <!--}-->
+
+                <!--/* Add animation (fade in the popup) */-->
+                <!--@-webkit-keyframes fadeIn {-->
+                    <!--from {opacity: 0;}-->
+                    <!--to {opacity: 1;}-->
+                <!--}-->
+
+                <!--@keyframes fadeIn {-->
+                    <!--from {opacity: 0;}-->
+                    <!--to {opacity:1 ;}-->
+                <!--}-->
+            <!--</style>-->
+
+            <!-- TODO: modify paths for the script and the css files -->
+            <script>
+                // When the user clicks on <div>, open the popup
+                function showPopup() {
+                    var popup = document.getElementById("popupHelp");
+                    popup.classList.toggle("show");
+                }
+            </script>
+
+
+
+
+
+
+
+
 
 
             <!-- First part : button for start the game -->
@@ -80,7 +155,7 @@
 
 
 
-
+        <!-- TODO: popover function... -->
         <script>
             $(document).ready(function(){
                 $('[data-toggle="popover"]').popover();
@@ -96,9 +171,7 @@
         <script src="../JS/Play.js"></script>
         <script src="GameBeginJS.js"></script>
         <script src="GameBeginJQ.js"></script>
-        <script>
-            var Game = new Play();
-        </script>
+        <script>var Game = new Play();</script>
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxVfslsraU7WYmYNmFeVYgV3yVvxK1mYk&callback=initMap"></script>
     </body>
 </html>
