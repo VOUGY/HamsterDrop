@@ -1,17 +1,18 @@
 // Everything about the ball's dynamics and collision detection
 var interval;
-var ballSize = 20;
+var ballSize = 40;
 var ballRadius = ballSize / 2;
 var dropped = false;
 // var lastCoord = [0,0]; //saved previous coord to know if ball change of half-plan delimited by each element
 var coord = [0,0]; //actual coordinate
 var nextCoord = [340,0];
-var v = [7,0]; //velocity
+var v = [3,0]; //initial velocity
 var a = [0.002, 0.1]; //acceleration
 var absorb = [0.8, 0.8]; //rebound absorption
 var roll = false; //to avoid multi mini micro nano rebounds
 var frameRate = 20;
 
+/*
 function collision_rev2(){
     for(var i=0;i<listCalcLines.length;i++){
         var l = listCalcLines[i];
@@ -104,114 +105,133 @@ function collision_rev2(){
     }
     coord[0] += v[0];
     coord[1] += v[1]; // falling (if v < 0)
-}
-/*
-function collision_rev(){
+}*/
+
+
+function collision_rev() {
     var dp = undefined; //how close the ball is from collision
+    var lastCoord = [0, 0];
     lastCoord[0] = coord[0];
     lastCoord[1] = coord[1];
     coord[0] = coord[0] + v[0];
     coord[1] = coord[1] + v[1];
+    var dist, prevDist;
 
-    for(var i=0;i<listCalcLines.length;i++){
+
+    for (var i = 0; i < listCalcLines.length; i++) {
         var l = listCalcLines[i];
         var startX = l[0];
         var startY = l[1];
         var endX = l[2];
         var endY = l[3];
         var p, m; //slope and equation result of the element
-        var p1, p2;
+        var p1 = 0;
+        var p2 = 0;
         //calculate line slope https://www.mathforu.com/seconde/determiner-equation-droite/
-        if(endX !== startX) {// is not a vertical line!
+        if (endX !== startX) {
+            // is not a vertical line!
             m = (endY - startY) / (endX - startX);
             //calculate line equation value for x=0
             p = startY - m * startX; //equation of the line
             p1 = lastCoord[1] - m * lastCoord[0]; //same equation with the previous ball position
             p2 = coord[1] - m * coord[0]; //same equation with the actual ball position
-        }
-        else{ //in case of vertical element
+        } else {
+            //in case of vertical element
             p = startX;
             p1 = lastCoord[0];
             p2 = coord[0];
         }
-        if(Math.sign(p - p1) !== Math.sign(p - p2) || Math.sign(p-p2) <= ballRadius){ //https://fr.wikipedia.org/wiki/Demi-plan
-            var x,y;
+        var mAngle; // angle of the rebound surface
+        var mBallAngle; // angle of the ball rebound
+        var velocity;
+        //considering velocity before and after rebound is equals
+        if (v[0] !== 0) {
+            velocity = Math.sign(v[0]) * Math.sqrt(v[0] * v[0] + v[1] * v[1]);
+            mBallAngle = Math.atan(mBall);
+
+            if (startX === endX) mAngle = Math.PI / 2;
+            else mAngle = Math.atan(m);
+        } else {
+            velocity = Math.sqrt(v[1] * v[1]);
+            mBallAngle = Math.PI / 2;
+            mAngle = 0;
+        }
+        if(startX != endX)
+            dist = Math.abs(coord[1] - m * coord[0] - p) / Math.sqrt(1 + (m*m));
+        else
+            dist = Math.abs(coord[0] - startX);
+
+        if(startX != endX)
+            prevDist = Math.abs(lastCoord[1] - m * lastCoord[0] - p) / Math.sqrt(1 + (m*m));
+        else
+            prevDist = Math.abs(lastCoord[0] - startX);
+
+        // if (Math.sign(p - p1) !== Math.sign(p - p2)) {
+        if(dist <= ballRadius && dist < prevDist){
+            //https://fr.wikipedia.org/wiki/Demi-plan
+            var x, y;
             //calculate equation of ball trajectory
-            if(lastCoord[0] !== coord[0]) { // not vertical rebound
+            if (lastCoord[0] !== coord[0]) {
+                // not vertical rebound
                 var mBall = (coord[1] - lastCoord[1]) / (coord[0] - lastCoord[0]);
                 var pBall = lastCoord[1] - mBall * lastCoord[0];
 
-                if(startX === endX){
+                if (startX === endX) {
                     x = startX;
                     y = pBall + mBall * x;
-                }
-                else{
+                } else {
                     x = (pBall - p) / (m - mBall); // calculate intersection between line and ball trajectory
-                                                   // https://lexique.netmath.ca/point-dintersection/
+                    // https://lexique.netmath.ca/point-dintersection/
                     y = pBall + mBall * x;
                 }
-            }
-            else {
+            } else {
                 x = lastCoord[0];
-                y = p + m*x;
+                y = p + m * x;
             }
-            if(x > startX && x < endX || y > startY && y < endY) {
-                // dp = Math.abs(p-p1);
-                // if(Math.abs(p-p1) > dp) { //if not the next collision
-                //     continue;
-                // }
-                var mAngle; // angle of the rebound surface
+            // if ((x >= startX && x <= endX) || (y >= startY && y <= endY)) {
+            if ((coord[0] >= startX && coord[0] <= endX) || (coord[1] >= startY && coord[1] <= endY)) {
+
                 var mBallAngle; // angle of the ball rebound
                 var velocity;
 
                 //considering velocity before and after rebound is equals
-                if(v[0] !== 0) {
+                if (v[0] !== 0) {
                     velocity = Math.sign(v[0]) * Math.sqrt(v[0] * v[0] + v[1] * v[1]);
                     mBallAngle = Math.atan(mBall);
-
-                    if(startX === endX)
-                        mAngle = Math.PI / 2;
-                    else
-                        mAngle = Math.atan(m);
-                }
-                else {
+                } else {
                     velocity = Math.sqrt(v[1] * v[1]);
-                    mBallAngle = Math.PI/2;
-                    mAngle = 0;
+                    mBallAngle = Math.PI / 2;
+                    // mAngle = 0;
                 }
 
                 // Correction for contact on the edge of the ball
-                var dx = Math.abs(Math.sin(mAngle) * ballRadius);
-                var dy = Math.abs(Math.cos(mAngle) * ballRadius);
+                // var dx = Math.abs(Math.sin(mAngle) * ballRadius);
+                // var dy = Math.abs(Math.cos(mAngle) * ballRadius);
+                //
+                // console.log("boing");
+                // coord[0] = x - Math.sign(v[0]) * dx;
+                // coord[1] = y - Math.sign(v[1]) * dy;
 
-                coord[0] = x - Math.sign(v[0]) * dx;
-                coord[1] = y - Math.sign(v[1]) * dy;
+                var angleAfterRebound = mBallAngle - 2 * mAngle;
 
-                var angleAfterRebound = mBallAngle - 2*mAngle;
+                v[0] = Math.round(Math.cos(-angleAfterRebound) * velocity * absorb[0] * 100) / 100;
 
-                v[0] = Math.round(Math.cos(-angleAfterRebound) * velocity * absorb[0]*100)/100;
-
-                if(roll === false){
-                    v[1] = (Math.round(Math.sin(-angleAfterRebound) * velocity *1000)/1000) * absorb[1];
-                    console.log(coord[1]);
-                }
-                else{
+                if (roll === false) {
+                    v[1] = Math.round(Math.sin(-angleAfterRebound) * velocity * 1000) / 1000 * absorb[1];
+                } else {
                     v[1] = 0;
                 }
-                if(Math.abs(v[1]) < a[1]){
+                if (Math.abs(v[1]) < a[1]/10) {
                     roll = true;
-                    console.log("roule");
+                    console.log("roll");
                 }
+
+                console.log(coord[0]+" "+coord[1]);
+                console.log(dist);
             }
         }
     }
-    if(dp===undefined){
-        coord[0] += v[0];
-        coord[1] += v[1]; // falling (if v < 0)
-    }
 }
-*/
-
 function win(){
     if(coord[0] + ballRadius >= goal[0] && coord[0] < goal[0] + goal[2] - ballRadius && coord[1] + ballRadius >= goal[1] - goal[3] - (goal[2] /2)){
         console.log("youpiiii!!!");
@@ -236,7 +256,7 @@ function drawBall() {
         if (roll === false)
             v[1] += a[1]; // acceleration Y axis
 
-        collision_rev2();
+        collision_rev();
 
         //Anticipate wall rebound
         // if(coord[0] - ballRadius + (v[0] - a[0]) < 0)//left side
@@ -265,10 +285,12 @@ function drawBall() {
     // drawing ball
     ctx.clearRect(0, 0, w, h);
     integrateObject();
-
-    ctx.fillStyle = "purple";
-    ctx.beginPath();
-    ctx.arc(coord[0], coord[1], ballRadius, 0, Math.PI*2, false);
+    var img = new Image();
+    img.src = "IMAGE/smiley.gif";
+    ctx.drawImage(img , coord[0] - ballRadius, coord[1] - ballRadius, ballSize, ballSize);
+    // ctx.fillStyle = "purple";
+    // ctx.beginPath();
+    // ctx.arc(coord[0], coord[1], ballRadius, 0, Math.PI*2, false);
     ctx.fill();
 }
 
