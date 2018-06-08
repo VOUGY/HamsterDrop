@@ -23,14 +23,28 @@ function defineGameBox(){
     canvas.style.position = "absolute";
     canvas.style.left = l.toString();
     canvas.style.top = t.toString();
-    canvas.style.backgroundColor = "white";
+//    canvas.style.backgroundColor = "white";
 
 }
 
 
 function integrateObject(level){
     var bg = new Image();
-    bg.src = "IMAGE/GameWindow/wood.jpg";
+
+    switch(level) {
+        case 1:
+            bg.src = "IMAGE/GameWindow/houseBack.jpg";
+            break;
+        case 2:
+            bg.src = "IMAGE/GameWindow/townBack.jpg";
+            break;
+        case 3:
+            bg.src = "IMAGE/GameWindow/forestBack.jpg";
+            break;
+        default:
+            bg.src = "IMAGE/GameWindow/wood.jpg";
+    }
+
     ctx.drawImage(bg,0,0,800,600);
     drawLines_rev(level);
     drawGoal();
