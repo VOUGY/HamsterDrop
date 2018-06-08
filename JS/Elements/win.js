@@ -13,13 +13,14 @@ function win(){
         var listPlayers = JSON.parse(sessionStorage.getItem("listPlayers"));
         var listMatch = JSON.parse(sessionStorage.getItem("listMatch"));
 
-        if(isOdd(currentPlayer) == 0)
+        if(!isOdd(currentPlayer))
         {
-            var player = new PlayerNico(listMatch[currentMatch].player1);
-            var score = parseInt(listMatch[currentMatch].player1.score + document.getElementById("NS_hamsterTwo").value);
+            var match = new Match(listPlayers[currentPlayer], listPlayers[currentPlayer + 1]);
+
+            var player = new PlayerNico(match.getPOne().id, match.getPOne().name, match.getPOne().idHamster);
+            var score = parseInt(match.player1.score + document.getElementById("NS_hamsterTwo").value);
             player.setScore(score);
 
-            var match = new Match(listMatch[currentMatch]);
             match.setPOne(player);
 
             alert("score : " + player.getScore());
@@ -28,11 +29,13 @@ function win(){
         }
         else
         {
-            var player = new PlayerNico(listPlayers[currentPlayer]);
+            var match = new Match(listPlayers[currentPlayer], listPlayers[currentPlayer - 1]);
+
+            var player = new PlayerNico(match.getPOne().id, match.getPOne().name, match.getPOne().idHamster);
             var score = listMatch[currentMatch].player2.score + document.getElementById("NS_hamsterTwo").value;
             player.setScore(score);
 
-            var match = new Match(listMatch[currentMatch]);
+
             match.setPTwo(player);
 
             listMatch[currentMatch] = match;
@@ -54,8 +57,8 @@ function win(){
             else
             {
 
-                var p1 = new PlayerNico(listPlayers[currentPlayer-1]);
-                var p2 = new PlayerNico(listPlayers[currentPlayer]);
+                var p1 = new PlayerNico(match.getPOne().id, match.getPOne().name, match.getPOne().idHamster);
+                var p2 = new PlayerNico(match.PTwo().id, match.getPtwo().name, match.getPTwo().idHamster);
 
                 if(p1.getScore() > p2.getScore())
                 {
