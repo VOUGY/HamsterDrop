@@ -1,8 +1,8 @@
 var div = document.getElementById('right');
 var html = "<br/>";
 
-var game = JSON.parse(localStorage.getItem(localStorage.key(0)));
-var table = game.aPlayers;
+//var game = JSON.parse(localStorage.getItem(localStorage.key(0)));
+var table = Game.getaPlayers();
 
 for (var player = 0; player < table.length; player++) {
     var name = table[player].name;

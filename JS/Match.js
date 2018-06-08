@@ -1,8 +1,8 @@
 
 class Match {
     constructor(player1, player2) {
-        this.player1 = Player(player1);
-        this.player2 = Player(player2);
+        this.player1 = player1;
+        this.player2 = player2;
         this.end = false;
     }
 
@@ -18,5 +18,25 @@ class Match {
     getend()
     {
         return this.end;
+    }
+
+    getPOne()
+    {
+        return this.player1;
+    }
+
+    setPOne(player)
+    {
+        this.player1 = player;
+    }
+
+    setPTwo(player)
+    {
+        this.player2 = player;
+    }
+
+    getPTwo()
+    {
+        return this.player2;
     }
 }
