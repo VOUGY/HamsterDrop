@@ -12,6 +12,7 @@ var roll = false; //to avoid multi mini micro nano rebounds
 var frameRate = 20;
 var level;
 
+// Function to detect collision with walls, floor and line elements
 function collision_rev() {
     lastCoord[0] = coord[0];
     lastCoord[1] = coord[1];
@@ -19,6 +20,7 @@ function collision_rev() {
     coord[1] = coord[1] + v[1];
     var dist, prevDist;
 
+    // Collision detection with each line
     for (var i = 0; i < listCalcLines.length; i++) {
         var l = listCalcLines[i];
         var startX = l[0];
@@ -48,12 +50,6 @@ function collision_rev() {
             p2 = coord[0];
             mAngle = Math.PI / 2;
         }
-        // var mAngle; // angle of the line
-
-
-
-
-
 
         //considering velocity and angle of the ball
         // var mBallAngle; // angle of the ball rebound
@@ -74,8 +70,11 @@ function collision_rev() {
         //     mAngle = 0;
         // }
 
+
+        // Total velocity of the ball
         var velocity = Math.sqrt(Math.pow(v[0], 2) + Math.pow(v[1], 2));
 
+        // d = length of line, d1 = distance with beginning of line, d2 = with end of line
         var d = Math.sqrt(Math.pow((endX - startX), 2) + Math.pow((endY - startY), 2));
         var d1 = Math.sqrt(Math.pow((coord[0] - startX), 2) + Math.pow((coord[1] - startY), 2));
         var d2 = Math.sqrt(Math.pow((coord[0] - endX), 2) + Math.pow((coord[1] - endY), 2));
@@ -83,123 +82,68 @@ function collision_rev() {
         var da1 = Math.asin(ballRadius / d1);
         var da2 = Math.asin(ballRadius / d2);
 
+        // distance from projection of ball on line to end and beginning of line
         var l1 = ballRadius / Math.tan(da1);
         var l2 = ballRadius / Math.tan(da2);
 
+        // if ball is rolling, get a velocity parallel to line
         if(roll ===true){
-            console.log("slow");
             v[0] = Math.cos(-mAngle) * velocity;
             v[1] = Math.sin(-mAngle) * velocity;
             if(v[0] < a[0] && v[1] < a[1]){
                 coord[0] = ballRadius +240;
                 coord[1] = ballRadius;
             }
+            // when ball reach end of line, drop again
             if (!(l1 <= d && l2 <= d)) {
                 roll = false;
-                console.log("out of roll");
             }
         }
 
         else {
-            //Orthogonal distance from ball to line
+            //Orthogonal distance from ball to line for actual ball position
             if (startX != endX)
                 dist = Math.abs(coord[1] - m * coord[0] - p) / Math.sqrt(1 + (m * m));
             else
                 dist = Math.abs(coord[0] - startX);
 
+            //Orthogonal distance from ball to line for previous ball position
             if (startX != endX)
                 prevDist = Math.abs(lastCoord[1] - m * lastCoord[0] - p) / Math.sqrt(1 + (m * m));
             else
                 prevDist = Math.abs(lastCoord[0] - startX);
 
+            // Detect ball first contact with line when approaching
             if (dist <= ballRadius && dist < prevDist) {
                 var x, y;
                 var mBall, pBall;
                 var mBallAngle; // angle of the ball rebound
 
-                //calculate equation of ball trajectory
+                //calculate equation of ball trajectory from last position to actual position
                 if (lastCoord[0] !== coord[0]) {
                     // not vertical rebound
                     mBall = (coord[1] - lastCoord[1]) / (coord[0] - lastCoord[0]);
                     pBall = lastCoord[1] - mBall * lastCoord[0];
-                    // velocity = Math.sqrt(Math.pow(v[0], 2) + Math.pow(v[1], 2));
                     mBallAngle = Math.atan(mBall);
-
-                    // if (startX === endX) {
-                    //     x = startX;
-                    //     y = pBall + mBall * x;
-                    // } else {
-                    //     x = (pBall - p) / (m - mBall); // calculate intersection between line and ball trajectory
-                    //     // https://lexique.netmath.ca/point-dintersection/
-                    //     y = pBall + mBall * x;
-                    // }
-                } else {
+                } else { // vertical rebound
                     x = lastCoord[0];
                     v[0] = 0;
-                    velocity = Math.sqrt(v[1] * v[1]);
+                    velocity = Math.sqrt(v[1] * v[1]); // to be sure and precise...
                     mBallAngle = Math.PI / 2;
                 }
 
-                // var mBallAngle; // angle of the ball rebound
-                // var velocity;
-
-                // if (v[0] !== 0) {
-                // velocity = Math.sqrt(Math.pow(v[0], 2) + Math.pow(v[1], 2));
-                // mBallAngle = Math.atan(mBall);
-
-                // if (startX === endX)
-                //     mAngle = Math.PI / 2;
-                // else
-                //     mAngle = Math.atan(m);
-                // }
-                // else {
-                // velocity = Math.sqrt(v[1] * v[1]);
-                // mBallAngle = Math.PI / 2;
-                // mAngle = 0;
-                // }
-
-
-                // var d = Math.sqrt(Math.pow((endX - startX), 2) + Math.pow((endY - startY), 2));
-                // var d1 = Math.sqrt(Math.pow((coord[0] - startX), 2) + Math.pow((coord[1] - startY), 2));
-                // var d2 = Math.sqrt(Math.pow((coord[0] - endX), 2) + Math.pow((coord[1] - endY), 2));
-                //
-                // var da1 = Math.asin(ballRadius / d1);
-                // var da2 = Math.asin(ballRadius / d2);
-                //
-                // var l1 = ballRadius / Math.tan(da1);
-                // var l2 = ballRadius / Math.tan(da2);
-
+                // If ball contact with line is between start and end of line
                 if (l1 <= d && l2 <= d) {
-                    // var mBallAngle; // angle of the ball rebound
-                    // var velocity;
-
-                    //considering velocity before and after rebound is equals
-                    // if (v[0] !== 0) {
-                    //     velocity = Math.sqrt(v[0] * v[0] + v[1] * v[1]);
-                    //     mBallAngle = Math.atan(mBall);
-                    // } else {
-                    //     velocity = Math.sqrt(v[1] * v[1]);
-                    //     mBallAngle = Math.PI / 2;
-                    // }
-
+                    // Calculate the angle of rebound to get v[0] and v[1] after rebound
                     var angleAfterRebound = mBallAngle - 2 * mAngle;
                     v[0] = Math.round(Math.cos(-angleAfterRebound) * velocity * absorb[0] * 100) / 100;
+                    v[1] = Math.round(Math.sin(-angleAfterRebound) * velocity * 1000) / 1000 * absorb[1];
 
-                    // if (roll === false) {
-                        v[1] = Math.round(Math.sin(-angleAfterRebound) * velocity * 1000) / 1000 * absorb[1];
-                    // }
-                    // else {
-                    //     console.log("slow");
-                    //     v[0] = Math.cos(-mAngle) * velocity;
-                    //     v[1] = Math.sin(-mAngle) * velocity;
-                    // }
+                    // To avoid infinite vertical rebound
                     if (Math.abs(v[1]) < 2 * a[1]) {
                         roll = true;
-                        console.log("initiate roll");
                     }
                 }
-                else
-                    roll = false;
             }
         }
     }
@@ -217,10 +161,6 @@ function  getMousePos(canvas, e) { // source https://stackoverflow.com/questions
     }
 }
 
-function redoLevel() { //restart the level
-    window.location.reload(false);
-}
-
 function drawBall(e) {
     defineGameBox();
 
@@ -229,21 +169,15 @@ function drawBall(e) {
 
     var currentPlayer = parseInt(sessionStorage.getItem("currentPlayer"));
 
+    // Get the corresponding hamster image for the ball
     var img = new Image();
     var table = Game.getaPlayers();
-   // var hamster = listPlayers[currentPlayer].idhamster;
     var hamster = table[currentPlayer].idhamster;
     var ham = hamster.substr(0, 4);
     var avatar = ham + ".png";
     img.src = "IMAGE/Avatars/"+avatar;
-    // img.src = "IMAGE/smiley.gif";
     ctx.drawImage(img , coord[0] - ballRadius, coord[1] - ballRadius, ballSize, ballSize);
     ctx.fill();
-    //
-    // ctx.fillStyle = "purple";
-    // ctx.beginPath();
-    // ctx.arc(coord[0], coord[1], ballRadius, 0, Math.PI*2, false);
-    // ctx.fill();
 
     if(dropped === false){
         canvas.addEventListener('click', function(){
@@ -264,10 +198,7 @@ function drawBall(e) {
         collision_rev();
 
         if (roll === true && Math.abs(v[0]) < 0.02) {
-            // clearInterval(interval);
-            // interval = null;
-            // console.log('stop');
-            coord = [ballRadius, ballRadius];
+            coord = [ballRadius, ballRadius]; // Initialise position for new try
             dropped = false;
         }
     }
@@ -283,11 +214,8 @@ window.onload = function() {
     if(sessionStorage.getItem("levelStarted") != "yes")
         sessionStorage.setItem("level", "0");
 
-
     level = sessionStorage.getItem("level");
     calcLines(Number(level));
-
-
 
     interval = setInterval(drawBall, frameRate);
 };
