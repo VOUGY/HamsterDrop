@@ -35,6 +35,10 @@
     <!-- <p> is for debugging (Nicolas) -->
     <div class="footer" id="footer">
         <p id="error"></p>
+        <audio autoplay>
+            <source src="MUSIC/hall-of-mountain-king8bit.wav" type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
     </div>
 </div>
 
@@ -45,21 +49,11 @@
 <script src="JS/Elements/hamsterTimeline.js"></script>
 <script src="JS/Play.js"></script>
 <script src="JS/Player.js"></script>
-<script src="JS/Elements/win.js"></script>
+<script src="JS/Elements/win2.js"></script>
 
 
 <script>
-    if(sessionStorage.getItem("TourOnePlayed") != "yes")
-    {
-        var listPlayers = setListPlayers();
-        var listMatch = createMatches(listPlayers);
-        sessionStorage.setItem("listPlayers", JSON.stringify(listPlayers));
-        sessionStorage.setItem("listMatch", JSON.stringify(listMatch));
-        sessionStorage.setItem("currentPlayer", "0");
-        sessionStorage.setItem("currentMatch", "0");
-    }
 
-    hamsterTimeline(2000);
 
     // Retrieve the object from storage
     if(localStorage.getItem('Game') != null){
@@ -74,6 +68,18 @@
         document.location.replace("VOUG_Prepa/GameBegin.html")
     }
 
+    if(sessionStorage.getItem("TourOnePlayed") != "yes")
+    {
+        var listPlayers = setListPlayers();
+        var listMatch = createMatches(listPlayers);
+        sessionStorage.setItem("listPlayers", JSON.stringify(listPlayers));
+        sessionStorage.setItem("listMatch", JSON.stringify(listMatch));
+        sessionStorage.setItem("currentPlayer", "0");
+        sessionStorage.setItem("currentMatch", "0");
+    }
+
+
+    hamsterTimeline(8000);
 </script>
 
 
@@ -109,7 +115,7 @@
 
 <script src="JS/Elements/canvas.js"></script>
 <script src="JS/Elements/elements.js"></script>
-<script src="JS/Elements/ballNico.js"></script>
+<script src="JS/Elements/ball.js"></script>
 <script src="JS/ShowPlayers.js"></script>
 
 </body>
