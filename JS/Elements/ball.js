@@ -204,10 +204,12 @@ function drawBall(e) {
     ctx.clearRect(0, 0, w, h);
     integrateObject(Number(sessionStorage.getItem("level")));
 
+    var currentPlayer = parseInt(sessionStorage.getItem("currentPlayer"));
 
     var img = new Image();
     var table = Game.getaPlayers();
-    var hamster = table[1].idhamster;
+   // var hamster = listPlayers[currentPlayer].idhamster;
+    var hamster = table[currentPlayer].idhamster;
     var ham = hamster.substr(0, 4);
     var avatar = ham + ".png";
     img.src = "IMAGE/Avatars/"+avatar;

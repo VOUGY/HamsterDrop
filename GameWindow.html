@@ -49,21 +49,11 @@
 <script src="JS/Elements/hamsterTimeline.js"></script>
 <script src="JS/Play.js"></script>
 <script src="JS/Player.js"></script>
-<script src="JS/Elements/win.js"></script>
+<script src="JS/Elements/win2.js"></script>
 
 
 <script>
-    if(sessionStorage.getItem("TourOnePlayed") != "yes")
-    {
-        var listPlayers = setListPlayers();
-        var listMatch = createMatches(listPlayers);
-        sessionStorage.setItem("listPlayers", JSON.stringify(listPlayers));
-        sessionStorage.setItem("listMatch", JSON.stringify(listMatch));
-        sessionStorage.setItem("currentPlayer", "0");
-        sessionStorage.setItem("currentMatch", "0");
-    }
 
-    hamsterTimeline(8000);
 
     // Retrieve the object from storage
     if(localStorage.getItem('Game') != null){
@@ -78,6 +68,18 @@
         document.location.replace("VOUG_Prepa/GameBegin.html")
     }
 
+    if(sessionStorage.getItem("TourOnePlayed") != "yes")
+    {
+        var listPlayers = setListPlayers();
+        var listMatch = createMatches(listPlayers);
+        sessionStorage.setItem("listPlayers", JSON.stringify(listPlayers));
+        sessionStorage.setItem("listMatch", JSON.stringify(listMatch));
+        sessionStorage.setItem("currentPlayer", "0");
+        sessionStorage.setItem("currentMatch", "0");
+    }
+
+
+    hamsterTimeline(8000);
 </script>
 
 
