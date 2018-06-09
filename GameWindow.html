@@ -1,10 +1,9 @@
 <head>
     <meta charset="utf-8"/>
     <link rel="stylesheet" type="text/css" href="CSS/own.css">
-
-
-
+    <link rel="stylesheet" href="CSS/gamewindow.css">
 </head>
+
 <body>
 <div id="MB_grid-container">
     <!-- Code for header part of the screen (sliders) -->
@@ -16,8 +15,10 @@
     </div>
 
     <!-- Code for left part of the screen -->
-    <div class="left" id="left">???</div>
-    <!-- TODO: add a button that reloads the level... -->
+    <div class="left" id="left">
+        <div id="matches" class="container"></div>
+        <button id="btnStop" class="btn" value="" onclick="Game.closeGame()"> Stop the game </button>
+    </div>
 
     <!-- Code for main part of the screen (game) -->
     <div class="main">
@@ -37,41 +38,6 @@
     </div>
 </div>
 
-
-
-
-<!-- MONTAINE: en écriture, je le mettrai au propre dans un .css après -->
-<style>
-    .header {
-        grid-area: header;
-        background-color: lightgrey;
-    }
-
-    .left {
-        grid-area: left;
-        background-color: yellow;
-        height: 600px;
-    }
-
-    .main {
-        grid-area: main;
-        width: 800px;
-    }
-
-    .right {
-        grid-area: right;
-        margin-left: 40px;
-        font-size: 24px;
-        color: black;
-        font-weight: bold;
-    }
-
-    .footer {
-        grid-area: footer;
-        background-color: deepskyblue;
-    }
-
-</style>
 
 <script src="JS/MatchMaker.js"></script>
 <script src="JS/Match.js"></script>
@@ -109,6 +75,38 @@
     }
 
 </script>
+
+
+
+<!-- TODO: mettre au propre le script pour l'affichage du match actuel en fonction des variables du tournoi -->
+<script>
+    var div = document.getElementById('matches');
+    var html = "";
+
+    var test = JSON.parse(sessionStorage.getItem(sessionStorage.(0)));
+
+
+
+    // var test = SessionStorage.listMatch();
+    //
+    // //var game = JSON.parse(localStorage.getItem(localStorage.key(0)));
+    // var table = Game.getaPlayers();
+    //
+    // for (var player = 0; player < table.length; player++) {
+    //     var name = table[player].name;
+    //     var hamster = table[player].idhamster;
+    //     var ham = hamster.substr(0, 4);
+    //     var avatar = ham + ".png";
+    //
+    //     html += '<div class="container" style="margin-top: 20px"><img style="height: 45px; width: 47px" src="IMAGE/Avatars/'
+    //         + avatar + '"/><text style="margin-left: 10px">' + name + '</text></div>';
+    // }
+    //
+    // div.innerHTML = html;
+</script>
+
+
+
 <script src="JS/Elements/canvas.js"></script>
 <script src="JS/Elements/elements.js"></script>
 <script src="JS/Elements/ballNico.js"></script>

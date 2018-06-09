@@ -1,32 +1,32 @@
 class Player {
-    constructor(id,name,idhamster)
+    constructor(playerid,name,idhamster,score)
     {
-        this.playerId = id;
+        this.playerId = playerid;
         this.name = name;
         this.idhamster = idhamster;
-        this.score = [];
+        this.score = score;
         this.active = true;
 
         console.log("A new player " + this.name);
     }
-
-    addscore(level,value, time) {
-        this.score[level].value = value;
-        this.score[level].time = time;
-        console.log("score of player " + this.name + " :" + this.score[level].value + " during the level " + level);
-    }
-    score()
+    setLose()
     {
-        return this.score.time;
+        this.lose = 1;
     }
 
-    getName()
+    getLose()
     {
-        return "TEST";
+        return this.lose;
     }
 
-    fludludl()
+    setScore(score)
     {
-        return "test";
+        this.score = score;
     }
+
+    getScore()
+    {
+        return this.score;
+    }
+
 }
