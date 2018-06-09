@@ -209,7 +209,7 @@ window.onload = function() {
     var currentMatch = parseInt(sessionStorage.getItem("currentMatch"));
     var listMatch = JSON.parse(sessionStorage.getItem("listMatch"));
 
-    document.getElementById("error").innerText = listMatch[currentMatch].player1.score + " VS " + listMatch[currentMatch].player2.score;
+  // document.getElementById("error").innerText = listMatch[currentMatch].player1.score + " VS " + listMatch[currentMatch].player2.score;
 
     if(sessionStorage.getItem("levelStarted") != "yes")
         sessionStorage.setItem("level", "0");

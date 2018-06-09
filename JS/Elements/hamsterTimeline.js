@@ -1,4 +1,4 @@
-function hamsterTimeline(playerOneScore)
+function hamsterTimeline(playerOneScore) //playerOneScore defines where the player one hamster will stop
 {
     var i = 1;
     document.getElementById("NS_hamsterOne").disabled = true;
@@ -12,7 +12,7 @@ function hamsterTimeline(playerOneScore)
                 document.getElementById("NS_hamsterOne").value = i;
             else
             {
-                document.getElementById("NS_hamsterOne").style.background = "#92f442";
+                document.getElementById("NS_hamsterOne").style.background = "#92f442"; //change color when player one finishes
             }
             document.getElementById("NS_hamsterTwo").value = i++;
         }while(i>8000);
