@@ -13,8 +13,6 @@ function defineGameBox(){
     var l = (windowW - w)/2;
     var t = (windowH - h)/2;
 
-
-
     document.getElementById("header").style.height = t.toString();
     document.getElementById("footer").style.height = t.toString();
     document.getElementById("left").style.width = l.toString();
@@ -23,8 +21,6 @@ function defineGameBox(){
     canvas.style.position = "absolute";
     canvas.style.left = l.toString();
     canvas.style.top = t.toString();
-//    canvas.style.backgroundColor = "white";
-
 }
 
 

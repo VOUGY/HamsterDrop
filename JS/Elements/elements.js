@@ -45,19 +45,15 @@ var colors = {
 function drawGoal() {
     ctx.fillStyle = "black";
     ctx.fillRect(goal[0], h - goal[3], goal[2], goal[3]);
-    // ctx.fillStyle = "purple";
-    // ctx.beginPath();
-    // var goalRoundRadius = goal[2] / 2;
-    // ctx.arc(goal[0] + goalRoundRadius, h - goal[3], goalRoundRadius, Math.PI, Math.PI*2, false);
     ctx.fill();
 };
 
 // Make line format for canvas. Will be use for rebound detection and drawlines()
 function calcLines(){
 
-    listCalcLines[0] = [0, 0, 0, h]; //add black line for left wall
-    listCalcLines[1] = [0, h, w, h]; //add black line for bottom
-    listCalcLines[2] = [w, 0, w, h]; //add black line for right wall
+    listCalcLines[0] = [0, 0, 0, h]; //add line for left wall
+    listCalcLines[1] = [0, h, w, h]; //add line for bottom
+    listCalcLines[2] = [w, 0, w, h]; //add line for right wall
 
     var l = listLines[level].length;
 
