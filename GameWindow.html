@@ -16,6 +16,7 @@
 
     <!-- Code for left part of the screen -->
     <div class="left" id="left">
+        <div id="matches" class="container"></div>
         <button id="btnStop" class="btn" value="" onclick="Game.closeGame()"> Stop the game </button>
     </div>
 
@@ -73,6 +74,35 @@
         document.location.replace("VOUG_Prepa/GameBegin.html")
     }
 
+</script>
+
+
+
+<!-- TODO: mettre au propre le script pour l'affichage du match actuel en fonction des variables du tournoi -->
+<script>
+    var div = document.getElementById('matches');
+    var html = "";
+
+    var test = JSON.parse(sessionStorage.getItem(sessionStorage.(0)));
+
+
+
+    // var test = SessionStorage.listMatch();
+    //
+    // //var game = JSON.parse(localStorage.getItem(localStorage.key(0)));
+    // var table = Game.getaPlayers();
+    //
+    // for (var player = 0; player < table.length; player++) {
+    //     var name = table[player].name;
+    //     var hamster = table[player].idhamster;
+    //     var ham = hamster.substr(0, 4);
+    //     var avatar = ham + ".png";
+    //
+    //     html += '<div class="container" style="margin-top: 20px"><img style="height: 45px; width: 47px" src="IMAGE/Avatars/'
+    //         + avatar + '"/><text style="margin-left: 10px">' + name + '</text></div>';
+    // }
+    //
+    // div.innerHTML = html;
 </script>
 
 
