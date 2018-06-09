@@ -45,7 +45,6 @@
 
 <script src="JS/MatchMaker.js"></script>
 <script src="JS/Match.js"></script>
-<script src="JS/PlayerNico.js"></script>
 <script src="JS/Elements/hamsterTimeline.js"></script>
 <script src="JS/Play.js"></script>
 <script src="JS/Player.js"></script>
@@ -70,12 +69,13 @@
 
     if(sessionStorage.getItem("TourOnePlayed") != "yes")
     {
-        var listPlayers = setListPlayers();
+
+        sessionStorage.setItem("currentPlayer", "0");
+        sessionStorage.setItem("currentMatch", "0");
+        var listPlayers = Game.getaPlayers();
         var listMatch = createMatches(listPlayers);
         sessionStorage.setItem("listPlayers", JSON.stringify(listPlayers));
         sessionStorage.setItem("listMatch", JSON.stringify(listMatch));
-        sessionStorage.setItem("currentPlayer", "0");
-        sessionStorage.setItem("currentMatch", "0");
     }
 
 
