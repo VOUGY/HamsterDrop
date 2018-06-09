@@ -45,10 +45,10 @@ var colors = {
 function drawGoal() {
     ctx.fillStyle = "black";
     ctx.fillRect(goal[0], h - goal[3], goal[2], goal[3]);
-    ctx.fillStyle = "purple";
-    ctx.beginPath();
-    var goalRoundRadius = goal[2] / 2;
-    ctx.arc(goal[0] + goalRoundRadius, h - goal[3], goalRoundRadius, Math.PI, Math.PI*2, false);
+    // ctx.fillStyle = "purple";
+    // ctx.beginPath();
+    // var goalRoundRadius = goal[2] / 2;
+    // ctx.arc(goal[0] + goalRoundRadius, h - goal[3], goalRoundRadius, Math.PI, Math.PI*2, false);
     ctx.fill();
 };
 
@@ -86,7 +86,7 @@ function calcLines(){
 
 function drawLines_rev(level){
 
-    level = level;
+    this.level = level;
     for(var i=0;i<listLines[level].length;i++){
         var line = listLines[level][i];
         ctx.save();

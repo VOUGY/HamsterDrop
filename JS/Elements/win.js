@@ -1,6 +1,6 @@
 function win(){
 
-    if(coord[0] + ballRadius >= goal[0] && coord[0] < goal[0] + goal[2] - ballRadius && coord[1] + ballRadius >= goal[1] - goal[3] - (goal[2] /2)){
+    if(coord[0] + ballRadius >= goal[0] && coord[0] - ballRadius <= goal[0] + goal[2] && coord[1] >= goal[1] - goal[3] ){
 
         //clearInterval(interval);
 
